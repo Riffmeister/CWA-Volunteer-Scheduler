@@ -16,7 +16,7 @@ class Login extends React.Component {
 
    render() {
     return <div>
-		<h1>Login</h1>
+		<h1 class = "test">Login</h1>
 			<form ref='login'>
 		  		<label>Email:</label>
 		  			<input ref='email' type="text" autoFocus id='email'></input>
