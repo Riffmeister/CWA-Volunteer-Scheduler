@@ -5,10 +5,10 @@ class Header extends React.Component {
   render() {
     return <div>
 		<ul>
-			<li><a>Hello</a></li>
-			<li><a>Hello</a></li>
-			<li><a>Hello</a></li>
-			<li><a>Hello</a></li>
+			<li><a>Header</a></li>
+			<li><a>Header</a></li>
+			<li><a>Header</a></li>
+			<li><a>Header</a></li>
 
 		</ul>
     </div>

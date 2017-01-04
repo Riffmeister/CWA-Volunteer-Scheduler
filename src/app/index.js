@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import { Router, Route, hashHistory } from 'react-router'
-import Login from './components/login'
+import { Router, Route, browserHistory } from 'react-router'
+
+import routes from './components/routes'
 
 ReactDOM.render((
-	<Router history={hashHistory}>
-		<Route path="/" component={Login}/>
-	</Router>
+	<section id='cwa-app'>
+		<Router routes={routes} history={browserHistory}/>
+	</section>
 ), document.querySelector('section'));
