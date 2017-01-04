@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './../shared/header';
+import { browserHistory } from 'react-router'
+import * as auth from '../utils/auth';
 
-require('./style.less')
+require('../utils/auth')
+require('./login.less')
+
+
+
 
 class Login extends React.Component {
 
@@ -34,6 +39,7 @@ class Login extends React.Component {
         )
     }
 
+
     _handleSubmit(event) {
         const email = this.refs.email.value
         const password = this.refs.password.value
@@ -47,7 +53,15 @@ class Login extends React.Component {
             const email = this.refs.email.value
             const password = this.refs.password.value
             console.log('email', email, 'password', password)
-            this.refs.login.reset()
+			if (auth.login(email, password)) {
+				console.log('DO IT!!!')
+				browserHistory.push('/Home')
+				this.refs.login.reset()
+			} else {
+				alert("Invalid Email/Password")
+				event.preventDefault()
+				this.refs.email.focus()
+			}
         }
     }
 }
