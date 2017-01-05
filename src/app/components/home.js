@@ -7,7 +7,6 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
     }
-    //will need an action and method="post" on this form tag to direct to server
 
     render() {
         return (

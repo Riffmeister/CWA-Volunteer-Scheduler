@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 
 class Footer extends React.Component {
   render() {
-    return <div>
+    return (
+	<div className='menu'>
 		<ul>
 			<li><a>Footer</a></li>
 			<li><a>Footer</a></li>
@@ -11,7 +12,7 @@ class Footer extends React.Component {
 			<li><a>Footer</a></li>
 
 		</ul>
-    </div>
+    </div>)
   }
 }
 
