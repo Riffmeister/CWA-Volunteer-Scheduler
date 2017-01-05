@@ -3,14 +3,17 @@ import Header from '../shared/header'
 import Footer from '../shared/footer'
 import {Link} from 'react-router'
 
+require('./app.less')
 export default React.createClass({
   render() {
     return (
-      <div>
-	  <Header/>
-		{this.props.children}
-		<Footer/>
-      </div>
+      	<section id='app-container'>
+		  	<Header/>
+			  	<section className='the-goods'>
+				{this.props.children}
+				</section>
+			<Footer/>
+      	</section>
     )
   }
 })
