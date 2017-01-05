@@ -4,15 +4,12 @@ import { browserHistory } from 'react-router'
 import * as auth from '../utils/auth';
 
 require('../utils/auth')
-require('./login.less')
-
-
-
+require('./input.less')
 
 class Login extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             error: '',
             email: '',
@@ -23,7 +20,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <section id='login'>
+            <section className='data-input'>
                 <h1>Login</h1>
                 <form ref='login'>
                     <label>Email:</label>
@@ -32,15 +29,15 @@ class Login extends React.Component {
                     <label>Password:</label>
                     <input ref='password' type="text" id='password'></input>
                     <br></br>
-                    <button type="submit" onClick={this._handleSubmit.bind(this)}>Login</button>
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" onClick={this._handleLogin.bind(this)}>Login</button>
+                    <button type="submit" onClick={this._handleSignUp.bind(this)}>Sign Up</button>
                 </form>
             </section>
         )
     }
 
 
-    _handleSubmit(event) {
+    _handleLogin(event) {
         const email = this.refs.email.value
         const password = this.refs.password.value
         if (email === "") {
@@ -50,19 +47,23 @@ class Login extends React.Component {
             alert("Please Enter a Value for Password")
             return false
         } else {
+			event.preventDefault()
             const email = this.refs.email.value
             const password = this.refs.password.value
-            console.log('email', email, 'password', password)
 			if (auth.login(email, password)) {
-				console.log('DO IT!!!')
 				browserHistory.push('/Home')
-				this.refs.login.reset()
+				// this.refs.login.reset()
 			} else {
 				alert("Invalid Email/Password")
-				event.preventDefault()
+
 				this.refs.email.focus()
 			}
         }
     }
+
+	_handleSignUp(event) {
+		event.preventDefault()
+		browserHistory.push('/signup')
+	}
 }
 export default Login;
