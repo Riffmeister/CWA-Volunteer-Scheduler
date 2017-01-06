@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './../shared/header';
+import Header from './../../shared/header';
 
+require('./home.less')
 class Home extends React.Component {
 
     constructor(props) {
@@ -10,7 +11,9 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div><h1>Home</h1></div>
+			<section id='home'>
+				Home
+			</section>
         )
     }
 }
