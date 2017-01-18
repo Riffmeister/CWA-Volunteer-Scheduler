@@ -6,7 +6,7 @@ class Header extends React.Component {
   render() {
     return (
 	<section className='menu'>
-		<div id='header'>
+		<div id='header' className='container'>
 			<div className='nav-options'>
 				<img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
 				<ul>

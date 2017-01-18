@@ -9,7 +9,7 @@ export default React.createClass({
     return (
       	<section id='app-container'>
 		  	<Header/>
-			  	<section className='the-goods'>
+			  	<section className='the-goods container'>
 				{this.props.children}
 				</section>
 			<Footer/>
