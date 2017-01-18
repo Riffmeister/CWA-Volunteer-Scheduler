@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router'
 
+var superagent = require('superagent')
+
 class Header extends React.Component {
   render() {
     return (
@@ -13,7 +15,7 @@ class Header extends React.Component {
 					<li><a>Home</a></li>
 					<li><a>Header</a></li>
 					<li><a>Header</a></li>
-					<li><a>Header</a></li>
+					<li onClick={this._handleClickHere.bind(this)}><a>API Test</a></li>
 				</ul>
 			</div>
 			<div className='auth-option'>
@@ -25,9 +27,21 @@ class Header extends React.Component {
     </section>
 )}
 
-  _handleClick(event){
-	  event.preventDefault()
-	  browserHistory.push('/')
+_handleClickHere(event) {
+	event.preventDefault()
+	var apiReq = superagent.get('http://httpbin.org/')
+	.end((err, res) => {
+		if (err !== null) {
+			console.log('error')
+		} else {
+			console.log(res)
+		}
+	})
+}
+
+_handleClick(event){
+	event.preventDefault()
+	browserHistory.push('/')
   }
 }
 
