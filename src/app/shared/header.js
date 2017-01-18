@@ -5,22 +5,29 @@ import { browserHistory } from 'react-router'
 class Header extends React.Component {
   render() {
     return (
-	<div className='menu'>
-		<img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
-		<ul>
-			<li onClick={this._handleClick.bind(this)}><a>Home</a></li>
-			<li><a>Header</a></li>
-			<li><a>Header</a></li>
-			<li><a>Header</a></li>
-
-		</ul>
-    </div>
+	<section className='menu'>
+		<div id='header'>
+			<div className='nav-options'>
+				<img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
+				<ul>
+					<li><a>Home</a></li>
+					<li><a>Header</a></li>
+					<li><a>Header</a></li>
+					<li><a>Header</a></li>
+				</ul>
+			</div>
+			<div className='auth-option'>
+				<ul>
+					<li onClick={this._handleClick.bind(this)}><a>Login/Logout</a></li>
+				</ul>
+			</div>
+		</div>
+    </section>
 )}
 
   _handleClick(event){
 	  event.preventDefault()
 	  browserHistory.push('/')
-	  console.log('hello')
   }
 }
 

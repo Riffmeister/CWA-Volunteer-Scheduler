@@ -7,6 +7,25 @@
 	.menu {
 		display: flex;
 		width: 100%;
+		background: #333;
+		min-height: 40px;
+
+		#header {
+			display: flex;
+			width: 100%;
+
+			.nav-options {
+				display: flex;
+				flex-grow: 1;
+			}
+
+			.auth-option {
+				display: flex;
+			}
+		}
+		#footer {
+			display: flex;
+		}
 
 		ul {
 			font-size: 1.25em;
@@ -14,10 +33,17 @@
 			display: flex;
 			cursor: pointer;
 			padding: 0px;
+			color: #ccc;
+			align-items: center;
+			margin: 0px;
 		}
 
 		li {
 			margin: 0 15px;
+		}
+
+		.title {
+			position: absolute;
 		}
 	}
 
