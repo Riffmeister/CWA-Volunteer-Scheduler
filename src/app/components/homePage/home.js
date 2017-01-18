@@ -12,7 +12,16 @@ class Home extends React.Component {
     render() {
         return (
 			<section id='home'>
-				Home
+				<div className='upcoming-events'>
+					<h1>
+						Upcoming Events
+					</h1>
+				</div>
+				<div className='my-events'>
+					<h1>
+						My Events
+					</h1>
+				</div>
 			</section>
         )
     }
