@@ -9,9 +9,9 @@ class GlobalEvents extends React.Component {
 
     render() {
         return (
-			<section className='global-events'>
-				Global Events
-			</section>
+           <section className='global-events'>
+                   Global Events
+           </section>
         )
     }
 }

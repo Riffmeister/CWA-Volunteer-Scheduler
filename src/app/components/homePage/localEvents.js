@@ -9,9 +9,9 @@ class LocalEvents extends React.Component {
 
     render() {
         return (
-			<section className='local-events'>
-				Local Events
-			</section>
+           <section className='local-events'>
+                   Local Events
+           </section>
         )
     }
 }
