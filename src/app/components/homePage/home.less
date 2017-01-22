@@ -10,10 +10,36 @@
 		justify-content: center;
 	}
 
+	h1 {
+		margin: 10px 0 25px 0;
+		border-style: groove;
+		font-size: 1em;
+	}
+
 	.upcoming-events {
 		border-right: 3px double;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.global-events {
+			flex-grow: 1;
+			width: 100%;
+		    display: flex;
+		    justify-content: center;
+		}
 	}
 
 	.my-events {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.local-events {
+			flex-grow: 1;
+			width: 100%;
+		    display: flex;
+		    justify-content: center;
+		}
 	}
 }
