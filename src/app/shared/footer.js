@@ -11,8 +11,8 @@ class Footer extends React.Component {
 					<li><a>Footer 1</a></li>
 					<li><a>Footer 2</a></li>
 					<li><a>Footer 3</a></li>
-
 				</ul>
+        
 		    </div>
 		</section>)
   }
