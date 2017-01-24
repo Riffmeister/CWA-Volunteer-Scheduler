@@ -29,12 +29,13 @@ class Header extends React.Component {
 
 _handleClickHere(event) {
 	event.preventDefault()
-	var apiReq = superagent.get('http://ec2-54-70-79-115.us-west-2.compute.amazonaws.com/')
+	var apiReq = superagent.get('http://ec2-54-70-79-115.us-west-2.compute.amazonaws.com/todo/api/v1.0/tasks')
+	.send('{"name":"tj","pet":"tobi"}')
 	.end((err, res) => {
 		if (err !== null) {
 			console.log('error')
 		} else {
-			console.log(res)
+			console.log(res.statusCode)
 		}
 	})
 }
