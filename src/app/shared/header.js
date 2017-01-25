@@ -12,7 +12,7 @@ class Header extends React.Component {
 			<div className='nav-options'>
 				<img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
 				<ul>
-					<li><a><i className="fa fa-home fa-3x"></i></a></li>
+					<li><a><i className="fa fa-home fa-2x"></i></a></li>
 					<li><a>Header</a></li>
 					<li><a>Header</a></li>
 					<li onClick={this._handleClickHere.bind(this)}><a>API Test</a></li>
