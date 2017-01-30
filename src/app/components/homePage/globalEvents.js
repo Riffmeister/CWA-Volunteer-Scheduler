@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+require('./home.less')
+
 class GlobalEvents extends React.Component {
 
     constructor(props) {

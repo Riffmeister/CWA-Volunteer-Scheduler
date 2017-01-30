@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router'
 import * as auth from '../../utils/auth';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // require('../utils/auth')
 require('./input.less')
