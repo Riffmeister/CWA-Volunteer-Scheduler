@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+require('./home.less')
+
+
 class LocalEvents extends React.Component {
 
     constructor(props) {

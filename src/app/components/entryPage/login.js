@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router'
 import * as auth from '../../utils/auth';
+import Api from '../../api/baseApi'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // require('../utils/auth')
 require('./input.less')
@@ -16,7 +17,6 @@ class Login extends React.Component {
             password: ''
         }
     }
-    //will need an action and method="post" on this form tag to direct to server
 
     render() {
         return (
@@ -38,32 +38,32 @@ class Login extends React.Component {
 
 
     _handleLogin(event) {
-        const email = this.refs.email.value
-        const password = this.refs.password.value
-        if (email === "") {
-            alert("Please Enter a Value for Email")
-            return false
-        } else if (password === "") {
-            alert("Please Enter a Value for Password")
-            return false
-        } else {
-			event.preventDefault()
-            const email = this.refs.email.value
-            const password = this.refs.password.value
-			if (auth.login(email, password)) {
-				browserHistory.push('/Home')
-				// this.refs.login.reset()
-			} else {
-				alert("Invalid Email/Password")
+		event.preventDefault()
+		browserHistory.push('/vms/home')
 
-				this.refs.email.focus()
-			}
-        }
+        // const email = this.refs.email.value
+        // const password = this.refs.password.value
+        // if (email === "") {
+        //     alert("Please Enter a Value for Email")
+        //     return false
+        // } else if (password === "") {
+        //     alert("Please Enter a Value for Password")
+        //     return false
+        // } else {
+		// 	event.preventDefault()
+		// 	var request = new Api()
+		// 	if (request.login(email, password)) {
+		// 		browserHistory.push('/vms/home')
+		// 	} else {
+		// 		alert("Invalid Email/Password")
+		// 		this.refs.email.focus()
+		// 	}
+        // }
     }
 
 	_handleSignUp(event) {
 		event.preventDefault()
-		browserHistory.push('/signup')
+		browserHistory.push('/vms/signup')
 	}
 }
 export default Login;

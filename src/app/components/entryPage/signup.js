@@ -26,75 +26,82 @@ class SignUp extends React.Component {
 			<section className='data-input'>
                 <h1>Sign Up!</h1>
                 <form ref='signup'>
-                    <label>Email:</label>
-                    <input ref='email' type="text" autoFocus id='email'></input>
-                    <br></br>
-					<label>Phone Number:</label>
-					<input ref='phone' type="text" autoFocus id='phone'></input>
-					<br></br>
-                    <label>Password:</label>
-                    <input ref='password' type="text" id='password'></input>
-					<br/>
-					<label>Retype Password:</label>
-                    <input ref='passwordCheck' type="text" id='passwordCheck'></input>
-                    <br></br>
-                    <button type="submit" onClick={this._handleSubmit.bind(this)}>Sign Up</button>
-					<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
+					<div>
+						<label>First Name:</label>
+						<input ref='firstName' type="text" autoFocus id='firstName'></input>
+					</div>
+					<div>
+						<label>Last Name:</label>
+						<input ref='lastName' type="text" id='lastName'></input>
+					</div>
+					<div>
+	                    <label>Email:</label>
+	                    <input ref='email' type="text" id='email'></input>
+                    </div>
+					<div>
+						<label>Phone Number:</label>
+						<input ref='phone' type="text" id='phone'></input>
+					</div>
+					<div className='password'>
+						<div>
+		                    <label>Password:</label>
+		                    <input ref='password' type="text" id='password'></input>
+						</div>
+						<div>
+							<label>Retype Password:</label>
+		                    <input ref='passwordCheck' type="text" id='passwordCheck'></input>
+						</div>
+					</div>
                 </form>
+				<button type="submit" onClick={this._handleSubmit.bind(this)}>Sign Up</button>
+				<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
             </section>
         )
     }
 
 	_emptyFields() {
-		if (this.refs.email.value !== '') {
+		if (this.refs.firstName.value == '') {
 			return true
 		}
-		if (this.refs.phone.value !== '') {
+		if (this.refs.lastName.value == '') {
 			return true
 		}
-		if (this.refs.password.value !== '') {
+		if (this.refs.email.value == '') {
 			return true
 		}
+		if (this.refs.phone.value == '') {
+			return true
+		}
+		if (this.refs.password.value == '') {
+			return true
+		}
+		if (this.refs.passwordCheck.value == '') {
+			return true
+		}
+		return false
 	}
 
 	_handleBack(event) {
 		event.preventDefault()
-		if (this._emptyFields(event)){
+		if (!this._emptyFields(event)){
 			if (confirm('Are you sure you would like to return to login screen? All data entered will be lost.')){
-				browserHistory.push('/')
+				browserHistory.push('/vms')
 			}
 		} else {
-			browserHistory.push('/')
+			browserHistory.push('/vms')
 		}
 	}
 
     _handleSubmit(event) {
 		event.preventDefault()
-        const email = this.refs.email.value
-        const password = this.refs.password.value
-		const passwordCheck = this.refs.passwordCheck.value
-		const phone = this.refs.phone.value
-        if (email === '') {
-            alert("Please Enter a Value for Email")
-            return false
-        } else if (phone === '') {
-            alert("Please Enter a Value for Password")
-            return false
-        } else if (password === '') {
-			alert("Please Enter a Value for Password")
+		if (this._emptyFields(event)) {
+			alert('Please enter a value for every field.')
 			return false
-		}  else if (password !== passwordCheck) {
-			alert("Please Enter Matching Passwords")
-			return false
+		} else if (this.refs.password.value !== this.refs.passwordCheck.value) {
+			alert('Passwords do not match.')
 		} else {
-            const email = this.refs.email.value
-            const password = this.refs.password.value
-			// TODO: Need to either have some kind of check here, or put in the logic to
-			// send to database to add new user
-			if (true) {
-				browserHistory.push('/')
-			}
-        }
+			Api.login(this.refs.email.value, this.refs.password.value)
+		}
     }
 }
 export default SignUp;
