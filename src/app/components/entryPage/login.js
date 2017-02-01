@@ -51,8 +51,7 @@ class Login extends React.Component {
             const email = this.refs.email.value
             const password = this.refs.password.value
 			if (auth.login(email, password)) {
-				browserHistory.push('/Home')
-				// this.refs.login.reset()
+				browserHistory.push('/vms/home')
 			} else {
 				alert("Invalid Email/Password")
 
@@ -63,7 +62,7 @@ class Login extends React.Component {
 
 	_handleSignUp(event) {
 		event.preventDefault()
-		browserHistory.push('/signup')
+		browserHistory.push('/vms/signup')
 	}
 }
 export default Login;

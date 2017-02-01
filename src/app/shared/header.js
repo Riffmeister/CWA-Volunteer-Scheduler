@@ -1,8 +1,8 @@
+import Api from '../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router'
 
-var superagent = require('superagent')
+import { browserHistory } from 'react-router'
 
 class Header extends React.Component {
   render() {
@@ -41,7 +41,9 @@ _handleClickHere(event) {
 
 _handleClick(event){
 	event.preventDefault()
-	browserHistory.push('/')
+	if (confirm('Are you sure you would like to logout?')) {
+		browserHistory.push('/vms')
+	}
   }
 }
 

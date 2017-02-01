@@ -10,10 +10,10 @@ import SignUp from './entryPage/signup';
 import CreateNewEvent from './homePage/newEvent';
 
 module.exports = (
-<Route path='/' component={App}>
+<Route path='/vms' component={App}>
 	<IndexRoute component={Login}/>
-		<Route path="/signup" component={SignUp}/>
-		<Route path="/home" component={Home}/>
-		<Route path="/create-new-event" component={CreateNewEvent}/>
+		<Route path="/vms/signup" component={SignUp}/>
+		<Route path="/vms/home" component={Home}/>
+		<Route path="/vms/home/create-new-event" component={CreateNewEvent}/>
 </Route>
 )

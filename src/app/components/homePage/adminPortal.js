@@ -36,7 +36,7 @@ class AdminPortal extends React.Component {
 
 	_handleCreateEvent(event) {
 		event.preventDefault()
-		browserHistory.push('/create-new-event')
+		browserHistory.push('/vms/home/create-new-event')
 	}
 }
 export default AdminPortal;
