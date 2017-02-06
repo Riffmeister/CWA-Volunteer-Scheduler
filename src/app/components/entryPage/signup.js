@@ -1,3 +1,5 @@
+import Api from '../../api/baseApi'
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router'
@@ -52,9 +54,9 @@ class SignUp extends React.Component {
 		                    <input ref='passwordCheck' type="text" id='passwordCheck'></input>
 						</div>
 					</div>
+          <button type="submit" onClick={this._handleSubmit.bind(this)}>Sign Up</button>
+          <button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
                 </form>
-				<button type="submit" onClick={this._handleSubmit.bind(this)}>Sign Up</button>
-				<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
             </section>
         )
     }
@@ -100,7 +102,11 @@ class SignUp extends React.Component {
 		} else if (this.refs.password.value !== this.refs.passwordCheck.value) {
 			alert('Passwords do not match.')
 		} else {
-			Api.login(this.refs.email.value, this.refs.password.value)
+      var request = new Api()
+      // TODO: Need to check successful signup better than just statusCode.
+			if (!request.signup(this.refs.firstName.value, this.refs.lastName.value, this.refs.email.value, this.refs.phone.value, this.refs.password.value)) {
+        browserHistory.push('/vms')
+      }
 		}
     }
 }
