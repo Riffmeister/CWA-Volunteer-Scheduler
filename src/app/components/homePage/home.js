@@ -1,8 +1,11 @@
+import {observer} from 'mobx-react'
+import AdminPortal from './adminPortal';
+import Header from './../../shared/header';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './../../shared/header';
+import userStore from '../../user/user.js'
 import VolunteerPortal from './volunteerPortal';
-import AdminPortal from './adminPortal';
+
 
 require('./home.less')
 class Home extends React.Component {
@@ -11,10 +14,13 @@ class Home extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+    }
+
     render() {
         return (
 			<section id='home'>
-				{false ? <VolunteerPortal /> : <AdminPortal />}
+				{userStore.getAdmin() ? <AdminPortal /> : <VolunteerPortal />}
 			</section>
         )
     }
