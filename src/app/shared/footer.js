@@ -6,12 +6,16 @@ class Footer extends React.Component {
     return (
 		<section className='menu'>
       <footer className='content-container clearfix'>
+
 			<div id='links-footer'>
 				<ul>
-					<li><a href="http://www.facebook.com/cwaboulder" target="out" title="Link to Conference on World Affairs Facebook Page"><i className="fa fa-home"></i>Facebook</a></li>
-					<li><a><i className="fa fa-twitter-square"></i>Twitter</a></li>
-					<li><a><i className="fa fa-youtube-play"></i>Youtube</a></li>
-          <li><a><i className="fa fa-instagram"></i>Instagram</a></li>
+          <li id="visible-menu"><a><i className="fa fa-bars"></i></a></li>
+          <div id="footer-links">
+  					<li><a href="http://www.facebook.com/cwaboulder" target="out" title="Link to Conference on World Affairs Facebook Page"><i className="fa fa-home"></i>Facebook</a></li>
+  					<li><a><i className="fa fa-twitter-square"></i>Twitter</a></li>
+  					<li><a><i className="fa fa-youtube-play"></i>Youtube</a></li>
+            <li><a><i className="fa fa-instagram"></i>Instagram</a></li>
+          </div>
 				</ul>
 		  </div>
 

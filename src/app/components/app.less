@@ -29,6 +29,10 @@
 	text-align: right;
 }
 
+.make-visible{
+	display: unset;
+}
+
 body, html{
 		background-color: #333;
 }
@@ -132,6 +136,10 @@ footer{
 	padding-right: 10px;
 }
 
+#footer-visible-menu{
+	display: none;
+}
+
 
 #contact-info{
 	display: flex;
@@ -200,6 +208,14 @@ footer{
 			li a:hover, li a:active {
 				background-color: rgba(207, 184, 124, 0.8);
 				color: #333;
+			}
+
+			#footer-visible-menu{
+				display: unset;
+			}
+
+			#footer-links{
+				display:none;
 			}
 
 	}
