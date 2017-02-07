@@ -10,7 +10,7 @@ class Api {
 		.send({password: password})
 		.then((response) => {
 				// TODO: Should return whether the current user has been logged in.
-				userStore.setAdmin()
+				userStore.isAdmin = true
 				console.log(userStore)
 				return response.statusCode
 		})

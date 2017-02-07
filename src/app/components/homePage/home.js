@@ -6,8 +6,8 @@ import ReactDOM from 'react-dom';
 import userStore from '../../user/user.js'
 import VolunteerPortal from './volunteerPortal';
 
-
 require('./home.less')
+@observer
 class Home extends React.Component {
 
     constructor(props) {
@@ -20,7 +20,7 @@ class Home extends React.Component {
     render() {
         return (
 			<section id='home'>
-				{userStore.getAdmin() ? <AdminPortal /> : <VolunteerPortal />}
+				{userStore.isAdmin ? <AdminPortal /> : <VolunteerPortal />}
 			</section>
         )
     }

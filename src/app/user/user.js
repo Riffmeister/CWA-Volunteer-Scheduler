@@ -1,26 +1,18 @@
 import { action, observable } from 'mobx'
 
 class UserStore {
-  constructor() {
-    extendObservable(this, { isAdmin: false })
-  }
-
-  getAdmin() {
-    return this.isAdmin
-  }
+  @observable isAdmin: boolean = false
 
   setAdmin() {
-    this._isAdmin = true
+    this.isAdmin = true
   }
 
   removeAdmin() {
-    this._isAdmin = false
+    this.isAdmin = false
   }
 
   destroy() {
-    console.log('before', UserStore.instance)
-    delete UserStore.instance
-    console.log('after', UserStore.instance)
+    this.isAdmin = false
   }
 
 }
