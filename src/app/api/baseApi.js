@@ -11,7 +11,7 @@ class Api {
 		.then((response) => {
 				// TODO: Should return whether the current user has been logged in.
 				userStore.isAdmin = true
-				console.log(userStore)
+				console.log(response)
 				return response.statusCode
 		})
 	}
@@ -24,14 +24,10 @@ class Api {
 		.send({email: email})
 		.send({phone: phone})
 		.send({password: password})
-		.end((err, res) => {
-			if (err !== null) {
-				console.log('error', err)
-			} else {
-				console.log(res)
-				//TODO: Should return whether a user has been added to db.
-				return res.statuscode
-			}
+		.then((response) => {
+				// TODO: Should return whether the current user has been logged in.
+				console.log(response)
+				return response.statusCode
 		})
 	}
 }

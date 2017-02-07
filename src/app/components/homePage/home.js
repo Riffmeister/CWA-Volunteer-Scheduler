@@ -7,6 +7,7 @@ import userStore from '../../user/user.js'
 import VolunteerPortal from './volunteerPortal';
 
 require('./home.less')
+
 @observer
 class Home extends React.Component {
 
