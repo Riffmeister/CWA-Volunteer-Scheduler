@@ -9,8 +9,8 @@ class Footer extends React.Component {
 
 			<div id='links-footer'>
 				<ul>
-          <li id="visible-menu"><a><i className="fa fa-bars fa-2x"></i></a></li>
-          <div id="footer-links">
+          <li id="footer-visible-menu"><a><i className="fa fa-bars"></i></a></li>
+          <div id="footer-info">
   					<li><a href="http://www.facebook.com/cwaboulder" target="out" title="Link to Conference on World Affairs Facebook Page"><i className="fa fa-home"></i>Facebook</a></li>
   					<li><a><i className="fa fa-twitter-square"></i>Twitter</a></li>
   					<li><a><i className="fa fa-youtube-play"></i>Youtube</a></li>
@@ -29,7 +29,7 @@ class Footer extends React.Component {
         </div>
 
         <div >
-          <p><a href="//www.colorado.edu"><img src="http://www.colorado.edu/cwa/profiles/express/themes/expressbase/images/beboulder/be-boulder-white.png" alt="University of Colorado Boulder" class="beboulder"/></a></p>
+          <p><a href="//www.colorado.edu"><img src="http://www.colorado.edu/cwa/profiles/express/themes/expressbase/images/beboulder/be-boulder-white.png" alt="University of Colorado Boulder"/></a></p>
           <p><strong><a href="http://www.colorado.edu">University of Colorado Boulder</a></strong><br />&copy; Regents of the University of Colorado<br />
           <span ><a href="http://www.colorado.edu/about/privacy-statement">Privacy</a> &bull; <a href="http://www.colorado.edu/about/legal-trademarks">Legal &amp; Trademarks</a></span></p>
         </div>
