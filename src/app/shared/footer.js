@@ -9,7 +9,7 @@ class Footer extends React.Component {
 
 			<div id='links-footer'>
 				<ul>
-          <li id="footer-visible-menu"><a><i className="fa fa-bars"></i></a></li>
+          <li id="footer-visible-menu"><button><i className="fa fa-bars"></i></button></li>
           <div id="footer-info">
   					<li><a href="http://www.facebook.com/cwaboulder" target="out" title="Link to Conference on World Affairs Facebook Page"><i className="fa fa-home"></i>Facebook</a></li>
   					<li><a><i className="fa fa-twitter-square"></i>Twitter</a></li>

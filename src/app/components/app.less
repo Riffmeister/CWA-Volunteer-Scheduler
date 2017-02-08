@@ -44,7 +44,6 @@ body, html{
 	align-items: center;
 	font-family: "Neue Helvetica W01","Helvetica Neue",Helvetica,Arial,sans-serif;
 	background-color: #f8f8f8;
-
 }
 
 #app-container a {
@@ -65,6 +64,7 @@ ul {
 ul li {
 	padding: 0 15px;
 }
+
 ul li a {
 	color: #ccc;
 	display: inline-block;
@@ -73,7 +73,6 @@ ul li a {
 	padding: 0.75em;
 	margin: -0.75em;
 }
-
 
 .menu {
 	display: flex;
@@ -93,7 +92,6 @@ li a:hover, li a:active {
 	padding: 10px 15px;
 	font-weight: 600;
 }
-
 
 #header .nav-options {
 	display: flex;
@@ -121,7 +119,6 @@ footer{
 	font-weight: 600;
 	padding: 10px 0px;
 	background-color: #222;
-
 }
 
 #links-footer ul{
@@ -147,6 +144,9 @@ footer{
 	display: none;
 }
 
+#footer-visible-menu button{
+	width: 100%;
+}
 
 #contact-info{
 	display: flex;
@@ -166,7 +166,6 @@ footer{
 	font-size: 1.25em;
 	margin-top: 0px;
 }
-
 
 .title {
 	position: absolute;
@@ -192,8 +191,8 @@ footer{
 		#contact-info{
 			display: none;
 		}
-
 	}
+
 	@media only screen and (max-width: 560px){
 			#links-footer{
 				padding: 0px;
@@ -223,6 +222,10 @@ footer{
 
 			#footer-info{
 				display:none;
+				flex-direction: column;
 			}
 
+			footer .fa {
+				transform: scale(4,1);
+			}
 	}
