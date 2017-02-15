@@ -6,7 +6,7 @@ class Footer extends React.Component {
   constructor() {
       super();
       this.state = {
-          displayFooter: 0
+          displayFooter: 'make-visible'
       }
   }
 
@@ -17,8 +17,8 @@ class Footer extends React.Component {
 
 			<div id='links-footer'>
 				<ul>
-          <li id="footer-visible-menu"><button onClick={this._toggleMenu.bind(this)}><i className="fa fa-bars"></i></button></li>
-          <div id="footer-info">
+          <li id="footer-visible-menu"><button  onClick={this._toggleMenu.bind(this)}><i className="fa fa-bars"></i>Click to hide<i className="fa fa-bars"></i></button></li>
+          <div id="footer-info" className={this.state.displayFooter}>
   					<li><a href="http://www.facebook.com/cwaboulder" target="out" title="Link to Conference on World Affairs Facebook Page"><i className="fa fa-home"></i>Facebook</a></li>
   					<li><a><i className="fa fa-twitter-square"></i>Twitter</a></li>
   					<li><a><i className="fa fa-youtube-play"></i>Youtube</a></li>
@@ -49,10 +49,10 @@ class Footer extends React.Component {
 
 
   _toggleMenu(){
-    if(this.state.displayFooter == 0){
-      this.setState({displayFooter: 1});
+    if(this.state.displayFooter == 'hide'){
+      this.setState({displayFooter: 'make-visible'});
     } else {
-      this.setState({displayFooter: 0});
+      this.setState({displayFooter: 'hide'});
     }
   }
 }
