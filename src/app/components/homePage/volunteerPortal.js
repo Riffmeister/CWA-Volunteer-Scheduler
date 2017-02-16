@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from './../../shared/header';
 import GlobalEvents from './globalEvents';
 import LocalEvents from './localEvents';
+import userStore from '../../user/user'
 
 require('./home.less')
 
@@ -10,6 +11,12 @@ class Volunteer extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+      if (userStore.loggedOn === false) {
+        browserHistory.push('/vms')
+      }
     }
 
     render() {

@@ -1,10 +1,11 @@
+import { browserHistory } from 'react-router';
+import { observer } from 'mobx-react';
 import Api from '../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import userStore from '../user/user'
 
-import { browserHistory } from 'react-router'
-
+@observer
 class Header extends React.Component {
 
   render() {
@@ -29,10 +30,6 @@ class Header extends React.Component {
     </section>
 )}
 
-componentDidMount() {
-  console.log(userStore)
-}
-
 _handleClickHere(event) {
 	event.preventDefault()
 	var apiReq = superagent.get('http://ec2-54-70-79-115.us-west-2.compute.amazonaws.com/')
@@ -48,7 +45,6 @@ _handleClickHere(event) {
 _handleClick(event){
 	event.preventDefault()
 	if (confirm('Are you sure you would like to logout?')) {
-    userStore.destroy()
 		browserHistory.push('/vms')
 	}
   }

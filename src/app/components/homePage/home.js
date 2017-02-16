@@ -1,4 +1,4 @@
-import {observer} from 'mobx-react'
+import { observer } from 'mobx-react';
 import AdminPortal from './adminPortal';
 import Header from './../../shared/header';
 import React from 'react';
@@ -16,6 +16,9 @@ class Home extends React.Component {
     }
 
     componentWillMount() {
+      if (userStore.loggedOn === false) {
+        browserHistory.push('/vms')
+      }
     }
 
     render() {

@@ -1,19 +1,10 @@
-import { action, observable } from 'mobx'
+import { action, observable } from 'mobx';
+import { observer } from 'mobx-react';
 
+@observer
 class UserStore {
-  @observable isAdmin: boolean = false
-
-  setAdmin() {
-    this.isAdmin = true
-  }
-
-  removeAdmin() {
-    this.isAdmin = false
-  }
-
-  destroy() {
-    this.isAdmin = false
-  }
+  @observable isAdmin = false
+  @observable loggedOn = false
 
 }
 
