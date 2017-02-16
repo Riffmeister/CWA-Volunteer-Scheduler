@@ -39,7 +39,7 @@ class Footer extends React.Component {
               </div>
         </div>
 
-        <div id="be-boulder">
+        <div>
           <p><a href="//www.colorado.edu"><img src="http://www.colorado.edu/cwa/profiles/express/themes/expressbase/images/beboulder/be-boulder-white.png" alt="University of Colorado Boulder"/></a></p>
           <p><strong><a href="http://www.colorado.edu">University of Colorado Boulder</a></strong><br />&copy; Regents of the University of Colorado<br />
           <span ><a href="http://www.colorado.edu/about/privacy-statement">Privacy</a> &bull; <a href="http://www.colorado.edu/about/legal-trademarks">Legal &amp; Trademarks</a></span></p>
