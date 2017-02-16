@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { browserHistory } from 'react-router'
-
+require('./header.less')
 class Header extends React.Component {
   render() {
     return (
