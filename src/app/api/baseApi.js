@@ -1,35 +1,51 @@
-import User from '../user/user'
+import userStore from '../user/user.js';
 
 var superagent = require('superagent')
 
 class Api {
 	login(email, password) {
-		var request = superagent.post('https://cwajazz.com/vms/login.py')
-		.send({'email': email, 'password': password})
-		.end((err, res) => {
-			if (err !== null) {
-				console.log('error', err)
-			} else {
-				User.hello(res)
-			}
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/login2.py')
+			.type('form')
+			.send({email: email})
+			.send({password: password})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
 		})
 	}
 
-	signup(firstName, lastName, email, phone, password) {
-		var request = superagent.post('https://cwajazz.com/vms/signup.py')
-		.send({'firstName': firstName, 'lastName': lastName, 'email': email, 'phone': phone, 'password': password})
-		.end((err, res) => {
-			if (err !== null) {
-				console.log('error', err)
-			} else {
-				console.log(res)
-			}
+
+	signup(firstName, lastName, email, phone, phoneProvider, password) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/signup.py')
+			.type('form')
+			.send({firstName: firstName})
+			.send({lastName: lastName})
+			.send({email: email})
+			.send({phone: phone})
+			.send({phoneProvider: phoneProvider})
+			.send({password: password})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
 		})
 	}
 
-	check() {
-		console.log('hello')
+	createEvent(eventName, startDate, endDate) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/createEvent.py')
+			.type('form')
+			.send({eventName: eventName})
+			.send({startDate: startDate})
+			.send({endDate: endDate})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
 	}
+
+
 }
 
 export default Api;

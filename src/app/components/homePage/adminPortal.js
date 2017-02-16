@@ -1,10 +1,11 @@
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './../../shared/header';
 import GlobalEvents from './globalEvents';
 import LocalEvents from './localEvents';
 import NewEvent from './newEvent';
+import userStore from '../../user/user'
 
 require('./adminPortal.less')
 

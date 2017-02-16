@@ -1,12 +1,13 @@
-import { browserHistory } from 'react-router'
-import * as auth from '../../utils/auth';
-import Api from '../../api/baseApi'
+import { browserHistory } from 'react-router';
+import { observer } from 'mobx-react';
+import Api from '../../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import userStore from '../../user/user'
 
-// require('../utils/auth')
-require('./input.less')
+require('./../../commonStyles/input.less')
 
+@observer
 class Login extends React.Component {
 
     constructor() {
@@ -16,6 +17,10 @@ class Login extends React.Component {
             email: '',
             password: ''
         }
+    }
+    componentWillMount() {
+      userStore.loggedOn = false
+      userStore.isAdmin = false
     }
 
     render() {
@@ -36,34 +41,33 @@ class Login extends React.Component {
         )
     }
 
-
     _handleLogin(event) {
-		event.preventDefault()
-		browserHistory.push('/vms/home')
-
-        // const email = this.refs.email.value
-        // const password = this.refs.password.value
-        // if (email === "") {
-        //     alert("Please Enter a Value for Email")
-        //     return false
-        // } else if (password === "") {
-        //     alert("Please Enter a Value for Password")
-        //     return false
-        // } else {
-		// 	event.preventDefault()
-		// 	var request = new Api()
-		// 	if (request.login(email, password)) {
-		// 		browserHistory.push('/vms/home')
-		// 	} else {
-		// 		alert("Invalid Email/Password")
-		// 		this.refs.email.focus()
-		// 	}
-        // }
-    }
+		    event.preventDefault()
+        const email = this.refs.email.value
+        const password = this.refs.password.value
+        if (email === "") {
+            alert("Please Enter a Value for Email")
+            return false
+        } else if (password === "") {
+            alert("Please Enter a Value for Password")
+            return false
+        } else {
+			        event.preventDefault()
+  	          var request = new Api()
+              //TODO: Need to check successful login better than just statusCode.
+              request.login(email,password).then((response) => {
+                console.log(response)
+                userStore.loggedOn = true
+                userStore.isAdmin = response.body.isAdmin
+                browserHistory.push('/vms/home')
+              })
+            }
+        }
 
 	_handleSignUp(event) {
 		event.preventDefault()
 		browserHistory.push('/vms/signup')
 	}
 }
+
 export default Login;

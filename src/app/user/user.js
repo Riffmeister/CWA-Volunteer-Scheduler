@@ -1,12 +1,11 @@
-// import { action, observable } from 'mobx'
-//
-// class User {
-// 	let isAdmin = false
-//
-// 	hello() {
-// 		console.log('hi')
-// 	}
-//
-// }
-//
-// export default new User()
+import { action, observable } from 'mobx';
+import { observer } from 'mobx-react';
+
+@observer
+class UserStore {
+  @observable isAdmin = false
+  @observable loggedOn = false
+
+}
+
+export default new UserStore()
