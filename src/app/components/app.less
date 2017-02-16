@@ -29,11 +29,15 @@
 	text-align: right;
 }
 
-.hide {
+.hide-mobile {
 	display: none;
+	flex-grow: 1;
+  padding: 0px 10px;
 }
-.make-visible{
+.make-visible-mobile{
 	display: unset;
+	flex-grow: 1;
+  padding: 0px 10px;
 }
 
 body, html{
@@ -108,67 +112,6 @@ li a:hover, li a:active {
 	display: flex;
 }
 
-footer{
-	display: flex;
-	flex-direction: column;
-	flex-grow: 1;
-	color: #fff;
-	font-size: 1.2em;
-}
-
-#links-footer {
-	display: flex;
-	flex-grow: 1;
-	font-weight: 600;
-	padding: 10px 0px;
-	background-color: #222;
-}
-
-#links-footer ul{
-	display: flex;
-	width: 100%;
-	font-size: 1.1em;
-	justify-content: space-around;
-	flex-wrap: wrap;
-}
-
-#links-footer ul li a i{
-	padding-right: 10px;
-}
-
-#footer-info{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	flex-grow: 1;
-}
-
-#footer-visible-menu{
-	display: none;
-}
-
-#footer-visible-menu button{
-	width: 100%;
-}
-
-#contact-info{
-	display: flex;
-	padding-top: 20px;
-	justify-content: space-between;
-}
-
-#contact-info h2, #contact-info a {
-	color: #cfb87c;
-}
-
-#contact-info h2:active, #contact-info h2:hover, #contact-info a:active, #contact-info a:hover{
-	color: #fff;
-}
-
-#contact-info h2{
-	font-size: 1.25em;
-	margin-top: 0px;
-}
 
 .title {
 	position: absolute;
@@ -183,52 +126,28 @@ footer{
 	min-height: calc(100vh - 100px);
 }
 
+	@media only screen and (min-width: 641px) {
+
+		.hide-mobile {
+			display: unset;
+		}
+
+	}
+
 	@media only screen and (max-width: 640px){
 
 		body, html {
-		/* height: 100%!important; */
 		overflow: auto!important;
 		max-height: 100% !important;
 		}
 
-		#contact-info{
-			display: none;
-		}
 	}
 
 	@media only screen and (max-width: 560px){
-			#links-footer{
-				padding: 0px;
-			}
-			#links-footer ul{
-				// flex-direction: column;
-			}
 
-			#links-footer ul li {
-				text-align: center;
-				padding: 0px;
-				width: 100%;
-			}
-			#links-footer ul li a{
-				padding: 5px 0px;
-				margin: 0px;
-				width: 100%;
-			}
 			li a:hover, li a:active {
 				background-color: rgba(207, 184, 124, 0.8);
 				color: #333;
 			}
 
-			#footer-visible-menu{
-				display: unset;
-			}
-
-			#footer-info{
-				// display:none;
-				flex-direction: column;
-			}
-
-			// footer .fa {
-			// 	transform: scale(4,1);
-			// }
 	}
