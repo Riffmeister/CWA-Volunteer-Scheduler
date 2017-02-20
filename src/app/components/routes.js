@@ -15,5 +15,6 @@ module.exports = (
 		<Route path="/vms/signup" component={SignUp}/>
 		<Route path="/vms/home" component={Home}/>
 		<Route path="/vms/home/create-new-event" component={CreateNewEvent}/>
+		<Route path="*" component={Login} />
 </Route>
 )

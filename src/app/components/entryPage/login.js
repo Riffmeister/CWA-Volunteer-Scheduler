@@ -60,6 +60,8 @@ class Login extends React.Component {
                 userStore.loggedOn = true
                 userStore.isAdmin = response.body.isAdmin
                 browserHistory.push('/vms/home')
+              }).catch((error) => {
+                console.log(error)
               })
             }
         }

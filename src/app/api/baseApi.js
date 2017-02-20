@@ -5,7 +5,7 @@ var superagent = require('superagent')
 class Api {
 	login(email, password) {
 		return new Promise((resolve, reject) => {
-			superagent.post('https://cwajazz.com/vms/login2.py')
+			superagent.post('https://cwajazz.com/vms/test/TESTlogin.py')
 			.type('form')
 			.send({email: email})
 			.send({password: password})
@@ -18,7 +18,7 @@ class Api {
 
 	signup(firstName, lastName, email, phone, phoneProvider, password) {
 		return new Promise((resolve, reject) => {
-			superagent.post('https://cwajazz.com/vms/signup.py')
+			superagent.post('https://cwajazz.com/vms/test/TESTsignup.py')
 			.type('form')
 			.send({firstName: firstName})
 			.send({lastName: lastName})
