@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import userStore from '../user/user'
 
-require('./header.less')
 @observer
 class Header extends React.Component {
 
