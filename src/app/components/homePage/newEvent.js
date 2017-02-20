@@ -19,13 +19,11 @@ class CreateNewEvent extends React.Component {
 		</div>
 		<div>
 			<label>Starting Date:</label>
-			<input ref='phone' type="text" id='phone'></input>
+			<input ref='startingDate' type="date" id='startingDate'></input>
 		</div>
-		<div className='password'>
 		<div>
 			<label>Ending Date:</label>
-			<input ref='passwordCheck' type="text" id='passwordCheck'></input>
-		</div>
+			<input ref='endingDate' type="date" id='endingDate'></input>
 		</div>
 		<button type="submit" onClick={this._handleSubmit.bind(this)}>Submit New Event</button>
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>

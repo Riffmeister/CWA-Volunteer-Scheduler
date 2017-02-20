@@ -20,9 +20,9 @@ class AdminPortal extends React.Component {
         return (
 			<section className='admin-portal'>
 				{false ? this._currentEvents() : null}
-				<div className='create-event' onClick={this._handleCreateEvent.bind(this)}>
+				<button className='create-new-event' onClick={this._handleCreateEvent.bind(this)}>
 					Create New Event
-				</div>
+				</button>
 			</section>
         )
     }
