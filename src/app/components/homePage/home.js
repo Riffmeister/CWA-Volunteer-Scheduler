@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react';
-import AdminPortal from './adminPortal';
+import AdminPortal from './admin/adminPortal';
 import Header from './../../shared/header';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import userStore from '../../user/user.js'
-import VolunteerPortal from './volunteerPortal';
+import userStore from '../../user/userStore';
+import VolunteerPortal from './volunteer/volunteerPortal';
 
 require('./home.less')
 

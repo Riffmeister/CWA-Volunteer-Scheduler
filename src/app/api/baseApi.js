@@ -1,4 +1,5 @@
-import userStore from '../user/user.js';
+import userStore from '../user/userStore';
+import eventStore from '../../app/event/eventStore'
 
 var superagent = require('superagent')
 
@@ -39,6 +40,45 @@ class Api {
 			.send({eventName: eventName})
 			.send({startDate: startDate})
 			.send({endDate: endDate})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+// TODO: Fix spelling for jobDescription on server
+	createJob(eventId, jobName, jobDescription, location, jobDate, startTime, endTime, volunteerNeeded) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/create_job.py')
+			.type('form')
+			.send({eventId: eventId})
+			.send({jobName: jobName})
+			.send({jobDesciption: jobDescription})
+			.send({location: location})
+			.send({jobSkill: null})
+			.send({jobDate: jobDate})
+			.send({startTime: startTime})
+			.send({endTime: endTime})
+			.send({volunteerNeeded: volunteerNeeded})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	getEvents() {
+		return new Promise((resolve, reject) => {
+			superagent.get('https://cwajazz.com/vms/get_events.py')
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	getEvent(eventID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/get_event.py')
+			.type('form')
+			.send({eventId: eventID})
 			.end((error, response) => {
 				error ? reject(error) : resolve(response)
 			})

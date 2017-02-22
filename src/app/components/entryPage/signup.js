@@ -51,11 +51,11 @@ class SignUp extends React.Component {
 					<div className='password'>
 						<div>
               <label>Password:</label>
-              <input ref='password' type="text" id='password'></input>
+              <input ref='password' type="password" id='password'></input>
 						</div>
 						<div>
 							<label>Retype Password:</label>
-		          <input ref='passwordCheck' type="text" id='passwordCheck'></input>
+		          <input ref='passwordCheck' type="password" id='passwordCheck'></input>
 						</div>
 					</div>
           <button type="submit" onClick={this._handleSubmit.bind(this)}>Sign Up</button>

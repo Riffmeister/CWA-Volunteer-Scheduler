@@ -1,12 +1,21 @@
 #home {
 	width: 100%;
 	display: flex;
-	font-size: 2.5em;
 	flex-grow: 1;
+
+	button {
+		font-size: 2.5em;
+		cursor: pointer;
+		&:active {
+			color: rgba(207, 184, 124, 0.8);
+		}
+		&:hover {
+			color: rgba(207, 184, 124, 0.8);
+		}
+	}
 
 	div {
 		display: flex;
-		justify-content: center;
 	}
 
 	h1 {
@@ -17,6 +26,45 @@
 	.volunteer-portal {
 		display: flex;
 		width: 100%;
+
+		.events {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-grow: 1;
+			height: 100%;
+			align-items: center;
+
+			.refresh-data {
+				position: absolute;
+				z-index: 99999;
+				left: 0;
+				top: 0;
+			}
+
+			.events-body {
+				flex-grow: 1;
+				overflow: auto;
+				width: 100%;
+				justify-content: flex-start;
+				flex-direction: column;
+
+				div {
+					flex-shrink: 0;
+					justify-content: center;
+				}
+			}
+
+			button {
+				flex-grow: 1;
+			}
+
+			h2 {
+				font-size: 3em;
+				border-bottom: solid;
+				border-width: 2px;
+			}
+		}
 
 		.upcoming-events {
 			border-right: 3px double;
