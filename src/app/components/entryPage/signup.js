@@ -20,7 +20,7 @@ class SignUp extends React.Component {
     render() {
         return (
 			<section className='data-input'>
-          <h1>Sign Up!</h1>
+          <h2>Sign Up!</h2>
           <form ref='signup'>
 					<div>
 						<label>First Name:</label>
