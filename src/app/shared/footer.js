@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 require('./footer.less')
+
 class Footer extends React.Component {
 
   constructor() {
