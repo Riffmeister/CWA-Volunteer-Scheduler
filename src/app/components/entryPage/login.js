@@ -26,7 +26,7 @@ class Login extends React.Component {
     render() {
         return (
             <section className='data-input'>
-                <h1 className='center text-uppercase'>Login</h1>
+                <h2 className='center text-uppercase'>Login</h2>
                 <form ref='login'>
                     <label>Email:</label>
                     <input ref='email' type="text" autoFocus id='email'></input>

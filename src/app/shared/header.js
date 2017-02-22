@@ -13,21 +13,26 @@ class Header extends React.Component {
   render() {
     return (
 	<section className='menu'>
-		<div id='header' className='content-container'>
-      <img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
-			<nav className='nav-options'>
-				<ul>
-					<li><a><i className="fa fa-home fa-2x"></i></a></li>
-					<li><a>Events</a></li>
-					<li><a>Schedule</a></li>
-					<li onClick={this._handleClickHere.bind(this)}><a>My Profile</a></li>
-				</ul>
-			</nav>
-			<div className='auth-option'>
-				<ul>
-					<li onClick={this._handleClick.bind(this)}><a>Login/Logout</a></li>
-				</ul>
-			</div>
+		<div id ='header-section' className=' content-container'>
+      <header>
+        <img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
+        <h1>Volunteer Management System</h1>
+      </header>
+      <div id ='options'>
+  			<nav className='nav-options'>
+  				<ul>
+  					<li><a><i className="fa fa-home"></i></a></li>
+  					<li><a>Events</a></li>
+  					<li><a>Schedule</a></li>
+  					<li onClick={this._handleClickHere.bind(this)}><a>My Profile</a></li>
+  				</ul>
+  			</nav>
+  			<div className='auth-option'>
+  				<ul>
+  					<li onClick={this._handleClick.bind(this)}><a>Login/Logout</a></li>
+  				</ul>
+  			</div>
+      </div>
 		</div>
     </section>
 )}
