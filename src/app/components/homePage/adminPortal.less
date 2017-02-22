@@ -4,21 +4,24 @@
 	justify-content: center;
 	width: 100%;
 
-	.current-event {
+	.current-events {
+		flex-grow: 1;
+		height: 100%;
 		align-items: center;
-		flex-grow: 0;
+		border-right: solid;
 	}
 
 	.create-new-event {
+		flex-grow: .25;
 		align-items: center;
-		cursor: pointer;
-		display: flex;
-		flex-grow: 1;
-		justify-content: center;
-		max-width: 300px;
+		height: 100%;
 
-		&:hover {
-			color: rgba(207, 184, 124, 0.8);
+		button {
+			cursor: pointer;
+
+			&:hover {
+				color: rgba(207, 184, 124, 0.8);
+			}
 		}
 	}
 }

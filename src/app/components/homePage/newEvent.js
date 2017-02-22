@@ -34,7 +34,8 @@ class CreateNewEvent extends React.Component {
 	_handleSubmit(event) {
 		event.preventDefault()
 		const request = new Api()
-		request.createEvent().then(() => {
+		request.createEvent(this.refs.eventName.value, this.refs.startingDate.value, this.refs.endingDate.value).then((response) => {
+			console.log(response)
 			browserHistory.push('/vms/home')
 		})
 	}

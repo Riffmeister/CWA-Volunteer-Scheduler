@@ -34,7 +34,7 @@ class Api {
 
 	createEvent(eventName, startDate, endDate) {
 		return new Promise((resolve, reject) => {
-			superagent.post('https://cwajazz.com/vms/createEvent.py')
+			superagent.post('https://cwajazz.com/vms/create_event.py')
 			.type('form')
 			.send({eventName: eventName})
 			.send({startDate: startDate})
