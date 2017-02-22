@@ -22,7 +22,27 @@
 .center {
 	text-align: center;
 }
+.left{
+	text-align: left;
+}
+.right{
+	text-align: right;
+}
 
+.hide-mobile {
+	display: none;
+	flex-grow: 1;
+	padding: 0px 10px;
+}
+.make-visible-mobile{
+	display: unset;
+	flex-grow: 1;
+	padding: 0px 10px;
+}
+
+body, html{
+	background-color: #333;
+}
 
 #app-container {
 	width: 100%;
@@ -43,7 +63,6 @@ ul {
 	list-style-type: none;
 	display: flex;
 	cursor: pointer;
-	// padding: 0px
 	color: #ccc;
 	align-items: center;
 	margin-bottom: 0px;
@@ -52,16 +71,15 @@ ul {
 ul li {
 	padding: 0 15px;
 }
+
 ul li a {
 	color: #ccc;
-
 	display: inline-block;
 	position: relative;
 	z-index: 1;
 	padding: 0.75em;
 	margin: -0.75em;
 }
-
 
 .menu {
 	display: flex;
@@ -74,13 +92,14 @@ ul li a {
 li a:hover, li a:active {
 	color: #cfb87c;
 }
+
 #header {
 	display: flex;
 	width: 100%;
 	padding: 10px 15px;
 	font-weight: 600;
+	flex-direction: row;
 }
-
 
 #header .nav-options {
 	display: flex;
@@ -94,17 +113,12 @@ li a:hover, li a:active {
 	display: flex;
 }
 
-
-#footer {
+footer{
 	display: flex;
+	flex-direction: column;
 	flex-grow: 1;
-	font-weight: 600;
-}
-#footer ul{
-	display: flex;
-	width: 100%;
-	padding: 10px 0px;
-	justify-content: space-around;
+	color: #fff;
+	font-size: 1.2em;
 }
 
 .title {
@@ -117,25 +131,28 @@ li a:hover, li a:active {
 	display: flex;
 	justify-content: center;
 	background-color: #fff;
+	min-height: calc(100vh - 100px);
 }
 
-/*Tablet*/
-	@media only screen and (max-width: 520px){
-			#footer ul{
-				flex-direction: column;
-				font-size: 2.0em;
-				padding: 0px;
-			}
-			#footer ul li {
-				text-align: center;
-				padding: 0px;
-				width: 100%;
-			}
-			#footer ul li a{
-				padding: 5px 0px;
-				margin: 0px;
-				width: 100%;
-			}
+	@media only screen and (min-width: 713px) {
+
+		.hide-mobile {
+			display: unset;
+		}
+
+	}
+
+	@media only screen and (max-width: 640px){
+
+		body, html {
+		overflow: auto!important;
+		max-height: 100% !important;
+		}
+
+	}
+
+	@media only screen and (max-width: 560px){
+
 			li a:hover, li a:active {
 				background-color: rgba(207, 184, 124, 0.8);
 				color: #333;
