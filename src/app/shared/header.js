@@ -21,10 +21,7 @@ class Header extends React.Component {
       <div id ='options'>
   			<nav className='nav-options'>
   				<ul>
-  					<li><a><i className="fa fa-home"></i></a></li>
-  					<li><a>Events</a></li>
-  					<li><a>Schedule</a></li>
-  					<li onClick={this._handleClickHere.bind(this)}><a>My Profile</a></li>
+            <li><a href="http://www.colorado.edu/cwa/" target="out" title="Conference on World Affairs Home"><i className="fa fa-home"></i> CWA Home</a></li>
   				</ul>
   			</nav>
   			<div className='auth-option'>
