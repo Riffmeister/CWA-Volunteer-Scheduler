@@ -13,7 +13,7 @@ export default React.createClass({
           <section className='the-goods content-container'>
             {this.props.children}
           </section>
-          <Footer/>
+          
         </section>
     )
   }

@@ -5,27 +5,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import userStore from '../user/user'
 
+require('./header.less')
+
 @observer
 class Header extends React.Component {
 
   render() {
     return (
 	<section className='menu'>
-		<div id='header' className='content-container'>
-			<div className='nav-options'>
-				<img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
-				<ul>
-					<li><a><i className="fa fa-home fa-2x"></i></a></li>
-					<li><a>Events</a></li>
-					<li><a>Schedule</a></li>
-					<li onClick={this._handleClickHere.bind(this)}><a>My Profile</a></li>
-				</ul>
-			</div>
-			<div className='auth-option'>
-				<ul>
-					<li onClick={this._handleClick.bind(this)}><a>Login/Logout</a></li>
-				</ul>
-			</div>
+		<div id ='header-section' className=' content-container'>
+      <header>
+        <img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
+        <h1>Volunteer Management System</h1>
+      </header>
+      <div id ='options'>
+  			<nav className='nav-options'>
+  				<ul>
+            <li><a href="http://www.colorado.edu/cwa/" target="out" title="Conference on World Affairs Home"><i className="fa fa-home"></i> CWA Home</a></li>
+  				</ul>
+  			</nav>
+  			<div className='auth-option'>
+  				<ul>
+  					<li onClick={this._handleClick.bind(this)}><a>Login/Logout</a></li>
+  				</ul>
+  			</div>
+      </div>
 		</div>
     </section>
 )}
