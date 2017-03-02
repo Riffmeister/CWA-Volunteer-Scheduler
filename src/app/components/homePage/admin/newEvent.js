@@ -1,11 +1,14 @@
+import { observer } from 'mobx-react';
 import { browserHistory } from 'react-router';
-import Api from '../../api/baseApi';
+import Api from '../../../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import eventStore from '../../../event/eventStore'
 
 require('./adminPortal.less')
-require('./../../commonStyles/input.less')
+require('./../../../commonStyles/input.less')
 
+@observer
 class CreateNewEvent extends React.Component {
 
 	render() {
@@ -31,13 +34,41 @@ class CreateNewEvent extends React.Component {
 		</section>
 	)}
 
+	_fieldsFilled() {
+		if (this.refs.eventName.value == '') {
+			return true
+		}
+		if (this.refs.startingDate.value == '') {
+			return true
+		}
+		if (this.refs.endingDate.value == '') {
+			return true
+		}
+		return false
+	}
+
 	_handleSubmit(event) {
 		event.preventDefault()
-		const request = new Api()
-		request.createEvent().then(() => {
-			browserHistory.push('/vms/home')
-		})
-	}
+		if (this._fieldsFilled(event)) {
+			alert('Please enter a value for every field.')
+			return false
+		} else {
+      var request = new Api()
+      request.createEvent(this.refs.eventName.value,
+        this.refs.startingDate.value,
+        this.refs.endingDate.value).then((response) => {
+
+					var eventsRequest = new Api()
+					eventsRequest.getEvents().then((response) => {
+						eventStore.events = []
+						for (var key in response.body) {
+							eventStore.events.push({eventID: key, eventName: response.body[key].event_name, startDate: response.body[key].start_date, endDate: response.body[key].end_date})
+						}
+						browserHistory.push('/vms/home')
+					})
+        })
+    	}
+		}
 
 	_handleBack(event) {
 		event.preventDefault()

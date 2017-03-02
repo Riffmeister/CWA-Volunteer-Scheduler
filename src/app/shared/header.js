@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import Api from '../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import userStore from '../user/user'
+import userStore from '../user/userStore'
 
 require('./header.less')
 

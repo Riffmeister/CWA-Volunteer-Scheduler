@@ -5,6 +5,10 @@ import {Link} from 'react-router'
 
 require('./app.less')
 
+window.onbeforeunload = function() {
+return "Are you sure?"
+}
+
 export default React.createClass({
   render() {
     return (

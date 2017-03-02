@@ -1,0 +1,111 @@
+.event-portal {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  h2 {
+    font-size: 3em;
+    border-bottom: solid;
+    border-width: 2px;
+  }
+
+  .create-new-job {
+    align-items: center;
+    display: flex;
+    flex-grow: .25;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .event-body{
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+
+  }
+
+    .admin {
+      border-right: solid;
+    }
+
+  .jobs {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    overflow: auto;
+
+    .jobs-body {
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: flex-start;
+      width: 100%;
+
+      button {
+        flex-grow: 1;
+      }
+
+      div {
+        display: flex;
+        flex-shrink: 0;
+        justify-content: center;
+      }
+    }
+
+    h3 {
+      display: flex;
+      font-size: 3em;
+      justify-content: center;
+    }
+
+    div {
+      display: flex;
+      flex-shrink: 0;
+      justify-content: center;
+    }
+  }
+
+  button {
+		font-size: 2.5em;
+		cursor: pointer;
+		&:active {
+			color: rgba(207, 184, 124, 0.8);
+		}
+		&:hover {
+			color: rgba(207, 184, 124, 0.8);
+		}
+	}
+}
+
+.set-availability {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .date-picker {
+    flex-grow: .1;
+    width: 100%;
+
+    .dates {
+      display: flex;
+      overflow: auto;
+
+      div, button {
+        width: 10%;
+        font-size: 3em;
+        display: flex;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .time-setter {
+    flex-grow: 1;
+  }
+}

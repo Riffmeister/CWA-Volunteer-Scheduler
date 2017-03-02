@@ -3,24 +3,21 @@ import { observer } from 'mobx-react';
 import Api from '../../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import userStore from '../../user/user'
+import userStore from '../../user/userStore'
+import eventStore from '../../event/eventStore'
 
 require('./../../commonStyles/input.less')
 
 @observer
 class Login extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            error: '',
-            email: '',
-            password: ''
-        }
-    }
     componentWillMount() {
+      userStore.personID = ''
       userStore.loggedOn = false
       userStore.isAdmin = false
+      userStore.events = []
+      eventStore.events = []
+      eventStore.jobs = []
     }
 
     render() {
@@ -32,7 +29,7 @@ class Login extends React.Component {
                     <input ref='email' type="text" autoFocus id='email'></input>
                     <br></br>
                     <label>Password:</label>
-                    <input ref='password' type="text" id='password'></input>
+                    <input ref='password' type="password" id='password'></input>
                     <br></br>
                     <button type="submit" onClick={this._handleLogin.bind(this)}>Login</button>
                     <button type="submit" onClick={this._handleSignUp.bind(this)}>Sign Up</button>
@@ -54,12 +51,25 @@ class Login extends React.Component {
         } else {
 			        event.preventDefault()
   	          var request = new Api()
-              //TODO: Need to check successful login better than just statusCode.
               request.login(email,password).then((response) => {
-                console.log(response)
+                console.log('login', response)
+                userStore.userID = response.body.personID
                 userStore.loggedOn = true
                 userStore.isAdmin = response.body.isAdmin
-                browserHistory.push('/vms/home')
+                userStore.events = response.body.eventIds
+
+                var eventRequest = new Api()
+                eventRequest.getEvents().then((response) => {
+                  console.log('events', response)
+                  eventStore.events = []
+                  for (var key in response.body) {
+                    eventStore.events.push({eventID: key, eventName: response.body[key].event_name, startDate: response.body[key].start_date, endDate: response.body[key].end_date})
+                  }
+                  browserHistory.push('/vms/home')
+                }).catch((error) => {
+                  console.log(error)
+                })
+
               }).catch((error) => {
                 console.log(error)
               })
