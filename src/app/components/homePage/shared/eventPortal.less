@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 100%;
+    height: 90%;
     overflow: auto;
 
     .jobs-body {
@@ -252,4 +252,27 @@
   h3 {
     font-size: 2em;
   }
+}
+
+/*TABLET VIEW */
+@media only screen and (max-width: 830px){
+
+    .event-portal .event-body {
+      flex-direction: column;
+      height: 100%;
+  }
+
+  .event-portal .jobs {
+    width: 90%;
+}
+
+}
+
+/*PHONE VIEW*/
+@media only screen and (max-width: 528px){
+
+  .event-portal h2 {
+    font-size: 30px;
+  }
+
 }
