@@ -22,10 +22,6 @@ class CreateNewJob extends React.Component {
 			<input ref='jobName' type="text" autoFocus id='jobName'></input>
 		</div>
     <div>
-      <label>Description:</label>
-      <input ref='description' type="text" id='description'></input>
-    </div>
-    <div>
       <label>Location:</label>
       <input ref='location' type="text" id='location'></input>
     </div>
@@ -44,6 +40,10 @@ class CreateNewJob extends React.Component {
     <div>
       <label>End Time:</label>
       <input ref='endTime' type="time" id='endingTime'></input>
+    </div>
+		<div className="column-form">
+      <label>Description:</label>
+      <textarea ref='description' rows="5" type="text" id='description'></textarea>
     </div>
 		<button type="submit" onClick={this._handleSubmit.bind(this)}>Submit New Event</button>
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
