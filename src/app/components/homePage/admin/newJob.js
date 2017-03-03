@@ -43,7 +43,7 @@ class CreateNewJob extends React.Component {
     </div>
 		<div className="column-form">
       <label>Description:</label>
-      <textarea ref='description' rows="5" type="text" id='description'></textarea>
+      <textarea ref='description' rows="5" form="new-event" type="text" id='description'></textarea>
     </div>
 		<button type="submit" onClick={this._handleSubmit.bind(this)}>Submit New Event</button>
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
