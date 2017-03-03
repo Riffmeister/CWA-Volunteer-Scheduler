@@ -25,10 +25,6 @@ class CreateNewJob extends React.Component {
       <label>Location:</label>
       <input ref='location' type="text" id='location'></input>
     </div>
-    <div>
-      <label>Volunteers Needed:</label>
-      <input ref='volunteerNeeded' type="number" id='volunteerNeeded'></input>
-    </div>
 		<div>
 			<label>Date:</label>
 			<input ref='date' type="date" id='startingDate'></input>
@@ -45,7 +41,7 @@ class CreateNewJob extends React.Component {
       <label>Description:</label>
       <textarea ref='description' rows="5" form="new-event" type="text" id='description'></textarea>
     </div>
-		<button type="submit" onClick={this._handleSubmit.bind(this)}>Submit New Event</button>
+		<button type="submit" onClick={this._handleSubmit.bind(this)}>Create New Job</button>
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
 					</form>
 		</section>
