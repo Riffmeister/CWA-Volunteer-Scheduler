@@ -38,6 +38,10 @@ class Login extends React.Component {
         )
     }
 
+    componentDidMount() {
+      alert(`Do not use any of the browser's refresh or back buttons while within this application.`)
+    }
+
     _handleLogin(event) {
 		    event.preventDefault()
         const email = this.refs.email.value
@@ -53,17 +57,19 @@ class Login extends React.Component {
   	          var request = new Api()
               request.login(email,password).then((response) => {
                 console.log('login', response)
-                userStore.userID = response.body.personID
+                userStore.personID = response.body.personID
                 userStore.loggedOn = true
                 userStore.isAdmin = response.body.isAdmin
-                userStore.events = response.body.eventIds
+                response.body.eventIds.map((eventID) => {
+                  userStore.events.push(`${eventID}`)
+                })
 
                 var eventRequest = new Api()
                 eventRequest.getEvents().then((response) => {
                   console.log('events', response)
                   eventStore.events = []
                   for (var key in response.body) {
-                    eventStore.events.push({eventID: key, eventName: response.body[key].event_name, startDate: response.body[key].start_date, endDate: response.body[key].end_date})
+                    eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
                   }
                   browserHistory.push('/vms/home')
                 }).catch((error) => {

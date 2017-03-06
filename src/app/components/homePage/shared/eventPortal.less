@@ -11,6 +11,27 @@
     border-width: 2px;
   }
 
+  .confirmation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: .5;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      &:active {
+        color: rgba(207, 184, 124, 0.8);
+      }
+      &:hover {
+        color: rgba(207, 184, 124, 0.8);
+      }
+    }
+  }
+
   .create-new-job {
     align-items: center;
     display: flex;
@@ -19,14 +40,11 @@
     justify-content: center;
   }
 
-  .event-body{
-    align-items: center;
+  .event-body {
     display: flex;
     flex-grow: 1;
-    height: 100%;
     justify-content: center;
     width: 100%;
-
   }
 
     .admin {
@@ -83,29 +101,155 @@
 	}
 }
 
+.check-availability {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  h2 {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 600;
+    border-bottom: solid;
+  }
+
+  .dates {
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+
+    .single-date {
+      display: flex;
+      margin-right: 20px;
+      flex-direction: column;
+
+      h2 {
+        white-space: nowrap;
+        font-size: 2.5em;
+      }
+
+      .times {
+        flex-grow: 1;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  .confirmation {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      flex-grow: .5;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      &:active {
+        color: rgba(207, 184, 124, 0.8);
+      }
+      &:hover {
+        color: rgba(207, 184, 124, 0.8);
+      }
+    }
+  }
+
+}
+
 .set-availability {
   display: flex;
   flex-direction: column;
   width: 100%;
 
-  .date-picker {
-    flex-grow: .1;
-    width: 100%;
+  .confirmation {
+    display: flex;
+    flex-direction: column;
 
-    .dates {
-      display: flex;
-      overflow: auto;
-
-      div, button {
-        width: 10%;
-        font-size: 3em;
-        display: flex;
-        flex-grow: 1;
+    button {
+      flex-grow: .5;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      &:active {
+        color: rgba(207, 184, 124, 0.8);
+      }
+      &:hover {
+        color: rgba(207, 184, 124, 0.8);
       }
     }
   }
 
+  .date-picker {
+    flex-grow: .1;
+    width: 100%;
+
+    h2 {
+      font-size: 2.5em;
+      font-weight: 600;
+    }
+
+    .dates {
+      display: flex;
+      overflow: auto;
+      margin-right: 10px;
+
+      .date {
+        margin-right: 10px;
+
+        p {
+          font-size: 2em;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+      }
+
+      .selected {
+        background-color: #cfb87c;
+      }
+
+      // div, button {
+      //   display: flex;
+      //   flex-grow: 1;
+      //   font-size: 2em;
+      //   margin-right: 10px;
+      //   white-space: nowrap;
+      //   &:active {
+      //     color: rgba(207, 184, 124, 0.8);
+      //   }
+      //   &:hover {
+      //     color: rgba(207, 184, 124, 0.8);
+      //   }
+      // }
+    }
+  }
+
   .time-setter {
+    display: flex;
     flex-grow: 1;
+
+    .submit {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      font-size: 2.5em;
+      justify-content: flex-end;
+    }
+
+    .time-picker {
+      flex-grow: 1;
+
+      .clock {
+        display: flex;
+        font-size: 2.75em;
+
+        button, label {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  h3 {
+    font-size: 2em;
   }
 }
