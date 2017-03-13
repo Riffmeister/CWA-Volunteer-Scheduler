@@ -13,9 +13,11 @@ import userStore from '../../../user/userStore';
 class GlobalEvents extends React.Component {
 
   componentWillMount() {
+    currentEvent.availability = {}
     currentEvent.eventName = ''
     currentEvent.eventID = ''
     currentEvent.dates = []
+    currentEvent.selectedDates = []
     currentEvent.jobs = []
   }
 
@@ -44,10 +46,12 @@ class GlobalEvents extends React.Component {
   }
 
   _handleEventClick(eventData, event) {
-    console.log(eventData)
     currentEvent.eventName = eventData.eventName
     currentEvent.eventID = eventData.eventID
-    currentEvent.dates = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    currentEvent.dates = eventData.eventDates
+    eventData.eventDates.map((date) => {
+      currentEvent.availability[date] = []
+    })
     var request = new Api()
     if (userStore.isAdmin) {
       request.getEvent(eventData.eventID).then((response) => {
@@ -73,7 +77,6 @@ class GlobalEvents extends React.Component {
         browserHistory.push("/vms/home/event")
       } else {
         browserHistory.push("/vms/home/event/set-availability")
-        console.log('setAvailability')
       }
     }
   }

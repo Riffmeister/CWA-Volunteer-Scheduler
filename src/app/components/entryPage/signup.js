@@ -30,6 +30,10 @@ class SignUp extends React.Component {
 						<label>Last Name:</label>
 						<input ref='lastName' type="text" id='lastName'></input>
 					</div>
+          <div>
+            <label>Date of Birth:</label>
+            <input ref='birth' type="date" id='birth'></input>
+          </div>
 					<div>
 	          <label>Email:</label>
 	          <input ref='email' type="text" id='email'></input>
@@ -69,24 +73,35 @@ class SignUp extends React.Component {
 		if (this.refs.firstName.value == '') {
 			return true
 		}
+
 		if (this.refs.lastName.value == '') {
 			return true
 		}
+
+    if (this.refs.birth.value == '') {
+      return true
+    }
+
 		if (this.refs.email.value == '') {
 			return true
 		}
+
 		if (this.refs.phone.value == '') {
 			return true
 		}
+
     if (this.refs.phoneProvider.selectedIndex === -1) {
       return true
     }
+
 		if (this.refs.password.value == '') {
 			return true
 		}
+
 		if (this.refs.passwordCheck.value == '') {
 			return true
 		}
+
 		return false
 	}
 
@@ -109,6 +124,7 @@ class SignUp extends React.Component {
       var request = new Api()
       request.signup(this.refs.firstName.value,
         this.refs.lastName.value,
+        this.refs.birth.value,
         this.refs.email.value,
         this.refs.phone.value,
         this.refs.phoneProvider[choice].value,

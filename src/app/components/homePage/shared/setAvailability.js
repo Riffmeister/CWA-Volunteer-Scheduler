@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import DatePicker from './datePicker';
 import eventStore from '../../../event/eventStore';
 import currentEvent from '../../../event/currentEvent';
+import TimeSelector from './time-selector';
 import userStore from '../../../user/userStore';
 
 require('../shared/eventPortal.less')
@@ -15,18 +16,31 @@ require('../shared/eventPortal.less')
 class SetAvailability extends React.Component {
 
   componentWillMount() {
-    console.log('hello')
+    currentEvent.selectedDates = []
   }
-
     render() {
       return (
        <section className='set-availability'>
         <DatePicker />
         <div className='time-setter'>
-          Time Setter
+        <TimeSelector />
+        </div>
+        <div className='confirmation'>
+        <button onClick={this._handleCheckAvailability.bind(this)}>Check Availability</button>
+        <button onClick={this._handleBack.bind(this)}>Back</button>
         </div>
        </section>
         )
+    }
+
+    _handleBack(event) {
+      event.preventDefault()
+      browserHistory.goBack()
+    }
+
+    _handleCheckAvailability(event) {
+      event.preventDefault()
+      browserHistory.push('/vms/home/event/check-availability')
     }
 }
 export default SetAvailability;
