@@ -27,15 +27,15 @@ class CreateNewJob extends React.Component {
     </div>
 		<div>
 			<label>Date:</label>
-			<input ref='date' type="date" id='startingDate'></input>
+			<input ref='date' type="date" id='startingDate' placeholder="mm/dd/yyyy" title="Expected pattern is mm/dd/yyyy"></input>
 		</div>
     <div>
 			<label>Start Time:</label>
-			<input ref='startTime' type="time" id='startingTime'></input>
+			<input ref='startTime' type="time" id='startingTime' placeholder="07:00 AM"></input>
 		</div>
     <div>
       <label>End Time:</label>
-      <input ref='endTime' type="time" id='endingTime'></input>
+      <input ref='endTime' type="time" id='endingTime' placeholder="10:00 AM"></input>
     </div>
 		<div className="column-form">
       <label>Description:</label>
