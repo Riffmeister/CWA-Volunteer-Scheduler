@@ -40,14 +40,45 @@ class EventPortal extends React.Component {
         <div className='event-body'>
           <MyJobs />
         </div>
+        <div className='confirmation'>
+        <button onClick={this._handleAvailabilityClick.bind(this)}>Availability</button>
+        <button onClick={this._handleEventsClick.bind(this)}>Back to All Events</button>
+        </div>
       </section>
     )
   }
 }
 
+  _handleAvailabilityClick(event) {
+    event.preventDefault()
+    var request = new Api()
+    console.log(currentEvent.eventID, userStore.personID)
+    request.getAvailability(currentEvent.eventID, userStore.personID).then((response) => {
+      console.log(response)
+      browserHistory.push('/vms/home/event/check-availability')
+    })
+  }
+
   _handleCreateJob(event) {
   	event.preventDefault()
   	browserHistory.push('/vms/home/event/create-new-job')
+  }
+
+  _handleEventsClick(event) {
+    event.preventDefault()
+    var request = new Api()
+    request.getPersonEvents(userStore.personID).then((response) => {
+      console.log(response)
+      response.body.eventId.map((event) => {
+        console.log(event)
+        console.log(userStore.events.includes(event))
+        console.log(userStore.events)
+        if (!userStore.events.includes(`${event}`)) {
+          userStore.events.push(`${event}`)
+        }
+      })
+      browserHistory.push('/vms/home')
+    })
   }
 }
 export default EventPortal;

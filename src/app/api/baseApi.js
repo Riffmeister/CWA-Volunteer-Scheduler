@@ -17,12 +17,13 @@ class Api {
 	}
 
 
-	signup(firstName, lastName, email, phone, phoneProvider, password) {
+	signup(firstName, lastName, birth, email, phone, phoneProvider, password) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms/signup.py')
 			.type('form')
 			.send({firstName: firstName})
 			.send({lastName: lastName})
+			.send({birth: birth})
 			.send({email: email})
 			.send({phone: phone})
 			.send({phoneProvider: phoneProvider})
@@ -65,6 +66,31 @@ class Api {
 		})
 	}
 
+	getAvailability(eventID, personID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/get_volunteer_availability.py')
+			.type('form')
+			.send({personId: personID})
+			.send({eventId: eventID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	setAvailability(eventID, personID, timeObject) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/set_availability.py')
+			.type('form')
+			.send({eventId: eventID})
+			.send({volunteerId: personID})
+			.send({time: JSON.stringify(timeObject)})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
 	getEvents() {
 		return new Promise((resolve, reject) => {
 			superagent.get('https://cwajazz.com/vms/get_events.py')
@@ -85,6 +111,16 @@ class Api {
 		})
 	}
 
+	getPersonEvents(personID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/get_volunteer_events.py')
+			.type('form')
+			.send({volunteerId: personID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
 
 }
 
