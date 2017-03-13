@@ -26,7 +26,7 @@ class Header extends React.Component {
   			</nav>
   			<div className='auth-option'>
   				<ul>
-  					<li onClick={this._handleClick.bind(this)}><a>Login/Logout</a></li>
+  					<li onClick={this._handleClick.bind(this)}><a>Logout</a></li>
   				</ul>
   			</div>
       </div>
