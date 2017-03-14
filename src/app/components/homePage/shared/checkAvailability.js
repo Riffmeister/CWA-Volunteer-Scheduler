@@ -22,7 +22,6 @@ class CheckAvailability extends React.Component {
           {this._generateDateElements()}
          </div>
          <div className='confirmation'>
-           <button onClick={this._handleConfirmAvailability.bind(this)}>Cancel Availability</button>
            <button onClick={this._handleMoreAvailabilityClick.bind(this)}>Submit More Availability</button>
            <button onClick={this._handleConfirmAvailability.bind(this)}>Confirm Availability</button>
          </div>
@@ -104,11 +103,6 @@ class CheckAvailability extends React.Component {
     _handleMoreAvailabilityClick(event) {
       event.preventDefault()
       browserHistory.push('/vms/home/event/set-availability')
-    }
-
-    _handleConfirmAvailability(event) {
-      event.preventDefault()
-      browserHistory.push('/vms/home/')
     }
 }
 export default CheckAvailability;
