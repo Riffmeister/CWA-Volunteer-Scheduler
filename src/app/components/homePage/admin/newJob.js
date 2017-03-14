@@ -22,30 +22,26 @@ class CreateNewJob extends React.Component {
 			<input ref='jobName' type="text" autoFocus id='jobName'></input>
 		</div>
     <div>
-      <label>Description:</label>
-      <input ref='description' type="text" id='description'></input>
-    </div>
-    <div>
       <label>Location:</label>
       <input ref='location' type="text" id='location'></input>
     </div>
-    <div>
-      <label>Volunteers Needed:</label>
-      <input ref='volunteerNeeded' type="number" id='volunteerNeeded'></input>
-    </div>
 		<div>
 			<label>Date:</label>
-			<input ref='date' type="date" id='startingDate'></input>
+			<input ref='date' type="date" id='startingDate' placeholder="mm/dd/yyyy" title="Expected pattern is mm/dd/yyyy"></input>
 		</div>
     <div>
 			<label>Start Time:</label>
-			<input ref='startTime' type="time" id='startingTime'></input>
+			<input ref='startTime' type="time" id='startingTime' placeholder="07:00 AM"></input>
 		</div>
     <div>
       <label>End Time:</label>
-      <input ref='endTime' type="time" id='endingTime'></input>
+      <input ref='endTime' type="time" id='endingTime' placeholder="10:00 AM"></input>
     </div>
-		<button type="submit" onClick={this._handleSubmit.bind(this)}>Submit New Event</button>
+		<div className="column-form">
+      <label>Description:</label>
+      <textarea ref='description' rows="5" form="new-event" type="text" id='description'></textarea>
+    </div>
+		<button type="submit" onClick={this._handleSubmit.bind(this)}>Create New Job</button>
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
 					</form>
 		</section>

@@ -17,7 +17,7 @@ class DatePicker extends React.Component {
       return (
        <div className='date-picker'>
        <h2>Give Availability for {currentEvent.eventName}</h2>
-         <h3>Select One or More Dates:</h3>
+         <h3>Select One or More Dates(scroll to view more):</h3>
          <div className='dates'>
           {this._generateDateElements()}
          </div>

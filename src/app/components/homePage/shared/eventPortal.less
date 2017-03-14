@@ -30,7 +30,11 @@
         color: rgba(207, 184, 124, 0.8);
       }
     }
+    button:last-child{
+      margin-bottom: 0px;
+    }
   }
+
 
   .create-new-job {
     align-items: center;
@@ -56,7 +60,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 100%;
+    height: 90%;
     overflow: auto;
 
     .jobs-body {
@@ -99,6 +103,9 @@
 			color: rgba(207, 184, 124, 0.8);
 		}
 	}
+  button:last-child{
+    margin-bottom: 0px;
+  }
 }
 
 .check-availability {
@@ -153,6 +160,11 @@
         color: rgba(207, 184, 124, 0.8);
       }
     }
+
+    button:last-child{
+      margin-bottom: 0px;
+    }
+
   }
 
 }
@@ -176,6 +188,10 @@
       &:hover {
         color: rgba(207, 184, 124, 0.8);
       }
+    }
+
+    button:last-child{
+      margin-bottom: 0px;
     }
   }
 
@@ -245,6 +261,10 @@
         button, label {
           margin-left: 10px;
         }
+
+        #startTime, #endingTime, #timeSubmit{
+          display: flex;
+        }
       }
     }
   }
@@ -252,4 +272,98 @@
   h3 {
     font-size: 2em;
   }
+}
+
+/*TABLET VIEW */
+@media only screen and (max-width: 830px){
+
+    .event-portal .event-body {
+      flex-direction: column;
+      height: 100%;
+  }
+
+  .event-portal .jobs {
+    width: 90%;
+}
+   .set-availability{
+     font-size: larger;
+   }
+
+   .set-availability .date-picker h2 {
+      font-size: 1.9em;
+       font-weight: 900;
+   }
+   .clock{
+     flex-direction: column;
+   }
+   .dates{
+     font-size:1.4em;
+   }
+
+   .event-portal .confirmation button {
+    padding: 10px;
+}
+
+}
+
+/*PHONE VIEW*/
+@media only screen and (max-width: 528px){
+
+  .event-portal h2 {
+    font-size: 30px;
+  }
+  .set-availability{
+    font-size: small;
+  }
+  .set-availability .date-picker h2 {
+     font-size: 1.2em;
+      font-weight: 900;
+  }
+
+  .set-availability h3{
+    font-size: 1em;
+  }
+  .set-availability .date-picker .dates {
+    font-size: 0.8em;
+  }
+
+  .set-availability .time-setter .time-picker .clock {
+    font-size: 1.6em;
+  }
+  .set-availability .confirmation button {
+    margin-bottom: 10px;
+  }
+
+   .check-availability .dates .single-date h2 {
+    font-size: 1.4em;
+   }
+
+   .check-availability .confirmation button {
+    margin-bottom: 10px;
+}
+.check-availability .confirmation button, .set-availability .confirmation button{
+    font-size: 2em;
+}
+.check-availability .dates .single-date .times {
+  font-size: 0.7em;
+  font-weight: 600;
+}
+.check-availability h2 {
+    font-size: 2em;
+}
+
+}
+
+
+  @media only screen and (max-width: 375px){
+    .set-availability .date-picker h2 {
+        font-size: 1em;
+    }
+
+    .event-portal h2 {
+      font-size: 25px;
+    }
+    .event-portal .jobs h3 {
+    font-size: 2em;
+    }
 }
