@@ -18,7 +18,7 @@ class TimeSelector extends React.Component {
       })
       return (
        <div className='time-picker'>
-         <h3>Submit Time Slots For Available Times:</h3>
+         <h3>Submit All Availability Times:</h3>
          <div className='clock'>
            <div id="startTime">
              <label>Starting:</label>

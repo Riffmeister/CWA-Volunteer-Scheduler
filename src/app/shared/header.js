@@ -53,10 +53,6 @@ _handleClick(event){
 	}
   }
 
-_handleHome(event){
-  event.preventDefault()
-  browserHistory.push('/vms/home')
-}
 }
 
 export default Header;
