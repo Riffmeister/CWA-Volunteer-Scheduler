@@ -123,17 +123,28 @@
       margin-right: 20px;
       flex-direction: column;
 
-      h2 {
+      .date-content {
+        align-items: center;
+        border-bottom: solid;
+        display: flex;
+        flex-direction: column;
+        font-size: 2em;
+        font-weight: 900;
         white-space: nowrap;
-        font-size: 2.5em;
+
+        p {
+          margin: 0;
+        }
       }
 
       .times {
-        flex-grow: 1;
-        overflow: auto;
+        align-items: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        flex-grow: 1;
+        font-size: 1.2em;
+        overflow: auto;
+        white-space: nowrap;
       }
     }
   }
