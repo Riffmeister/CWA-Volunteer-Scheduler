@@ -69,7 +69,6 @@ class GlobalEvents extends React.Component {
             volunteersAssigned: response.body[key].volunteer_assigned
           })
         }
-        console.log(response)
         browserHistory.push("/vms/home/event")
       })
     } else {

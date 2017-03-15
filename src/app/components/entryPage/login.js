@@ -56,7 +56,6 @@ class Login extends React.Component {
 			        event.preventDefault()
   	          var request = new Api()
               request.login(email,password).then((response) => {
-                console.log('login', response)
                 userStore.personID = response.body.personID
                 userStore.loggedOn = true
                 userStore.isAdmin = response.body.isAdmin
@@ -66,7 +65,6 @@ class Login extends React.Component {
 
                 var eventRequest = new Api()
                 eventRequest.getEvents().then((response) => {
-                  console.log('events', response)
                   eventStore.events = []
                   for (var key in response.body) {
                     eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
@@ -77,6 +75,7 @@ class Login extends React.Component {
                 })
 
               }).catch((error) => {
+                alert('Unsuccessful Login')
                 console.log(error)
               })
             }

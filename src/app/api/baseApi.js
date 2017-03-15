@@ -16,7 +16,6 @@ class Api {
 		})
 	}
 
-
 	signup(firstName, lastName, birth, email, phone, phoneProvider, password) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms/signup.py')
@@ -46,6 +45,7 @@ class Api {
 			})
 		})
 	}
+
 // TODO: Fix spelling for jobDescription on server
 	createJob(eventId, jobName, jobDescription, location, jobDate, startTime, endTime, volunteerNeeded) {
 		return new Promise((resolve, reject) => {

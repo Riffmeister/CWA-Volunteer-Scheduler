@@ -129,7 +129,6 @@ class SignUp extends React.Component {
         this.refs.phone.value,
         this.refs.phoneProvider[choice].value,
         this.refs.password.value).then((response) => {
-        console.log(response)
         browserHistory.push('/vms')
         })
       }
