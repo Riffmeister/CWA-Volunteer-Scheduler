@@ -252,7 +252,6 @@ class TimeSelector extends React.Component {
         currentEvent.selectedDates.map((date) => {
           counter += 1
           if (!currentEvent.availability[date].includes(range)) {
-            console.log(range)
             currentEvent.availability[date].push(range)
           }
         })

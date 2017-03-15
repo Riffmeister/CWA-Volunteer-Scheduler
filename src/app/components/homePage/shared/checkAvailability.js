@@ -52,8 +52,6 @@ class CheckAvailability extends React.Component {
             if (startHour === 0 || startHour < 12) {
               if (startHour < 10 && startHour !== 0) {
                 startHour = '0' + startHour
-              } else {
-                startHour = startHour + 12
               }
               startDayTime = 'AM'
             } else {
@@ -69,8 +67,6 @@ class CheckAvailability extends React.Component {
             if (endHour === 0 || endHour < 12) {
               if (endHour < 10 && endHour !== 0) {
                 endHour = '0' + endHour
-              } else {
-                endHour = endHour + 12
               }
               endDayTime = 'AM'
             } else {
@@ -82,8 +78,8 @@ class CheckAvailability extends React.Component {
               }
               endDayTime = 'PM'
             }
-            var readableTime = startHour + ':' + startMinute + ' ' + startDayTime + ' - ' + endHour + ':' + endMinute + ' ' + endDayTime
 
+            var readableTime = startHour + ':' + startMinute + ' ' + startDayTime + ' - ' + endHour + ':' + endMinute + ' ' + endDayTime
             return <div key={time}>{readableTime}</div>
           })
         }
