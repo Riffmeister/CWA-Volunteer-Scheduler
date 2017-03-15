@@ -32,8 +32,8 @@ class CheckAvailability extends React.Component {
     _generateDateElements() {
       var dateElements = currentEvent.dates.map((date) => {
         if (currentEvent.availability[date].length > 0) {
-          console.log(currentEvent.availability)
           var timeElements = currentEvent.availability[date].map((time) => {
+            console.log(time)
             var startHour = parseInt(time.substring(0, 2))
             var startMinute = time.substring(3, 5)
             var endHour = parseInt(time.substring(6, 8))

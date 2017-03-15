@@ -74,7 +74,10 @@ class GlobalEvents extends React.Component {
       })
     } else {
       if (userStore.events.includes(eventData.eventID)) {
-        browserHistory.push("/vms/home/event")
+        var jobRequest = new Api()
+        jobRequest.getPersonJobs(userStore.personID, currentEvent.eventID).then((response) => {
+          console.log(response)
+        })
       } else {
         browserHistory.push("/vms/home/event/set-availability")
       }
