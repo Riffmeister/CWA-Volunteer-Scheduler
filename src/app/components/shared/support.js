@@ -1,3 +1,4 @@
+import { browserHistory } from 'react-router';
 import React from 'react'
 
 require('./support.less')
@@ -16,8 +17,14 @@ class Support extends React.Component {
           <p>For any issues with the Volunteer Management System Application, please contact the VMS at <a href="mailto:cwajazzvms@gmail.com">cwajazzvms@gmail.com</a>.</p>
           <p>Please include a destription of your issue and any screenshots/images that display your problem.</p>
         </article>
+        <button onClick={this._handleBackClick.bind(this)}>Back</button>
       </section>
     )
+  }
+
+  _handleBackClick(event) {
+    event.preventDefault()
+    browserHistory.goBack()
   }
 }
 

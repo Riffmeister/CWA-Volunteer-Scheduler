@@ -18,6 +18,9 @@ class CheckAvailability extends React.Component {
          <div className='dates'>
           {this._generateDateElements()}
          </div>
+         <div>
+          <h3>Desired Hours: {currentEvent.desiredHours ? `${currentEvent.desiredHours}` : `None Given`}</h3>
+         </div>
          <div className='confirmation'>
            <button onClick={this._handleMoreAvailabilityClick.bind(this)}>Submit More Availability</button>
            <button onClick={this._handleConfirmAvailability.bind(this)}>Confirm Availability</button>
@@ -100,12 +103,16 @@ class CheckAvailability extends React.Component {
 
     _handleConfirmAvailability(event) {
       event.preventDefault()
+      if (!currentEvent.desiredHours) {
+        alert('No Desired Hours Inputted.')
+        return
+      }
       var request = new Api()
-      request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability).then((response) => {
+      request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
         browserHistory.push('/vms/home/event')
       }).catch((error) => {
         alert('Could Not Confirm Availability')
-        consolel.log(error)
+        console.log(error)
       })
     }
 

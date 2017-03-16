@@ -21,6 +21,7 @@ class SetAvailability extends React.Component {
     render() {
       return (
        <section className='set-availability'>
+       <h2>Give Availability for {currentEvent.eventName}</h2>
         <DatePicker />
         <div className='time-setter'>
         <TimeSelector />

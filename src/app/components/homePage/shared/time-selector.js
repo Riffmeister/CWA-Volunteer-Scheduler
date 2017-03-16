@@ -91,6 +91,10 @@ class TimeSelector extends React.Component {
                <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
            </div>
          </div>
+         <div className='desired-hours'>
+           <label>Desired Number of Hours:</label>
+           <input ref='desiredHours' type='number' placeholder={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
+         </div>
        </div>
         )
     }
@@ -256,8 +260,12 @@ class TimeSelector extends React.Component {
           }
         })
         alert(`Successfully added ${counter} time slot(s)!`)
+      } else if (this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0) {
+        currentEvent.desiredHours = this.refs.desiredHours.value
+        alert(`Successfully set Desired Hours to ${currentEvent.desiredHours}`)
       } else {
         alert('No Dates Selected')
+
       }
     }
 }

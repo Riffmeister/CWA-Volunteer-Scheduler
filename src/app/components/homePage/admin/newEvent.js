@@ -72,7 +72,7 @@ class CreateNewEvent extends React.Component {
 
 	_handleBack(event) {
 		event.preventDefault()
-			if (confirm('Are you sure you would like to return to login screen? All data entered will be lost.')){
+			if (confirm('Are you sure you would like to return to event screen? All data entered will be lost.')){
 				browserHistory.push('/vms/home')
 			}
 	}
