@@ -21,7 +21,7 @@ class Header extends React.Component {
       <div id ='options'>
   			<nav className='nav-options'>
   				<ul>
-            <li><a href="http://www.colorado.edu/cwa/" target="out" title="Conference on World Affairs Home"><i className="fa fa-university"></i> CWA Website</a></li>
+            <li><a href="http://www.colorado.edu/cwa/" target="out" title="Conference on World Affairs Home"><i className="fa fa-university"></i> CWA</a></li>
   				</ul>
   			</nav>
   			<div className='auth-option'>
