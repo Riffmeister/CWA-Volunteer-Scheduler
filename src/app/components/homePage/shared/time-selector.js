@@ -9,6 +9,8 @@ import currentEvent from '../../../event/currentEvent';
 import userStore from '../../../user/userStore';
 
 class TimeSelector extends React.Component {
+  overlapStart = ''
+  overlapEnd = ''
 
     render() {
       var timeElements = currentEvent.dates.map((date) => {
@@ -20,68 +22,73 @@ class TimeSelector extends React.Component {
        <div className='time-picker'>
          <h3>Submit All Availability Times:</h3>
          <div className='clock'>
-         <label>Starting:</label>
-           <div>
-           <select ref='startTimeHour'>
-             <option>07</option>
-             <option>08</option>
-             <option>09</option>
-             <option>10</option>
-             <option>11</option>
-             <option>12</option>
-             <option>01</option>
-             <option>02</option>
-             <option>03</option>
-             <option>04</option>
-             <option>05</option>
-             <option>06</option>
-           </select>
+           <div id="startTime">
+             <label>Starting:</label>
+               <div>
+               <select ref='startTimeHour'>
+                 <option>07</option>
+                 <option>08</option>
+                 <option>09</option>
+                 <option>10</option>
+                 <option>11</option>
+                 <option>12</option>
+                 <option>01</option>
+                 <option>02</option>
+                 <option>03</option>
+                 <option>04</option>
+                 <option>05</option>
+                 <option>06</option>
+               </select>
+               </div>
+               <p className='colon'>:</p>
+               <div className='digits'>
+               <select ref='startTimeMinute'>
+                 <option>00</option>
+                 <option>30</option>
+               </select>
+               </div>
+               <div className='am-pm'>
+               <select ref='startTimeDaytime'>
+                 <option>AM</option>
+                 <option>PM</option>
+               </select>
+               </div>
+             </div>
+
+             <div id="endingTime">
+             <label>Ending:</label>
+             <div>
+             <select ref='endingTimeHour'>
+               <option>08</option>
+               <option>09</option>
+               <option>10</option>
+               <option>11</option>
+               <option>12</option>
+               <option>01</option>
+               <option>02</option>
+               <option>03</option>
+               <option>04</option>
+               <option>05</option>
+               <option>06</option>
+               <option>07</option>
+             </select>
+             </div>
+             <p className='colon'>:</p>
+             <div className='digits'>
+             <select ref='endingTimeMinute'>
+               <option>00</option>
+               <option>30</option>
+             </select>
+             </div>
+             <div className='am-pm'>
+             <select ref='endingTimeDaytime'>
+               <option>AM</option>
+               <option>PM</option>
+             </select>
+             </div>
            </div>
-           <p className='colon'>:</p>
-           <div className='digits'>
-           <select ref='startTimeMinute'>
-             <option>00</option>
-             <option>30</option>
-           </select>
-           </div>
-           <div className='am-pm'>
-           <select ref='startTimeDaytime'>
-             <option>AM</option>
-             <option>PM</option>
-           </select>
-           </div>
-           <label>Ending:</label>
-           <div>
-           <select ref='endingTimeHour'>
-             <option>08</option>
-             <option>09</option>
-             <option>10</option>
-             <option>11</option>
-             <option>12</option>
-             <option>01</option>
-             <option>02</option>
-             <option>03</option>
-             <option>04</option>
-             <option>05</option>
-             <option>06</option>
-             <option>07</option>
-           </select>
-           </div>
-           <p className='colon'>:</p>
-           <div className='digits'>
-           <select ref='endingTimeMinute'>
-             <option>00</option>
-             <option>30</option>
-           </select>
-           </div>
-           <div className='am-pm'>
-           <select ref='endingTimeDaytime'>
-             <option>AM</option>
-             <option>PM</option>
-           </select>
-           </div>
-           <div>
-           <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
+           <div id="timeSubmit">
+               <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
            </div>
          </div>
        </div>
@@ -112,7 +119,6 @@ class TimeSelector extends React.Component {
       var i = 0
       while (i < numOfNodes) {
         insertArray.push(startHour + (.5 * i))
-        console.log('insertArray', insertArray)
         i += 1
       }
 
@@ -139,12 +145,50 @@ class TimeSelector extends React.Component {
           var j = 0
           while (j < checkNumOfNodes) {
             checkArray.push(checkStart + (.5 * j))
-            console.log('checkArray', checkArray)
             j += 1
           }
 
           for (var node in insertArray) {
             if (checkArray.includes(insertArray[node])) {
+              if (checkStartMinute === 30) {
+                checkStart = checkStart - .5
+              }
+              if (checkEndMinute === 30) {
+                checkEnd = checkEnd - .5
+              }
+
+              var startCheckDayTime = 'AM'
+              var endCheckDayTime = 'AM'
+
+              if (checkStart > 12) {
+                checkStart = checkStart - 12
+                startCheckDayTime = 'PM'
+              } else if (checkStart === 12) {
+                startCheckDayTime = 'PM'
+              } else if (checkStart < 10 && checkStart !== 0) {
+                checkStart = '0' + checkStart
+              } else if (checkStart === 0) {
+                checkStart = 12
+              }
+              if (checkStartMinute !== 30) {
+                checkStartMinute = '00'
+              }
+
+              if (checkEnd > 12) {
+                checkEnd = checkEnd - 12
+                endCheckDayTime = 'PM'
+              } else if (checkEnd === 12) {
+                endCheckDayTime = 'PM'
+              } else if (checkEnd < 10 && checkEnd !== 0) {
+                checkEnd = '0' + checkEnd
+              } else if (checkEnd === 0) {
+                checkEnd = 12
+              }
+              if (checkEndMinute !== 30) {
+                checkEndMinute = '00'
+              }
+
+              this.overlapEnd = checkStart + ':' + checkStartMinute + ' ' + startCheckDayTime + ' - ' + checkEnd + ':' + checkEndMinute + ' ' + endCheckDayTime
               check = true
               break
             }
@@ -187,7 +231,8 @@ class TimeSelector extends React.Component {
 
         // Checking Inputs!
         if (this._overlapCheck(startHour, this.refs.startTimeMinute.value, endHour, this.refs.endingTimeMinute.value)) {
-          console.log('overlapping time slots detected')
+          alert(`Overlapping Time Entered with ${this.overlapEnd}`)
+          return
         }
 
         if (parseInt(startHour) > parseInt(endHour)) {

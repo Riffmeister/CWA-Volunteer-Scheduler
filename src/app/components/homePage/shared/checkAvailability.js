@@ -11,9 +11,6 @@ import userStore from '../../../user/userStore';
 
 class CheckAvailability extends React.Component {
 
-  componentWillMount() {
-  }
-
     render() {
       return (
        <div className='check-availability'>
@@ -30,9 +27,20 @@ class CheckAvailability extends React.Component {
     }
 
     _generateDateElements() {
+      var weekDay = {0: 'Sunday', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday'}
       var dateElements = currentEvent.dates.map((date) => {
+
+        var year = date.substring(0, 4)
+        var month = date.substring(5, 7)
+        var day = date.substring(8, 10)
+        var dateString = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
+        var reDate = month + '-' + day + '-' + year
+
+
+        if (!currentEvent.availability[date]) {
+          currentEvent.availability[date] = []
+        }
         if (currentEvent.availability[date].length > 0) {
-          console.log(currentEvent.availability)
           var timeElements = currentEvent.availability[date].map((time) => {
             var startHour = parseInt(time.substring(0, 2))
             var startMinute = time.substring(3, 5)
@@ -44,8 +52,6 @@ class CheckAvailability extends React.Component {
             if (startHour === 0 || startHour < 12) {
               if (startHour < 10 && startHour !== 0) {
                 startHour = '0' + startHour
-              } else {
-                startHour = startHour + 12
               }
               startDayTime = 'AM'
             } else {
@@ -61,10 +67,8 @@ class CheckAvailability extends React.Component {
             if (endHour === 0 || endHour < 12) {
               if (endHour < 10 && endHour !== 0) {
                 endHour = '0' + endHour
-              } else {
-                endHour = endHour + 12
               }
-              endDayTime = 'PM'
+              endDayTime = 'AM'
             } else {
               if (endHour !== 12){
               endHour = endHour - 12
@@ -81,7 +85,10 @@ class CheckAvailability extends React.Component {
         }
         return (
           <div key={date} className='single-date'>
-            <h2>{date}</h2>
+            <div className='date-content'>
+              <p>{weekDay[dateString.getDay()]}</p>
+              <p>{reDate}</p>
+            </div>
             <div className='times'>
             {timeElements}
             </div>
@@ -95,8 +102,10 @@ class CheckAvailability extends React.Component {
       event.preventDefault()
       var request = new Api()
       request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability).then((response) => {
-        console.log('set Availability', response)
         browserHistory.push('/vms/home/event')
+      }).catch((error) => {
+        alert('Could Not Confirm Availability')
+        consolel.log(error)
       })
     }
 

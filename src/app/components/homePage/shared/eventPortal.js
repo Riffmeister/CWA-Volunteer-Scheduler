@@ -52,9 +52,8 @@ class EventPortal extends React.Component {
   _handleAvailabilityClick(event) {
     event.preventDefault()
     var request = new Api()
-    console.log(currentEvent.eventID, userStore.personID)
     request.getAvailability(currentEvent.eventID, userStore.personID).then((response) => {
-      console.log(response)
+      currentEvent.availability = response.body.availableTimes
       browserHistory.push('/vms/home/event/check-availability')
     })
   }
@@ -68,11 +67,7 @@ class EventPortal extends React.Component {
     event.preventDefault()
     var request = new Api()
     request.getPersonEvents(userStore.personID).then((response) => {
-      console.log(response)
       response.body.eventId.map((event) => {
-        console.log(event)
-        console.log(userStore.events.includes(event))
-        console.log(userStore.events)
         if (!userStore.events.includes(`${event}`)) {
           userStore.events.push(`${event}`)
         }

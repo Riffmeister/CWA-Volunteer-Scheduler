@@ -36,11 +36,11 @@ class SignUp extends React.Component {
           </div>
 					<div>
 	          <label>Email:</label>
-	          <input ref='email' type="text" id='email'></input>
+	          <input ref='email' type="text" id='email'placeholder="username@email.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Expected input is username@email.com"></input>
           </div>
 					<div>
 						<label>Phone Number:</label>
-						<input ref='phone' type="text" id='phone'></input>
+						<input ref='phone' type="text" id='phone' placeholder="(123)456-7890"></input>
 					</div>
           <div>
             <label>Phone Provider:</label>
@@ -129,7 +129,6 @@ class SignUp extends React.Component {
         this.refs.phone.value,
         this.refs.phoneProvider[choice].value,
         this.refs.password.value).then((response) => {
-        console.log(response)
         browserHistory.push('/vms')
         })
       }
