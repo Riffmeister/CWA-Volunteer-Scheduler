@@ -21,12 +21,13 @@ class Header extends React.Component {
       <div id ='options'>
   			<nav className='nav-options'>
   				<ul>
-            <li><a href="http://www.colorado.edu/cwa/" target="out" title="Conference on World Affairs Home"><i className="fa fa-university"></i> CWA Website</a></li>
+            <li><a href="http://www.colorado.edu/cwa/" target="out" title="Conference on World Affairs Home"><i className="fa fa-university"></i> CWA</a></li>
   				</ul>
   			</nav>
   			<div className='auth-option'>
   				<ul>
-  					<li onClick={this._handleClick.bind(this)}><a>Logout</a></li>
+            <li onClick={this._handleClick.bind(this, 'support')}><a>Support</a></li>
+  					<li onClick={this._handleClick.bind(this, 'logout')}><a>Login/Logout</a></li>
   				</ul>
   			</div>
       </div>
@@ -46,11 +47,20 @@ _handleClickHere(event) {
 	})
 }
 
-_handleClick(event){
+_handleClick(redirect, event){
+  console.log('redirect', redirect)
 	event.preventDefault()
-	if (confirm('Are you sure you would like to logout?')) {
-		browserHistory.push('/vms')
-	}
+  switch (redirect) {
+    case 'support':
+      browserHistory.push('/vms/support')
+      break;
+    case 'logout':
+      if (confirm('Are you sure you would like to logout?')) {
+        browserHistory.push('/vms')
+      }
+      break;
+  }
+
   }
 
 }

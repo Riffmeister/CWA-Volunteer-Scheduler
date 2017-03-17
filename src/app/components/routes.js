@@ -12,12 +12,14 @@ import CreateNewJob from './homePage/admin/newJob';
 import CreateNewEvent from './homePage/admin/newEvent';
 import EventPortal from './homePage/shared/eventPortal';
 import SetAvailability from './homePage/shared/setAvailability';
+import Support from './shared/support';
 
 module.exports = (
 <Route path='/vms' component={App}>
 	<IndexRoute component={Login}/>
 		<Route path="/vms/signup" component={SignUp}/>
 		<Route path="/vms/home" component={Home}/>
+		<Route path="/vms/support" component={Support}/>
 		<Route path="/vms/home/create-new-event" component={CreateNewEvent}/>
 		<Route path="/vms/home/event" component={EventPortal}/>
 		<Route path="/vms/home/event/set-availability" component={SetAvailability}/>
