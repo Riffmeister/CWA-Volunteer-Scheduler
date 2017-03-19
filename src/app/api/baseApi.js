@@ -122,6 +122,19 @@ class Api {
 		})
 	}
 
+	getPersonJobs(personID, eventID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/get_volunteer_jobs.py')
+			.type('form')
+			.send({volunteerId: personID})
+			.send({eventId: eventID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+
 }
 
 export default Api;
