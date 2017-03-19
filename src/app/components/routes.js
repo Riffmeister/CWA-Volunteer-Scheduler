@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './app';
-import AccountInfo from './shared/support';
+import AccountInfo from './shared/accountInfo';
 import AssignPortal from './homePage/admin/assignPortal';
 import CheckAvailability from './homePage/shared/checkAvailability';
 import Login from './entryPage/login';
