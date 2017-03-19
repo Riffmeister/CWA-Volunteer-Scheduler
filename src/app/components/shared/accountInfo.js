@@ -26,7 +26,7 @@ class AccountInfo extends React.Component {
           </div>
 					<div>
 	          <label>Email:</label>
-	          <input ref='email' type="text" id='email' defaultValue="username@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Expected input is username@email.com"></input>
+	          <input ref='email' type="text" id='email' defaultValue="username@email.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Expected input is username@email.com"></input>
           </div>
 					<div>
 						<label>Phone Number:</label>
