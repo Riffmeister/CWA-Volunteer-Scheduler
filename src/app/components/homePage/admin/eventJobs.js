@@ -58,7 +58,6 @@ class EventJobs extends React.Component {
     }
 
     _handleJobClick(jobData, event) {
-      console.log(jobData)
       var buildCurrentJob = new Promise((resolve, reject) => {
         currentJob.jobID = jobData.jobID
         currentJob.jobDate = jobData.jobDate

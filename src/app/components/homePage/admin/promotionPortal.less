@@ -1,0 +1,81 @@
+#promotion-portal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  .header {
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      font-size: 2.5em;
+      border-bottom: solid;
+      &:active {
+        color: rgba(207, 184, 124, 0.8);
+      }
+      &:hover {
+        color: rgba(207, 184, 124, 0.8);
+      }
+    }
+    h2 {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      font-size: 3em;
+      border-bottom: solid;
+      border-width: 2px;
+    }
+  }
+
+
+  .promotion-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: auto;
+
+    .person {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 0;
+      align-items: center;
+      border-bottom: solid;
+
+      h3 {
+        font-size: 2.5em;
+        font-weight: 600;
+        border-bottom: solid;
+      }
+
+      .person-body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h4 {
+          font-size: 2em;
+        }
+
+        p {
+          font-size: 1.5em;
+        }
+
+        button {
+          font-size: 2em;
+        }
+
+        .person-body-section {
+          display: flex;
+          justify-content: space-around;
+        }
+      }
+    }
+  }
+
+}

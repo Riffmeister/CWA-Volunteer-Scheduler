@@ -161,7 +161,7 @@ _handleCompleteJobClick(event) {
   request.completeJob(currentEvent.eventID, currentJob.jobID).then((response) => {
     currentJob.jobStatus = response.body.job_status
     alert(`Job Status Changed to ${currentJob.jobStatus === 'confirmed' ? 'Uncompleted' : 'Completed'}`)
-    this.forceUpdate()
+    this.setState(() => {return true})
   })
 }
 
@@ -171,7 +171,7 @@ _handleConfirmJobClick(event) {
   request.confirmJob(currentEvent.eventID, currentJob.jobID).then((response) => {
     currentJob.jobStatus = response.body.job_status
     alert(`Job Status Changed to ${currentJob.jobStatus === null ? 'Unconfirmed' : 'Confirmed'}`)
-    this.forceUpdate()
+    this.setState(() => {return true})
   })
 }
 

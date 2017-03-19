@@ -1,6 +1,8 @@
 import { browserHistory } from 'react-router';
 import React from 'react'
 
+import userStore from '../../user/userStore';
+
 require('./accountInfo.less')
 require('./../../commonStyles/input.less')
 
@@ -51,6 +53,7 @@ class AccountInfo extends React.Component {
 		          <input ref='passwordCheck' type="password" id='passwordCheck'></input>
 						</div>
 					</div>
+          <button type="submit" onClick=''>Save</button>
           </form>
         <button onClick={this._handleBackClick.bind(this)}>Back</button>
       </section>
