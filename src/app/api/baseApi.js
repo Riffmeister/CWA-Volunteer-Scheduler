@@ -189,6 +189,19 @@ class Api {
 		})
 	}
 
+	upgradePerson(personID, admin, driver) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/upgrade_volunteer.py')
+			.type('form')
+			.send({volunteerId: personID})
+			.send({admin: admin})
+			.send({driver: driver})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
 }
 
 export default Api;

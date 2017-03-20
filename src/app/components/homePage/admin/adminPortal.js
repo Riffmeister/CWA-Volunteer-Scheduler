@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import Header from './../../../shared/header';
 import GlobalEvents from '../shared/globalEvents';
 import NewEvent from './newEvent';
+import allUserStore from '../../../user/allUserStore';
 import userStore from '../../../user/userStore'
 import eventStore from '../../../event/eventStore'
 
@@ -44,18 +45,20 @@ class AdminPortal extends React.Component {
     event.preventDefault()
     var request = new Api()
     request.getAllPeoples().then((response) => {
-      console.log(response)
-      currentEvent.jobs = []
+      allUserStore.users = []
       for (var key in response.body) {
-        currentEvent.jobs.push({
-          jobID: key,
-          jobName: response.body[key].job_name,
-          jobDescription: response.body[key].job_description,
-          jobLocation: response.body[key].location,
-          jobDate: response.body[key].job_date,
-          jobTime: response.body[key].job_time_start + '-' + response.body[key].job_time_end
+        allUserStore.users.push({
+          personID: key,
+          personName: response.body[key].first_name + ' ' + response.body[key].last_name,
+          phoneNumber: response.body[key].phone_number,
+          admin: response.body[key].admin_status === 'true' ? true : false,
+          driver: response.body[key].driver_status === 'true' ? true : false,
+          phoneProvider: response.body[key].phone_provider,
+          email: response.body[key].email,
+          birthDate: response.body[key].date_of_birth
         })
       }
+      browserHistory.push('/vms/home/promotion')
     })
   }
 }
