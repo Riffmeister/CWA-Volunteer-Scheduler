@@ -27,7 +27,7 @@ class CreateNewJob extends React.Component {
     </div>
 		<div>
 			<label>Date:</label>
-			<input ref='date' type="date" id='startingDate' placeholder="mm/dd/yyyy" title="Expected pattern is mm/dd/yyyy"></input>
+			<input ref='date' type="date" id='startingDate' placeholder="YYYY-MM-DD" title="Expected pattern is YYYY-MM-DD"></input>
 		</div>
     <div>
 			<label>Start Time:</label>
