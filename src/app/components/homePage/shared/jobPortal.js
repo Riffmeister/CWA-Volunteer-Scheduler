@@ -49,7 +49,7 @@ class JobPortal extends React.Component {
             </div>
           </div>
         </div>
-        <div className='job-section'>
+        <div className='job-section section2'>
           <div className='job-outer-data'>
             <h4>Description:</h4>
             <div className='job-inner-data'>
