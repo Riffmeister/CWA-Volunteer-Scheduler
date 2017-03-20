@@ -43,16 +43,6 @@ class AccountInfo extends React.Component {
               <option value="T-Mobile">T-Mobile</option>
             </select>
           </div>
-					<div className='password'>
-						<div>
-              <label>Change Password:</label>
-              <input ref='password' type="password" id='password'></input>
-						</div>
-						<div>
-							<label>Retype Password:</label>
-		          <input ref='passwordCheck' type="password" id='passwordCheck'></input>
-						</div>
-					</div>
           <button type="submit" onClick=''>Save</button>
           </form>
         <button onClick={this._handleBackClick.bind(this)}>Back</button>
