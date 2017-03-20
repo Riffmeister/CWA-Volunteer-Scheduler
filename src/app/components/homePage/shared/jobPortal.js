@@ -32,8 +32,7 @@ class JobPortal extends React.Component {
           <div className='job-outer-data'>
             <h4>Date:</h4>
             <div className='job-inner-data'>
-              <h4>{currentJob.formattedDate.weekDay}</h4>
-              <h4>{currentJob.formattedDate.formattedDate}</h4>
+              <h4>{currentJob.formattedDate.weekDay}:{currentJob.formattedDate.formattedDate}</h4>
             </div>
           </div>
           <div className='job-outer-data'>
@@ -53,7 +52,7 @@ class JobPortal extends React.Component {
           <div className='job-outer-data'>
             <h4>Description:</h4>
             <div className='job-inner-data'>
-              <h4>{currentJob.jobDescription}</h4>
+              <p>{currentJob.jobDescription}</p>
             </div>
           </div>
           <div className='job-outer-data'>
