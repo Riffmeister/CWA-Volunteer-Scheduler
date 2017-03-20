@@ -55,6 +55,8 @@ class CheckAvailability extends React.Component {
             if (startHour === 0 || startHour < 12) {
               if (startHour < 10 && startHour !== 0) {
                 startHour = '0' + startHour
+              } else if (startHour === 0) {
+                startHour = 12
               }
               startDayTime = 'AM'
             } else {
@@ -70,6 +72,8 @@ class CheckAvailability extends React.Component {
             if (endHour === 0 || endHour < 12) {
               if (endHour < 10 && endHour !== 0) {
                 endHour = '0' + endHour
+              } else if (endHour === 0) {
+                startHour = 12
               }
               endDayTime = 'AM'
             } else {
@@ -83,7 +87,7 @@ class CheckAvailability extends React.Component {
             }
 
             var readableTime = startHour + ':' + startMinute + ' ' + startDayTime + ' - ' + endHour + ':' + endMinute + ' ' + endDayTime
-            return <div key={time} className='time'>{readableTime}<button onClick={this._handleDeleteTimeClick.bind(this, time, date, index)}>X</button></div>
+            return <div key={time} className='time'>{readableTime}<button onClick={this._handleDeleteTimeClick.bind(this, time, date, index, reDate, readableTime)}>X</button></div>
           })
         }
         return (
@@ -101,14 +105,17 @@ class CheckAvailability extends React.Component {
       return dateElements
     }
 
-    _handleDeleteTimeClick(time, date, index, event) {
+    _handleDeleteTimeClick(time, date, index, formatDate, formatTime, event) {
       event.preventDefault()
-      console.log('time', time, 'date', date, 'personID', userStore.personID, 'eventID', currentEvent.eventID, 'index', index)
+      if (confirm(`Are you sure you want to delete times ${formatTime} on ${formatDate}?`))
       var request = new Api()
       request.deleteAvailability(userStore.personID, currentEvent.eventID, date, time).then((response) => {
         currentEvent.availability[date].splice(index, 1)
-        alert('Successfully deleted time')
+        alert(`Successfully deleted times ${formatTime} on ${formatDate}`)
         this.setState(() => {return true})
+      }).catch((error) => {
+        alert('Could not delete the selected times, please try again, and if error persists contact the technical team.')
+        console.log(error)
       })
     }
     _handleConfirmAvailability(event) {

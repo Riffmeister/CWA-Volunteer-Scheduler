@@ -33,6 +33,7 @@ class EventPortal extends React.Component {
           </div>
         </div>
         <div className='confirmation'>
+          <button onClick={this._handleVolunteerAvailability.bind(this)}>Volunteer Availability</button>
           <button onClick={this._handleEventsClick.bind(this)}>Back to All Events</button>
         </div>
     </section>)
@@ -56,11 +57,15 @@ class EventPortal extends React.Component {
     event.preventDefault()
     var request = new Api()
     request.getAvailability(currentEvent.eventID, userStore.personID).then((response) => {
-      console.log(response)
       currentEvent.availability = response.body.availableTimes
       currentEvent.desiredHours = response.body.desiredHours
       browserHistory.push('/vms/home/event/check-availability')
     })
+  }
+
+  _handleVolunteerAvailability(event) {
+    event.preventDefault()
+    console.log('Check these volunteers out')
   }
 
   _handleCreateJob(event) {

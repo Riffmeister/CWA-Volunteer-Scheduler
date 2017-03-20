@@ -32,8 +32,7 @@ class JobPortal extends React.Component {
           <div className='job-outer-data'>
             <h4>Date:</h4>
             <div className='job-inner-data'>
-              <h4>{currentJob.formattedDate.weekDay}</h4>
-              <h4>{currentJob.formattedDate.formattedDate}</h4>
+              <h4>{currentJob.formattedDate.weekDay}:{currentJob.formattedDate.formattedDate}</h4>
             </div>
           </div>
           <div className='job-outer-data'>
@@ -49,11 +48,11 @@ class JobPortal extends React.Component {
             </div>
           </div>
         </div>
-        <div className='job-section'>
+        <div className='job-section section2'>
           <div className='job-outer-data'>
             <h4>Description:</h4>
             <div className='job-inner-data'>
-              <h4>{currentJob.jobDescription}</h4>
+              <p>{currentJob.jobDescription}</p>
             </div>
           </div>
           <div className='job-outer-data'>
@@ -74,14 +73,10 @@ class JobPortal extends React.Component {
         {userStore.isAdmin ?
           (<button onClick={this._handleAssignClick.bind(this)}>
         Assign Volunteer
-        </button>) :<div className='navigation volunteer'>
+        </button>) :
         <button onClick={this._handleConfirmJobClick.bind(this)}>
         Confirm Job
-        </button>
-        <button onClick={this._handleCompleteJobClick.bind(this)}>
-        Complete Job
-        </button>
-        </div>}
+        </button>}
           <button onClick={this._handleBackClick.bind(this)}>
             Back
           </button>
@@ -148,20 +143,6 @@ _handleAssignClick(event) {
     console.log(response)
     currentJob.volunteersAvailable = response.body
     browserHistory.push("/vms/home/event/job/assign")
-  })
-}
-
-_handleCompleteJobClick(event) {
-  event.preventDefault()
-  if (currentJob.jobStatus === null) {
-    alert('Cannot complete the request if the job has not been confirmed.')
-    return
-  }
-  var request = new Api()
-  request.completeJob(currentEvent.eventID, currentJob.jobID).then((response) => {
-    currentJob.jobStatus = response.body.job_status
-    alert(`Job Status Changed to ${currentJob.jobStatus === 'confirmed' ? 'Uncompleted' : 'Completed'}`)
-    this.setState(() => {return true})
   })
 }
 

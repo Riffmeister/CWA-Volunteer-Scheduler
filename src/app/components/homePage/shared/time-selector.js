@@ -93,7 +93,7 @@ class TimeSelector extends React.Component {
          </div>
          <div className='desired-hours'>
            <label>Desired Number of Hours:</label>
-           <input ref='desiredHours' type='number' placeholder={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
+           <input ref='desiredHours' type='number' defaultValue={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
          </div>
        </div>
         )

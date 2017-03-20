@@ -64,10 +64,6 @@
     flex-grow: 1;
 
     .confirmed {
-      background-color: lightyellow;
-    }
-
-    .completed {
       background-color: lightgreen;
     }
 
@@ -154,6 +150,7 @@
         display: flex;
         flex-direction: column;
         font-size: 2em;
+        flex-shrink: 0;
         font-weight: 900;
         white-space: nowrap;
 
@@ -185,6 +182,7 @@
   .confirmation {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 
     button {
       flex-grow: .5;
@@ -304,14 +302,21 @@
 /*TABLET VIEW */
 @media only screen and (max-width: 830px){
 
+  .event-portal .admin {
+    border-right: none;
+}
+
     .event-portal .event-body {
-      flex-direction: column;
+      flex-direction: column-reverse;
       height: 100%;
   }
 
   .event-portal .jobs {
-    width: 90%;
+    //width: 90%;
 }
+  .event-portal button{
+    font-size: 1.7em;
+  }
    .set-availability{
      font-size: larger;
    }

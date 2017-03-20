@@ -22,12 +22,13 @@ class AdminPortal extends React.Component {
         <div className='admin-body'>
   				{ eventStore.events.length > 0 ? <GlobalEvents /> : null}
           <div className='create-new-event'>
-  				<button onClick={this._handleCreateEvent.bind(this)}>
-  					Create New Event
-  				</button>
+
           </div>
           </div>
           <div className='confirmation'>
+            <button onClick={this._handleCreateEvent.bind(this)}>
+              Create New Event
+            </button>
             <button onClick={this._handlePromoteClick.bind(this)}>
               Promote Volunteer
             </button>

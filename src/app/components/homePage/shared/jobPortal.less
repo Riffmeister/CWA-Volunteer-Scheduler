@@ -37,12 +37,21 @@
 
         .job-inner-data {
           display: flex;
-          color: #cfb87c;
+          color: #96865a;
           flex-direction: column;
           margin-left: 10px;
           justify-content: center;
+
+          p{
+            font-weight: 600;
+          }
         }
       }
+    }
+
+    .section2{
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -70,5 +79,15 @@
         color: rgba(207, 184, 124, 0.8);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 720px){
+  .job-portal .job-body .job-section {
+      display: flex;
+      flex-grow: 1;
+      width: 100%;
+      justify-content: space-around;
+      flex-direction: column;
   }
 }
