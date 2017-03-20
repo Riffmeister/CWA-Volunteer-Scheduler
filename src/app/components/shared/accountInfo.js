@@ -14,27 +14,27 @@ class AccountInfo extends React.Component {
           <form ref='signup'>
 					<div>
 						<label>First Name:</label>
-						<input ref='firstName' type="text" id='firstName' disabled defaultValue="John"></input>
+						<input ref='firstName' type="text" id='firstName' disabled defaultValue={userStore.firstName}></input>
 					</div>
 					<div>
 						<label>Last Name:</label>
-						<input ref='lastName' type="text" id='lastName' disabled defaultValue="Smith"></input>
+						<input ref='lastName' type="text" id='lastName' disabled defaultValue={userStore.lastName}></input>
 					</div>
           <div>
             <label>Date of Birth:</label>
-            <input ref='birth' type="date" id='birth' disabled defaultValue="2013-01-08"></input>
+            <input ref='birth' type="date" id='birth' disabled defaultValue={userStore.dateOfBirth}></input>
           </div>
 					<div>
 	          <label>Email:</label>
-	          <input ref='email' type="text" id='email' defaultValue="username@email.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Expected input is username@email.com"></input>
+	          <input ref='email' type="text" id='email' defaultValue={userStore.email} required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Expected input is username@email.com"></input>
           </div>
 					<div>
 						<label>Phone Number:</label>
-						<input ref='phone' type="text" id='phone' defaultValue="(720)123-1234" placeholder="(123)456-7890"></input>
+						<input ref='phone' type="text" id='phone' defaultValue={userStore.phoneNumber}></input>
 					</div>
           <div>
             <label>Phone Provider:</label>
-            <select ref='phoneProvider' type='text' id='phone' defaultValue="Verizon">
+            <select ref='phoneProvider' type='text' id='phone' defaultValue={userStore.phoneProvider}>
               <option value=""></option>
               <option value="AT&T"> AT&T</option>
               <option value="Sprint">Sprint</option>

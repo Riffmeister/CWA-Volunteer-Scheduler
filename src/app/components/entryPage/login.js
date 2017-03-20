@@ -16,6 +16,12 @@ class Login extends React.Component {
       userStore.loggedOn = false
       userStore.isAdmin = false
       userStore.events = []
+      userStore.firstName = ''
+      userStore.lastName = ''
+      userStore.phoneNumber = ''
+      userStore.dateOfBirth = ''
+      userStore.email = ''
+      userStore.phoneProvider = ''
       eventStore.events = []
       eventStore.jobs = []
     }
@@ -60,6 +66,12 @@ class Login extends React.Component {
                 userStore.personID = response.body.personID
                 userStore.loggedOn = true
                 userStore.isAdmin = response.body.isAdmin
+                userStore.firstName = response.body.first_name
+                userStore.lastName = response.body.last_name
+                userStore.phoneNumber = response.body.phone_number
+                userStore.dateOfBirth = response.body.date_of_birth
+                userStore.email = response.body.email
+                userStore.phoneProvider = response.body.phone_provider
                 response.body.eventIds.map((eventID) => {
                   userStore.events.push(`${eventID}`)
                 })

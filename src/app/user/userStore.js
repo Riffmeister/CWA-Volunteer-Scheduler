@@ -7,6 +7,13 @@ class UserStore {
   @observable isAdmin = false
   @observable loggedOn = false
   @observable events = []
+  @observable firstName = ''
+  @observable lastName = ''
+  @observable phoneNumber = ''
+  @observable dateOfBirth = ''
+  @observable email = ''
+  @observable phoneProvider = ''
+
 
 }
 
