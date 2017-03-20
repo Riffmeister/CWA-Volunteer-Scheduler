@@ -43,7 +43,7 @@ class AccountInfo extends React.Component {
               <option value="T-Mobile">T-Mobile</option>
             </select>
           </div>
-          <button type="submit" onClick=''>Save</button>
+          <button type="submit" onClick={this._handleSaveClick.bind(this)}>Save</button>
           </form>
         <button onClick={this._handleBackClick.bind(this)}>Back</button>
       </section>
@@ -53,6 +53,11 @@ class AccountInfo extends React.Component {
   _handleBackClick(event) {
     event.preventDefault()
     browserHistory.goBack()
+  }
+
+  _handleSaveClick(event) {
+    event.preventDefault()
+    alert('Information Submitted')
   }
 }
 
