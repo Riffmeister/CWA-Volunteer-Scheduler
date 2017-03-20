@@ -44,7 +44,7 @@ class CheckAvailability extends React.Component {
           currentEvent.availability[date] = []
         }
         if (currentEvent.availability[date].length > 0) {
-          var timeElements = currentEvent.availability[date].map((time) => {
+          var timeElements = currentEvent.availability[date].map((time, index) => {
             var startHour = parseInt(time.substring(0, 2))
             var startMinute = time.substring(3, 5)
             var endHour = parseInt(time.substring(6, 8))
@@ -83,7 +83,7 @@ class CheckAvailability extends React.Component {
             }
 
             var readableTime = startHour + ':' + startMinute + ' ' + startDayTime + ' - ' + endHour + ':' + endMinute + ' ' + endDayTime
-            return <div key={time}>{readableTime}</div>
+            return <div key={time} className='time'>{readableTime}<button onClick={this._handleDeleteTimeClick.bind(this, time, date, index)}>X</button></div>
           })
         }
         return (
@@ -101,6 +101,16 @@ class CheckAvailability extends React.Component {
       return dateElements
     }
 
+    _handleDeleteTimeClick(time, date, index, event) {
+      event.preventDefault()
+      console.log('time', time, 'date', date, 'personID', userStore.personID, 'eventID', currentEvent.eventID, 'index', index)
+      var request = new Api()
+      request.deleteAvailability(userStore.personID, currentEvent.eventID, date, time).then((response) => {
+        currentEvent.availability[date].splice(index, 1)
+        alert('Successfully deleted time')
+        this.setState(() => {return true})
+      })
+    }
     _handleConfirmAvailability(event) {
       event.preventDefault()
       if (!currentEvent.desiredHours) {

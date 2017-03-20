@@ -41,6 +41,20 @@ class Api {
 		})
 	}
 
+	deleteAvailability(personID, eventID, date, time) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/delete_availability.py')
+			.type('form')
+			.send({volunteerId: personID})
+			.send({eventId: eventID})
+			.send({date: date})
+			.send({time: time})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
 	login(email, password) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms/login.py')
