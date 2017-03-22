@@ -1,6 +1,7 @@
 #big-container{
 	height: 100vh;
 	margin: 0 0 0 0;
+  overflow: auto;
 }
 
 body {

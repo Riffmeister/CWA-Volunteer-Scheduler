@@ -35,21 +35,16 @@ class EventJobs extends React.Component {
     _createJobElements() {
       let jobElements = currentEvent.jobs.map((job) => {
         let background = ''
-        switch (job.jobStatus) {
-          case 'confirmed':
-            background = 'confirmed'
-            break;
-          case null:
-            background = 'not-confirmed'
-            break;
-          case 'completed':
-            background = 'completed'
-            break;
+        console.log(job)
+        if (job.volunteerID) {
+          background = 'assigned'
+        } else {
+          background = 'unassigned'
         }
         return (
             <div key={job.jobID}>
               <button className={background} onClick={this._handleJobClick.bind(this, job)}>
-                {job.jobName}
+                {job.jobStatus ? job.jobName + ' | ' + 'Confirmed': job.jobName}
               </button>
             </div>
         )
