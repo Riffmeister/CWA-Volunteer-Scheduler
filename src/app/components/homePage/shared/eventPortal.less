@@ -1,20 +1,22 @@
 .event-portal {
-  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+//  justify-content: center;
   width: 100%;
 
   h2 {
     font-size: 3em;
     border-bottom: solid;
     border-width: 2px;
+    text-align: center;
   }
 
   .confirmation {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     width: 100%;
+    margin-top: 10px;
 
     button {
       justify-content: center;
@@ -40,7 +42,6 @@
     align-items: center;
     display: flex;
     flex-grow: .25;
-    height: 100%;
     justify-content: center;
   }
 
@@ -49,6 +50,7 @@
     flex-grow: 1;
     justify-content: center;
     width: 100%;
+    height: 70%;
   }
 
     .admin {
@@ -60,13 +62,25 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 90%;
-    overflow: auto;
+
+    .confirmed {
+      background-color: lightgreen;
+    }
+
+    .not-confirmed {
+      background-color: red;
+    }
+
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
 
     .jobs-body {
       flex-direction: column;
       flex-grow: 1;
       justify-content: flex-start;
+      overflow: auto;
       width: 100%;
 
       button {
@@ -75,6 +89,7 @@
 
       div {
         display: flex;
+        margin-bottom: 10px;
         flex-shrink: 0;
         justify-content: center;
       }
@@ -88,7 +103,6 @@
 
     div {
       display: flex;
-      flex-shrink: 0;
       justify-content: center;
     }
   }
@@ -136,6 +150,7 @@
         display: flex;
         flex-direction: column;
         font-size: 2em;
+        flex-shrink: 0;
         font-weight: 900;
         white-space: nowrap;
 
@@ -152,6 +167,14 @@
         font-size: 1.2em;
         overflow: auto;
         white-space: nowrap;
+
+        .time {
+          margin-top: 10px;
+
+          button {
+            margin-left: 10px;
+          }
+        }
       }
     }
   }
@@ -159,6 +182,7 @@
   .confirmation {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 
     button {
       flex-grow: .5;
@@ -185,6 +209,15 @@
   flex-direction: column;
   width: 100%;
 
+  h2 {
+    font-size: 2.5em;
+    font-weight: 600;
+  }
+
+  .desired-hours {
+    font-size: 2em;
+  }
+
   .confirmation {
     display: flex;
     flex-direction: column;
@@ -210,11 +243,6 @@
     flex-grow: .1;
     width: 100%;
 
-    h2 {
-      font-size: 2.5em;
-      font-weight: 600;
-    }
-
     .dates {
       display: flex;
       overflow: auto;
@@ -233,20 +261,6 @@
       .selected {
         background-color: #cfb87c;
       }
-
-      // div, button {
-      //   display: flex;
-      //   flex-grow: 1;
-      //   font-size: 2em;
-      //   margin-right: 10px;
-      //   white-space: nowrap;
-      //   &:active {
-      //     color: rgba(207, 184, 124, 0.8);
-      //   }
-      //   &:hover {
-      //     color: rgba(207, 184, 124, 0.8);
-      //   }
-      // }
     }
   }
 
@@ -288,14 +302,21 @@
 /*TABLET VIEW */
 @media only screen and (max-width: 830px){
 
+  .event-portal .admin {
+    border-right: none;
+}
+
     .event-portal .event-body {
-      flex-direction: column;
+      flex-direction: column-reverse;
       height: 100%;
   }
 
   .event-portal .jobs {
-    width: 90%;
+    //width: 90%;
 }
+  .event-portal button{
+    font-size: 1.7em;
+  }
    .set-availability{
      font-size: larger;
    }

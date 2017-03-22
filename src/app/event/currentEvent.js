@@ -8,6 +8,7 @@ class CurrentEvent {
   @observable dates = []
   @observable jobs = []
   @observable availability = {}
+  @observable desiredHours = null
   @observable selectedDates = []
 }
 

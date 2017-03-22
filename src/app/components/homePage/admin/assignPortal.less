@@ -1,0 +1,76 @@
+#assign-portal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  h2 {
+    font-size: 3em;
+    border-bottom: solid;
+    border-width: 2px;
+  }
+
+  .people-picker {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    align-items: center;
+    overflow: auto;
+
+    .people {
+      display: flex;
+      flex-grow: .1;
+      width: 100%;
+
+      .selected {
+        background-color: #cfb87c;
+      }
+
+      h3 {
+        font-size: 2.5em;
+        font-weight: 600;
+      }
+
+      h4 {
+        font-size: 1.5em;
+      }
+
+      .person {
+        display: flex;
+        margin-right: 10px;
+        white-space: nowrap;
+
+        button {
+          flex-grow: .5;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  .confirmation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+
+    button {
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: .5;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      &:active {
+        color: rgba(207, 184, 124, 0.8);
+      }
+      &:hover {
+        color: rgba(207, 184, 124, 0.8);
+      }
+    }
+    button:last-child{
+      margin-bottom: 0px;
+    }
+  }
+}

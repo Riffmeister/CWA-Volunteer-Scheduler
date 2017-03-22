@@ -32,7 +32,7 @@ class SignUp extends React.Component {
 					</div>
           <div>
             <label>Date of Birth:</label>
-            <input ref='birth' type="date" id='birth'></input>
+            <input ref='birth' type="date" id='birth' placeholder="YYYY-MM-DD" required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"></input>
           </div>
 					<div>
 	          <label>Email:</label>
@@ -40,7 +40,7 @@ class SignUp extends React.Component {
           </div>
 					<div>
 						<label>Phone Number:</label>
-						<input ref='phone' type="text" id='phone' placeholder="(123)456-7890"></input>
+						<input ref='phone' type="text" id='phone' placeholder="123-456-7890" pattern="\d{3}[\-]\d{3}[\-]\d{4}"></input>
 					</div>
           <div>
             <label>Phone Provider:</label>

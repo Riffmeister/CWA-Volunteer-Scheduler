@@ -1,58 +1,78 @@
 import { observer } from 'mobx-react';
+import { browserHistory } from 'react-router';
 
 import Api from '../../../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import eventStore from '../../../event/eventStore'
-import currentEvent from '../../../event/currentEvent'
+import eventStore from '../../../event/eventStore';
+import currentEvent from '../../../event/currentEvent';
+import currentJob from '../../../event/currentJob';
 
 @observer
 class EventJobs extends React.Component {
 
-    render() {
-      let jobElements = []
-      currentEvent.jobs.map((job) => {
-        console.log(job)
-        return (
-          jobElements.push(
-            <div key={job.jobID}>
-              <button onClick={this._handleJobClick.bind(this, job)}>
-                {job.jobName}
-              </button>
-            </div>
-          )
-        )
-      })
+  componentWillMount() {
+    currentJob.jobTime = ''
+    currentJob.jobName = ''
+    currentJob.jobLocation = ''
+    currentJob.jobDate = ''
+    currentJob.jobDescription = ''
+    currentJob.volunteerName = ''
+    currentJob.volunteerID = null
+  }
 
+    render() {
         return (
            <div className='jobs admin'>
-              <div className='jobs-body'>
-                {jobElements}
-              </div>
+            <h2>Jobs(Scroll to View More)</h2>
+            <div className='jobs-body'>
+              {this._createJobElements()}
+            </div>
            </div>
         )
     }
 
-    _handleJobClick(jobData, event) {
-      console.log(jobData)
+    _createJobElements() {
+      let jobElements = currentEvent.jobs.map((job) => {
+        let background = ''
+        switch (job.jobStatus) {
+          case 'confirmed':
+            background = 'confirmed'
+            break;
+          case null:
+            background = 'not-confirmed'
+            break;
+          case 'completed':
+            background = 'completed'
+            break;
+        }
+        return (
+            <div key={job.jobID}>
+              <button className={background} onClick={this._handleJobClick.bind(this, job)}>
+                {job.jobName}
+              </button>
+            </div>
+        )
+      })
+      return jobElements
     }
 
-    _handleRefresh(event) {
-      event.preventDefault()
-      var eventRequest = new Api()
-      eventRequest.getEvents().then((response) => {
-        for (var key in response.body) {
-          eventStore.events.push({
-            eventID: key,
-            eventName: response.body[key].event_name,
-            startDate: response.body[key].start_date,
-            endDate: response.body[key].end_date
-          })
-        }
-      }).catch((error) => {
-        console.log(error)
+    _handleJobClick(jobData, event) {
+      var buildCurrentJob = new Promise((resolve, reject) => {
+        currentJob.jobID = jobData.jobID
+        currentJob.jobDate = jobData.jobDate
+        currentJob.jobDescription = jobData.jobDescription
+        currentJob.jobLocation = jobData.jobLocation
+        currentJob.jobName = jobData.jobName
+        currentJob.jobStatus = jobData.jobStatus
+        currentJob.jobTime = jobData.jobTime
+        currentJob.volunteerID = jobData.volunteerID
+        currentJob.volunteerName = jobData.volunteerFirstName + ' ' + jobData.volunteerLastName
+        resolve()
       })
-      console.log('success')
+      buildCurrentJob.then(() => {
+        browserHistory.push('/vms/home/event/job')
+      })
     }
 }
 export default EventJobs;

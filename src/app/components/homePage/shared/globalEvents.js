@@ -19,6 +19,7 @@ class GlobalEvents extends React.Component {
     currentEvent.dates = []
     currentEvent.selectedDates = []
     currentEvent.jobs = []
+    currentEvent.desiredHours = null
   }
 
   render() {
@@ -37,7 +38,7 @@ class GlobalEvents extends React.Component {
 
       return (
          <section className='events'>
-            <h2>Global Events</h2>
+            <h2>Events</h2>
             <div className='events-body'>
               {eventElements}
             </div>
@@ -62,18 +63,33 @@ class GlobalEvents extends React.Component {
             jobName: response.body[key].job_name,
             jobDescription: response.body[key].job_description,
             jobLocation: response.body[key].location,
-            jobSkill: response.body[key].job_skill,
-            jobTimeStart: response.body[key].job_time_start,
-            jobTimeEnd: response.body[key].job_time_end,
-            volunteerNeeded: response.body[key].volunteer_needed,
-            volunteersAssigned: response.body[key].volunteer_assigned
+            jobDate: response.body[key].job_date,
+            jobStatus: response.body[key].job_status,
+            jobTime: response.body[key].job_time_start + '-' + response.body[key].job_time_end,
+            volunteerID: response.body[key].volunteer_id,
+            volunteerFirstName: response.body[key].first_name,
+            volunteerLastName: response.body[key].last_name
           })
         }
         browserHistory.push("/vms/home/event")
       })
     } else {
       if (userStore.events.includes(eventData.eventID)) {
-        browserHistory.push("/vms/home/event")
+        request.getPersonJobs(userStore.personID, currentEvent.eventID).then((response) => {
+          currentEvent.jobs = []
+          for (var key in response.body) {
+            currentEvent.jobs.push({
+              jobID: key,
+              jobName: response.body[key].job_name,
+              jobDescription: response.body[key].job_description,
+              jobLocation: response.body[key].location,
+              jobDate: response.body[key].job_date,
+              jobStatus: response.body[key].job_status,
+              jobTime: response.body[key].job_time_start + '-' + response.body[key].job_time_end
+            })
+          }
+          browserHistory.push("/vms/home/event")
+        })
       } else {
         browserHistory.push("/vms/home/event/set-availability")
       }

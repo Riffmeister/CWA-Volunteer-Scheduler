@@ -1,5 +1,6 @@
 import { browserHistory } from 'react-router';
 import { observer } from 'mobx-react';
+import { reaction, observable } from 'mobx';
 import Api from '../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -26,6 +27,7 @@ class Header extends React.Component {
   			</nav>
   			<div className='auth-option'>
   				<ul>
+            <li onClick={this._handleClick.bind(this, 'account')}><a>My Account</a></li>
             <li onClick={this._handleClick.bind(this, 'support')}><a>Support</a></li>
   					<li onClick={this._handleClick.bind(this, 'logout')}><a>Login/Logout</a></li>
   				</ul>
@@ -48,9 +50,15 @@ _handleClickHere(event) {
 }
 
 _handleClick(redirect, event){
-  console.log('redirect', redirect)
 	event.preventDefault()
   switch (redirect) {
+    case 'account':
+    if (userStore.loggedOn) {
+      browserHistory.push('/vms/account')
+    } else {
+      alert('You must be logged on to see your account information.')
+    }
+      break;
     case 'support':
       browserHistory.push('/vms/support')
       break;

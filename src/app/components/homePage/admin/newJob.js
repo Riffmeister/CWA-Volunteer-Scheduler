@@ -27,7 +27,7 @@ class CreateNewJob extends React.Component {
     </div>
 		<div>
 			<label>Date:</label>
-			<input ref='date' type="date" id='startingDate' placeholder="mm/dd/yyyy" title="Expected pattern is mm/dd/yyyy"></input>
+			<input ref='date' type="date" id='startingDate' placeholder="YYYY-MM-DD" title="Expected pattern is YYYY-MM-DD"></input>
 		</div>
     <div>
 			<label>Start Time:</label>
@@ -57,9 +57,6 @@ class CreateNewJob extends React.Component {
 		if (this.refs.location.value == '') {
 			return true
 		}
-    if (this.refs.volunteerNeeded.value == '') {
-      return true
-    }
     if (this.refs.date.value == '') {
       return true
     }
@@ -87,9 +84,7 @@ class CreateNewJob extends React.Component {
         this.refs.location.value,
         this.refs.date.value,
         this.refs.startTime.value,
-        this.refs.endTime.value,
-        this.refs.volunteerNeeded.value
-      ).then((response) => {
+        this.refs.endTime.value).then((response) => {
 				var eventJobsRequest = new Api()
 				eventJobsRequest.getEvent(currentEvent.eventID).then((response) => {
 					currentEvent.jobs = []
@@ -99,11 +94,9 @@ class CreateNewJob extends React.Component {
 							jobName: response.body[key].job_name,
 							jobDescription: response.body[key].job_description,
 							jobLocation: response.body[key].location,
-							jobSkill: response.body[key].job_skill,
 							jobTimeStart: response.body[key].job_time_start,
 							jobTimeEnd: response.body[key].job_time_end,
-							volunteerNeeded: response.body[key].volunteer_needed,
-							volunteersAssigned: response.body[key].volunteer_assigned
+							volunteerAssigned: response.body[key].volunteer_assigned
 						})
 					}
 					console.log(response)
@@ -116,9 +109,7 @@ class CreateNewJob extends React.Component {
 
 	_handleBack(event) {
 		event.preventDefault()
-			if (confirm('Are you sure you would like to return to login screen? All data entered will be lost.')){
-				browserHistory.push('/vms/home/event')
-			}
+		browserHistory.goBack()
 	}
 }
 

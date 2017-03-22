@@ -22,11 +22,11 @@ class CreateNewEvent extends React.Component {
 		</div>
 		<div>
 			<label>Starting Date:</label>
-			<input ref='startingDate' type="date" id='startingDate' placeholder="mm/dd/yyyy" title="Expected pattern is mm/dd/yyyy"></input>
+			<input ref='startingDate' type="date" id='startingDate' placeholder="YYYY-MM-DD" title="Expected pattern is YYYY-MM-DD"></input>
 		</div>
 		<div>
 			<label>Ending Date:</label>
-			<input ref='endingDate' type="date" id='endingDate' placeholder="mm/dd/yyyy" title="Expected pattern is mm/dd/yyyy"></input>
+			<input ref='endingDate' type="date" id='endingDate' placeholder="YYYY-MM-DD" title="Expected pattern is YYYY-MM-DD"></input>
 		</div>
 		<button type="submit" onClick={this._handleSubmit.bind(this)}>Submit New Event</button>
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
@@ -72,7 +72,7 @@ class CreateNewEvent extends React.Component {
 
 	_handleBack(event) {
 		event.preventDefault()
-			if (confirm('Are you sure you would like to return to login screen? All data entered will be lost.')){
+			if (confirm('Are you sure you would like to return to event screen? All data entered will be lost.')){
 				browserHistory.push('/vms/home')
 			}
 	}

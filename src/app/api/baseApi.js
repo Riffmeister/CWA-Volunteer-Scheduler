@@ -4,6 +4,57 @@ import eventStore from '../../app/event/eventStore'
 var superagent = require('superagent')
 
 class Api {
+	assignVolunteer(volunteerID, eventID, jobID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/assign_job.py')
+			.type('form')
+			.send({volunteerId: volunteerID})
+			.send({eventId: eventID})
+			.send({jobId: jobID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	confirmJob(eventID, jobID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/confirm_job.py')
+			.type('form')
+			.send({eventId: eventID})
+			.send({jobId: jobID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	completeJob(eventID, jobID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/complete_job.py')
+			.type('form')
+			.send({eventId: eventID})
+			.send({jobId: jobID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	deleteAvailability(personID, eventID, date, time) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/delete_availability.py')
+			.type('form')
+			.send({volunteerId: personID})
+			.send({eventId: eventID})
+			.send({date: date})
+			.send({time: time})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
 	login(email, password) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms/login.py')
@@ -46,20 +97,28 @@ class Api {
 		})
 	}
 
-// TODO: Fix spelling for jobDescription on server
-	createJob(eventId, jobName, jobDescription, location, jobDate, startTime, endTime, volunteerNeeded) {
+	createJob(eventId, jobName, jobDescription, location, jobDate, startTime, endTime) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms/create_job.py')
 			.type('form')
 			.send({eventId: eventId})
 			.send({jobName: jobName})
-			.send({jobDesciption: jobDescription})
+			.send({jobDescription: jobDescription})
 			.send({location: location})
-			.send({jobSkill: null})
 			.send({jobDate: jobDate})
 			.send({startTime: startTime})
 			.send({endTime: endTime})
-			.send({volunteerNeeded: volunteerNeeded})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	getVolunteersAvailabile(jobID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/get_volunteers_available.py')
+			.type('form')
+			.send({jobId: jobID})
 			.end((error, response) => {
 				error ? reject(error) : resolve(response)
 			})
@@ -78,13 +137,23 @@ class Api {
 		})
 	}
 
-	setAvailability(eventID, personID, timeObject) {
+	setAvailability(eventID, personID, timeObject, personDesiredHours) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms/set_availability.py')
 			.type('form')
 			.send({eventId: eventID})
 			.send({volunteerId: personID})
 			.send({time: JSON.stringify(timeObject)})
+			.send({personDesiredHours: personDesiredHours})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	getAllPeoples() {
+		return new Promise((resolve, reject) => {
+			superagent.get('https://cwajazz.com/vms/get_all_peoples.py')
 			.end((error, response) => {
 				error ? reject(error) : resolve(response)
 			})
@@ -102,7 +171,7 @@ class Api {
 
 	getEvent(eventID) {
 		return new Promise((resolve, reject) => {
-			superagent.post('https://cwajazz.com/vms/get_event.py')
+			superagent.post('https://cwajazz.com/vms/get_event_jobs.py')
 			.type('form')
 			.send({eventId: eventID})
 			.end((error, response) => {
@@ -111,11 +180,36 @@ class Api {
 		})
 	}
 
+	getPersonJobs(personID, eventID) {
+			return new Promise((resolve, reject) => {
+				superagent.post('https://cwajazz.com/vms/get_volunteer_jobs.py')
+				.type('form')
+				.send({volunteerId: personID})
+				.send({eventId: eventID})
+				.end((error, response) => {
+					error ? reject(error) : resolve(response)
+				})
+			})
+		}
+
 	getPersonEvents(personID) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms/get_volunteer_events.py')
 			.type('form')
 			.send({volunteerId: personID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
+	upgradePerson(personID, admin, driver) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/upgrade_volunteer.py')
+			.type('form')
+			.send({volunteerId: personID})
+			.send({admin: admin})
+			.send({driver: driver})
 			.end((error, response) => {
 				error ? reject(error) : resolve(response)
 			})
