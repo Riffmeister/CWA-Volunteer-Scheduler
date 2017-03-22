@@ -12,53 +12,21 @@ class TimeSelector extends React.Component {
   overlapStart = ''
   overlapEnd = ''
 
-    render() {
-      var timeElements = currentEvent.dates.map((date) => {
-        return (
-          <div key={date}><button>{date}</button></div>
-        )
-      })
+  render() {
+    var timeElements = currentEvent.dates.map((date) => {
       return (
-       <div className='time-picker'>
-         <h3>Submit All Availability Times:</h3>
-         <div className='clock'>
-           <div id="startTime">
-             <label>Starting:</label>
-               <div>
-               <select ref='startTimeHour'>
-                 <option>07</option>
-                 <option>08</option>
-                 <option>09</option>
-                 <option>10</option>
-                 <option>11</option>
-                 <option>12</option>
-                 <option>01</option>
-                 <option>02</option>
-                 <option>03</option>
-                 <option>04</option>
-                 <option>05</option>
-                 <option>06</option>
-               </select>
-               </div>
-               <p className='colon'>:</p>
-               <div className='digits'>
-               <select ref='startTimeMinute'>
-                 <option>00</option>
-                 <option>30</option>
-               </select>
-               </div>
-               <div className='am-pm'>
-               <select ref='startTimeDaytime'>
-                 <option>AM</option>
-                 <option>PM</option>
-               </select>
-               </div>
-             </div>
-
-             <div id="endingTime">
-             <label>Ending:</label>
+        <div key={date}><button>{date}</button></div>
+      )
+    })
+    return (
+     <div className='time-picker'>
+       <h3>Submit All Availability Times:</h3>
+       <div className='clock'>
+         <div id="startTime">
+           <label>Starting:</label>
              <div>
-             <select ref='endingTimeHour'>
+             <select ref='startTimeHour'>
+               <option>07</option>
                <option>08</option>
                <option>09</option>
                <option>10</option>
@@ -70,141 +38,177 @@ class TimeSelector extends React.Component {
                <option>04</option>
                <option>05</option>
                <option>06</option>
-               <option>07</option>
              </select>
              </div>
              <p className='colon'>:</p>
              <div className='digits'>
-             <select ref='endingTimeMinute'>
+             <select ref='startTimeMinute'>
                <option>00</option>
                <option>30</option>
              </select>
              </div>
              <div className='am-pm'>
-             <select ref='endingTimeDaytime'>
+             <select ref='startTimeDaytime'>
                <option>AM</option>
                <option>PM</option>
              </select>
              </div>
            </div>
-           <div id="timeSubmit">
-               <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
+
+           <div id="endingTime">
+           <label>Ending:</label>
+           <div>
+           <select ref='endingTimeHour'>
+             <option>08</option>
+             <option>09</option>
+             <option>10</option>
+             <option>11</option>
+             <option>12</option>
+             <option>01</option>
+             <option>02</option>
+             <option>03</option>
+             <option>04</option>
+             <option>05</option>
+             <option>06</option>
+             <option>07</option>
+           </select>
+           </div>
+           <p className='colon'>:</p>
+           <div className='digits'>
+           <select ref='endingTimeMinute'>
+             <option>00</option>
+             <option>30</option>
+           </select>
+           </div>
+           <div className='am-pm'>
+           <select ref='endingTimeDaytime'>
+             <option>AM</option>
+             <option>PM</option>
+           </select>
            </div>
          </div>
-         <div className='desired-hours'>
-           <label>Desired Number of Hours:</label>
-           <input ref='desiredHours' type='number' defaultValue={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
+         <div id="timeSubmit">
+             <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
          </div>
        </div>
-        )
+       <div className='desired-hours'>
+         <label>Desired Number of Hours:</label>
+         <input ref='desiredHours' type='number' defaultValue={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
+       </div>
+     </div>
+      )
+  }
+
+  _overlapCheck(startHour, startMinute, endHour, endMinute) {
+    var check = false
+
+    var insertArray = []
+    if (!(startMinute === endMinute)) {
+      if (parseInt(startMinute) === 30) {
+        startMinute = .5
+      }
+      if (parseInt(endMinute) === 30) {
+        endMinute = .5
+      }
+    } else {
+      startMinute = 0
+      endMinute = 0
     }
 
-    _overlapCheck(startHour, startMinute, endHour, endMinute) {
-      var check = false
+    startHour = parseInt(startHour) + startMinute
+    endHour = parseInt(endHour) + endMinute
+    var range = endHour - startHour
 
-      var insertArray = []
-      if (!(startMinute === endMinute)) {
-        if (parseInt(startMinute) === 30) {
-          startMinute = .5
+    var numOfNodes = range / .5
+    var i = 0
+    while (i < numOfNodes) {
+      insertArray.push(startHour + (.5 * i))
+      i += 1
+    }
+
+    currentEvent.selectedDates.map((date) => {
+      var dateTimes = currentEvent.availability[date]
+      dateTimes.map((time) => {
+        var checkArray = []
+        var checkStart = parseInt(time.substring(0, 2))
+        var checkStartMinute = parseInt(time.substring(3, 5))
+        var checkEnd = parseInt(time.substring(6, 8))
+        var checkEndMinute = parseInt(time.substring(9, 11))
+
+        if (checkStartMinute === 30) {
+          checkStart =  checkStart + .5
         }
-        if (parseInt(endMinute) === 30) {
-          endMinute = .5
+        if (checkEndMinute === 30) {
+          checkEnd = checkEnd + .5
         }
-      } else {
-        startMinute = 0
-        endMinute = 0
-      }
 
-      startHour = parseInt(startHour) + startMinute
-      endHour = parseInt(endHour) + endMinute
-      var range = endHour - startHour
+        var checkRange = checkEnd - checkStart
 
-      var numOfNodes = range / .5
-      var i = 0
-      while (i < numOfNodes) {
-        insertArray.push(startHour + (.5 * i))
-        i += 1
-      }
+        var checkNumOfNodes = checkRange / .5
 
-      currentEvent.selectedDates.map((date) => {
-        var dateTimes = currentEvent.availability[date]
-        dateTimes.map((time) => {
-          var checkArray = []
-          var checkStart = parseInt(time.substring(0, 2))
-          var checkStartMinute = parseInt(time.substring(3, 5))
-          var checkEnd = parseInt(time.substring(6, 8))
-          var checkEndMinute = parseInt(time.substring(9, 11))
+        var j = 0
+        while (j < checkNumOfNodes) {
+          checkArray.push(checkStart + (.5 * j))
+          j += 1
+        }
 
-          if (checkStartMinute === 30) {
-            checkStart =  checkStart + .5
-          }
-          if (checkEndMinute === 30) {
-            checkEnd = checkEnd + .5
-          }
-
-          var checkRange = checkEnd - checkStart
-
-          var checkNumOfNodes = checkRange / .5
-
-          var j = 0
-          while (j < checkNumOfNodes) {
-            checkArray.push(checkStart + (.5 * j))
-            j += 1
-          }
-
-          for (var node in insertArray) {
-            if (checkArray.includes(insertArray[node])) {
-              if (checkStartMinute === 30) {
-                checkStart = checkStart - .5
-              }
-              if (checkEndMinute === 30) {
-                checkEnd = checkEnd - .5
-              }
-
-              var startCheckDayTime = 'AM'
-              var endCheckDayTime = 'AM'
-
-              if (checkStart > 12) {
-                checkStart = checkStart - 12
-                startCheckDayTime = 'PM'
-              } else if (checkStart === 12) {
-                startCheckDayTime = 'PM'
-              } else if (checkStart < 10 && checkStart !== 0) {
-                checkStart = '0' + checkStart
-              } else if (checkStart === 0) {
-                checkStart = 12
-              }
-              if (checkStartMinute !== 30) {
-                checkStartMinute = '00'
-              }
-
-              if (checkEnd > 12) {
-                checkEnd = checkEnd - 12
-                endCheckDayTime = 'PM'
-              } else if (checkEnd === 12) {
-                endCheckDayTime = 'PM'
-              } else if (checkEnd < 10 && checkEnd !== 0) {
-                checkEnd = '0' + checkEnd
-              } else if (checkEnd === 0) {
-                checkEnd = 12
-              }
-              if (checkEndMinute !== 30) {
-                checkEndMinute = '00'
-              }
-
-              this.overlapEnd = checkStart + ':' + checkStartMinute + ' ' + startCheckDayTime + ' - ' + checkEnd + ':' + checkEndMinute + ' ' + endCheckDayTime
-              check = true
-              break
+        for (var node in insertArray) {
+          if (checkArray.includes(insertArray[node])) {
+            if (checkStartMinute === 30) {
+              checkStart = checkStart - .5
             }
+            if (checkEndMinute === 30) {
+              checkEnd = checkEnd - .5
+            }
+
+            var startCheckDayTime = 'AM'
+            var endCheckDayTime = 'AM'
+
+            if (checkStart > 12) {
+              checkStart = checkStart - 12
+              startCheckDayTime = 'PM'
+            } else if (checkStart === 12) {
+              startCheckDayTime = 'PM'
+            } else if (checkStart < 10 && checkStart !== 0) {
+              checkStart = '0' + checkStart
+            } else if (checkStart === 0) {
+              checkStart = 12
+            }
+            if (checkStartMinute !== 30) {
+              checkStartMinute = '00'
+            }
+
+            if (checkEnd > 12) {
+              checkEnd = checkEnd - 12
+              endCheckDayTime = 'PM'
+            } else if (checkEnd === 12) {
+              endCheckDayTime = 'PM'
+            } else if (checkEnd < 10 && checkEnd !== 0) {
+              checkEnd = '0' + checkEnd
+            } else if (checkEnd === 0) {
+              checkEnd = 12
+            }
+            if (checkEndMinute !== 30) {
+              checkEndMinute = '00'
+            }
+
+            this.overlapEnd = checkStart + ':' + checkStartMinute + ' ' + startCheckDayTime + ' - ' + checkEnd + ':' + checkEndMinute + ' ' + endCheckDayTime
+            check = true
+            break
           }
+        }
 
-        })
       })
-      return check
-    }
+    })
+    return check
+  }
 
-    _handleTimeSubmit() {
-      if (currentEvent.selectedDates.length > 0) {
+  _handleTimeSubmit() {
+    if (this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0 && currentEvent.selectedDates.length === 0) {
+      currentEvent.desiredHours = this.refs.desiredHours.value
+      alert(`Desired Hours set to ${currentEvent.desiredHours}.`)
+    } else if (currentEvent.selectedDates.length > 0 && this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0) {
+        currentEvent.desiredHours = this.refs.desiredHours.value
         var startHour = parseInt(this.refs.startTimeHour.value)
         var endHour = parseInt(this.refs.endingTimeHour.value)
 
@@ -226,9 +230,11 @@ class TimeSelector extends React.Component {
             endHour = '00'
           }
         }
+
         if (startHour < 10 && startHour != '00') {
           startHour = '0' + startHour
         }
+
         if (endHour < 10 && endHour != '00') {
           endHour = '0' + endHour
         }
@@ -259,14 +265,10 @@ class TimeSelector extends React.Component {
             currentEvent.availability[date].push(range)
           }
         })
-        alert(`Successfully added ${counter} time slot(s)!`)
-      } else if (this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0) {
-        currentEvent.desiredHours = this.refs.desiredHours.value
-        alert(`Successfully set Desired Hours to ${currentEvent.desiredHours}`)
-      } else {
-        alert('No Dates Selected')
-
+        alert(`Successfully added ${counter} time slot(s)!\n Desired Hours set to ${currentEvent.desiredHours}.`)
+      } else if (this.refs.desiredHours.value !== 0 || currentEvent.selectedDates.length === 0) {
+        alert('Make sure desired hours are greater than zero!')
+      }
       }
     }
-}
 export default TimeSelector;
