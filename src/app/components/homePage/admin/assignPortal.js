@@ -16,12 +16,24 @@ class AssignPortal extends React.Component {
         <h2>Assign Person to {currentJob.jobName}</h2>
         <PeoplePicker/>
         <div className='confirmation'>
+        {currentJob.volunteerID ? <button onClick={this._handleUnassignClick.bind(this)}>Unassign {currentJob.volunteerName}</button> : null}
         <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
           <button onClick={this._handleBackClick.bind(this)}>Back to Job</button>
         </div>
       </section>
     )
   }
+
+  _handleUnassignClick(event) {
+    if (confirm(`Are you sure you want to remove ${currentJob.volunteerName} from ${currentJob.jobName}?`)) {
+      var request = new Api()
+      request.assignVolunteer(currentJob.volunteerID, currentEvent.eventID, currentJob.jobID).then((response) => {
+        alert(`Successfullly unassigned ${currentJob.volunteerName} to ${currentJob.jobName}`)
+        console.log(response)
+      })
+    }
+  }
+
   _handleAssignClick(event) {
     var request = new Api()
     request.assignVolunteer(currentJob.selectedPerson.ID, currentEvent.eventID, currentJob.jobID).then((response) => {
@@ -31,6 +43,7 @@ class AssignPortal extends React.Component {
       console.log(response)
     })
   }
+
   _handleBackClick(event) {
     event.preventDefault()
     browserHistory.goBack()

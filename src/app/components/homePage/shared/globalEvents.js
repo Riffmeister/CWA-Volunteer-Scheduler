@@ -56,6 +56,7 @@ class GlobalEvents extends React.Component {
     var request = new Api()
     if (userStore.isAdmin) {
       request.getEvent(eventData.eventID).then((response) => {
+        console.log(response)
         currentEvent.jobs = []
         for (var key in response.body) {
           currentEvent.jobs.push({
