@@ -18,7 +18,6 @@ class AllAvailability extends React.Component {
         <button onClick={this._handleBackClick.bind(this)}>Back</button>
       </div>
         <div className='volunteer-body'>
-          {this._generateAvailabilityElements()}
         </div>
       </section>
     )

@@ -66,7 +66,6 @@ class AssignPortal extends React.Component {
       currentJob.volunteerName = currentJob.selectedPerson.name
       currentJob.volunteerID = currentJob.selectedPerson.ID
       this._changeAlert(`Successfullly assigned ${currentJob.selectedPerson.name} to ${currentJob.jobName}`, 2500)
-
     })
   }
 
