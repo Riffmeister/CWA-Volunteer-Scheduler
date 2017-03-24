@@ -19,6 +19,10 @@ require('./eventPortal.less')
 @observer
 class EventPortal extends React.Component {
 
+  componentWillMount() {
+    currentEvent.volunteerObjects = []
+  }
+
   render() {
     if (userStore.isAdmin) {
     return (
@@ -26,13 +30,9 @@ class EventPortal extends React.Component {
         <h2>{currentEvent.eventName}</h2>
         <div className='event-body'>
           {currentEvent.jobs.length > 0 ? <EventJobs /> : null}
-          <div className='create-new-job'>
-            <button onClick={this._handleCreateJob.bind(this)}>
-            Create New Job
-            </button>
-          </div>
         </div>
         <div className='confirmation'>
+          <button onClick={this._handleCreateJob.bind(this)}>Create Job(s)</button>
           <button onClick={this._handleVolunteerAvailability.bind(this)}>Volunteer Availability</button>
           <button onClick={this._handleEventsClick.bind(this)}>Back to All Events</button>
         </div>
@@ -56,16 +56,53 @@ class EventPortal extends React.Component {
   _handleAvailabilityClick(event) {
     event.preventDefault()
     var request = new Api()
+    var id = setTimeout(function() { alert('Please give us a moment to get your availability.'); }, 1000);
+
     request.getAvailability(currentEvent.eventID, userStore.personID).then((response) => {
       currentEvent.availability = response.body.availableTimes
       currentEvent.desiredHours = response.body.desiredHours
+      clearTimeout(id)
       browserHistory.push('/vms/home/event/check-availability')
+    })
+  }
+
+  _volunteerObjectBuilder() {
+    return new Promise((resolve, reject) => {
+      var count = 0
+      Object.keys(currentEvent.volunteers).map((id) => {
+        var availabilityRequest = new Api()
+        availabilityRequest.getAvailability(currentEvent.eventID, id).then((availability) => {
+          var jobsRequest = new Api()
+          jobsRequest.getPersonJobs(id, currentEvent.eventID).then((jobs) => {
+            count = count + 1
+            currentEvent.volunteerObjects[id]={
+              times: availability.body.availableTimes,
+              name: currentEvent.volunteers[id].first + ' ' + currentEvent.volunteers[id].last,
+              desiredHours: availability.body.desiredHours,
+              jobs: jobs.body
+            }
+            if (count >= Object.keys(currentEvent.volunteers).length - 1) {
+              resolve()
+            }
+          }).catch((error) => {
+            reject(error)
+          })
+        }).catch((error) => {
+          reject(error)
+        })
+      })
     })
   }
 
   _handleVolunteerAvailability(event) {
     event.preventDefault()
-    console.log('Check these volunteers out')
+    var id = setTimeout(function() { alert('Please give us a moment to get all of your volunteers.'); }, 1000);
+    this._volunteerObjectBuilder().then(() => {
+      clearTimeout(id)
+      browserHistory.push('/vms/home/event/volunteer-availability')
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 
   _handleCreateJob(event) {
@@ -76,12 +113,14 @@ class EventPortal extends React.Component {
   _handleEventsClick(event) {
     event.preventDefault()
     var request = new Api()
+    var id = setTimeout(function() { alert('Please give us a moment to grab all of the events.'); }, 1000);
     if (userStore.isAdmin){
       request.getEvents().then((response) => {
         eventStore.events = []
         for (var key in response.body) {
           eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
         }
+        clearTimeout(id)
         browserHistory.push('/vms/home')
       }).catch((error) => {
         console.log(error)
@@ -93,6 +132,7 @@ class EventPortal extends React.Component {
             userStore.events.push(`${event}`)
           }
         })
+        clearTimeout(id)
         browserHistory.push('/vms/home')
       })
     }

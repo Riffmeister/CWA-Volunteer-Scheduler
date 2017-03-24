@@ -1,0 +1,178 @@
+#all-availability {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      font-size: 2.5em;
+      border-bottom: solid;
+      &:active {
+        color: rgba(207, 184, 124, 0.8);
+      }
+      &:hover {
+        color: rgba(207, 184, 124, 0.8);
+      }
+    }
+    h2 {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      font-size: 3em;
+      border-bottom: solid;
+      border-width: 2px;
+    }
+  }
+
+  .check-availability {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-shrink: 0;
+
+      h4 {
+        text-align: center;
+        font-size: 2em;
+        font-weight: 600;
+        border-bottom: groove;
+      }
+
+      h5 {
+        font-size: 1.5em;
+      }
+
+      .dates {
+        display: flex;
+        flex-grow: 1;
+        overflow: auto;
+
+        .single-date {
+          display: flex;
+          margin-right: 20px;
+          flex-direction: column;
+
+          .date-content {
+            align-items: center;
+            border-bottom: solid;
+            display: flex;
+            flex-direction: column;
+            font-size: 2em;
+            flex-shrink: 0;
+            font-weight: 900;
+            white-space: nowrap;
+
+            p {
+              margin: 0;
+            }
+          }
+
+          .times {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            font-size: 1.2em;
+            overflow: auto;
+            white-space: nowrap;
+
+            .time {
+              margin-top: 10px;
+
+              button {
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+      }
+
+    .confirmation {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+
+      button {
+        flex-grow: .5;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        &:active {
+          color: rgba(207, 184, 124, 0.8);
+        }
+        &:hover {
+          color: rgba(207, 184, 124, 0.8);
+        }
+      }
+
+      button:last-child{
+        margin-bottom: 0px;
+      }
+
+    }
+  }
+  .volunteer-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: auto;
+
+    .volunteer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      align-items: center;
+
+      .options {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+
+        button {
+          font-size: 2em;
+          flex-grow: 1;
+        }
+      }
+
+      h3 {
+        margin: 40px 0 0 0;
+        display: flex;
+        justify-content: center;
+        border-top: solid;
+        width: 100%;
+        font-size: 2.5em;
+        font-weight: 800;
+      }
+
+      .jobs-body {
+        width: 100%;
+
+        h4 {
+          text-align: center;
+          font-size: 2em;
+          font-weight: 600;
+          border-bottom: groove;
+        }
+
+        .job {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          border-bottom: inset;
+
+          h5 {
+            font-size: 1.5em;
+          }
+        }
+      }
+    }
+  }
+}

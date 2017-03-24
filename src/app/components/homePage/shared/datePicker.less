@@ -1,0 +1,46 @@
+.date-picker{
+  .dates {
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+
+    .single-date {
+      display: flex;
+      margin-right: 20px;
+      flex-direction: column;
+
+      .date-content {
+        align-items: center;
+        border-bottom: solid;
+        display: flex;
+        flex-direction: column;
+        font-size: 2em;
+        flex-shrink: 0;
+        font-weight: 900;
+        white-space: nowrap;
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .times {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        font-size: 1.2em;
+        overflow: auto;
+        white-space: nowrap;
+
+        .time {
+          margin-top: 10px;
+
+          button {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
