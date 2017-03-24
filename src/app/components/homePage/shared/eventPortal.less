@@ -1,8 +1,8 @@
 .event-portal {
   display: flex;
   flex-direction: column;
-//  justify-content: center;
   width: 100%;
+  height: 100%;
 
   h2 {
     font-size: 3em;
@@ -48,21 +48,17 @@
   .event-body {
     display: flex;
     flex-grow: 1;
-    flex-shrink: 0;
     justify-content: center;
     width: 100%;
     height: 70%;
   }
-
-    .admin {
-      border-right: solid;
-    }
 
   .jobs {
     align-items: center;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    height: 100%;
 
     .assigned {
       background-color: lightgreen;
@@ -84,27 +80,98 @@
       overflow: auto;
       width: 100%;
 
-      button {
-        flex-grow: 1;
-      }
-
-      div {
+      .single-job {
         display: flex;
-        margin-bottom: 10px;
-        flex-shrink: 0;
+        border: groove;
         justify-content: center;
+        flex-shrink: 0;
+        flex-direction: column;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        align-items: center;
+
+        .job-body {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          h4 {
+            font-size: 2.5em;
+          }
+
+          h5 {
+            font-size: 1.5em;
+          }
+
+        }
+
+        h3 {
+          font-size: 2.5em;
+          border-bottom: solid;
+        }
+
+        .options {
+          width: 100%;
+          margin-bottom: 10px;
+          display: flex;
+          justify-content: space-around;
+        }
       }
     }
 
-    h3 {
-      display: flex;
-      font-size: 3em;
-      justify-content: center;
-    }
+    .jobs-body-volunteer {
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: flex-start;
+      overflow: auto;
+      width: 100%;
 
-    div {
-      display: flex;
-      justify-content: center;
+      h3 {
+        font-size: 2em;
+        text-align: center;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .single-job {
+        display: flex;
+        border: groove;
+        justify-content: center;
+        flex-shrink: 0;
+        flex-direction: column;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        align-items: center;
+
+        .job-body {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          h4 {
+            font-size: 2.5em;
+          }
+
+          h5 {
+            font-size: 1.5em;
+          }
+
+        }
+
+        h3 {
+          font-size: 2.5em;
+          border-bottom: solid;
+        }
+
+        .options {
+          width: 100%;
+          margin-bottom: 10px;
+          display: flex;
+          justify-content: space-around;
+        }
+      }
     }
   }
 

@@ -19,6 +19,10 @@ require('./eventPortal.less')
 @observer
 class EventPortal extends React.Component {
 
+  componentWillMount() {
+    currentEvent.volunteerObjects = []
+  }
+
   render() {
     if (userStore.isAdmin) {
     return (
@@ -26,13 +30,9 @@ class EventPortal extends React.Component {
         <h2>{currentEvent.eventName}</h2>
         <div className='event-body'>
           {currentEvent.jobs.length > 0 ? <EventJobs /> : null}
-          <div className='create-new-job'>
-            <button onClick={this._handleCreateJob.bind(this)}>
-            Create New Job
-            </button>
-          </div>
         </div>
         <div className='confirmation'>
+          <button onClick={this._handleCreateJob.bind(this)}>Create Job(s)</button>
           <button onClick={this._handleVolunteerAvailability.bind(this)}>Volunteer Availability</button>
           <button onClick={this._handleEventsClick.bind(this)}>Back to All Events</button>
         </div>
@@ -63,9 +63,43 @@ class EventPortal extends React.Component {
     })
   }
 
+  _volunteerObjectBuilder() {
+    return new Promise((resolve, reject) => {
+      var count = 0
+      currentEvent.volunteerIDs.map((ID, index) => {
+        var availabilityRequest = new Api()
+        availabilityRequest.getAvailability(currentEvent.eventID, ID).then((availability) => {
+          var jobsRequest = new Api()
+          jobsRequest.getPersonJobs(ID, currentEvent.eventID).then((jobs) => {
+            count = count + 1
+            currentEvent.volunteerObjects[ID]={
+              times: availability.body.availableTimes,
+              desiredHours: availability.body.desiredHours,
+              jobs: jobs.body
+            }
+            if (count >= currentEvent.volunteerIDs.length) {
+              resolve()
+            }
+          }).catch((error) => {
+            reject(error)
+          })
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    })
+  }
+
   _handleVolunteerAvailability(event) {
     event.preventDefault()
-    console.log('Check these volunteers out')
+    var id = setTimeout(function() { alert('Please give us a moment to fetch the information.'); }, 1000);
+    this._volunteerObjectBuilder().then(() => {
+      console.log(currentEvent.volunteerObjects)
+      clearTimeout(id)
+      browserHistory.push('/vms/home/event/volunteer-availability')
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 
   _handleCreateJob(event) {

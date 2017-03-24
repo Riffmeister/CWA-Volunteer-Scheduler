@@ -27,9 +27,15 @@ class AssignPortal extends React.Component {
   _handleUnassignClick(event) {
     if (confirm(`Are you sure you want to remove ${currentJob.volunteerName} from ${currentJob.jobName}?`)) {
       var request = new Api()
-      request.assignVolunteer(currentJob.volunteerID, currentEvent.eventID, currentJob.jobID).then((response) => {
-        alert(`Successfullly unassigned ${currentJob.volunteerName} to ${currentJob.jobName}`)
-        console.log(response)
+      request.unassignVolunteer(currentJob.volunteerID, currentEvent.eventID, currentJob.jobID).then((unassignResponse) => {
+        alert(`Successfullly unassigned ${currentJob.volunteerName} from ${currentJob.jobName}`)
+        var availableVolunteersRequest = new Api()
+        availableVolunteersRequest.getVolunteersAvailabile(currentJob.jobID).then((availableVolunteersResponse) => {
+          currentJob.volunteersAvailable = availableVolunteersResponse.body
+          currentJob.volunteerID = ''
+          currentJob.volunteerName = ''
+          this.setState(() => {true})
+        })
       })
     }
   }
@@ -39,8 +45,8 @@ class AssignPortal extends React.Component {
     request.assignVolunteer(currentJob.selectedPerson.ID, currentEvent.eventID, currentJob.jobID).then((response) => {
       currentJob.volunteerName = currentJob.selectedPerson.name
       currentJob.volunteerID = currentJob.selectedPerson.ID
+      this.setState(() => {true})
       alert(`Successfullly assigned ${currentJob.selectedPerson.name} to ${currentJob.jobName}`)
-      console.log(response)
     })
   }
 

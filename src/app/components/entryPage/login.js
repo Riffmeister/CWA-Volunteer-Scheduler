@@ -62,7 +62,7 @@ class Login extends React.Component {
 			        event.preventDefault()
   	          var request = new Api()
               request.login(email,password).then((response) => {
-                console.log('login', response)
+                // console.log('login', response)
                 userStore.personID = response.body.personID
                 userStore.loggedOn = true
                 userStore.isAdmin = response.body.isAdmin

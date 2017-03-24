@@ -21,10 +21,7 @@ class AdminPortal extends React.Component {
   			<section className='admin-portal'>
         <div className='admin-body'>
   				{ eventStore.events.length > 0 ? <GlobalEvents /> : null}
-          <div className='create-new-event'>
-
-          </div>
-          </div>
+        </div>
           <div className='confirmation'>
             <button onClick={this._handleCreateEvent.bind(this)}>
               Create New Event
