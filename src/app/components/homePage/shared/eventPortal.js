@@ -129,6 +129,34 @@ _showSnackBar(displayTime){
     })
   }
 
+  _volunteerObjectBuilder() {
+    return new Promise((resolve, reject) => {
+      var count = 0
+      Object.keys(currentEvent.volunteers).map((id) => {
+        var availabilityRequest = new Api()
+        availabilityRequest.getAvailability(currentEvent.eventID, id).then((availability) => {
+          var jobsRequest = new Api()
+          jobsRequest.getPersonJobs(id, currentEvent.eventID).then((jobs) => {
+            count = count + 1
+            currentEvent.volunteerObjects[id]={
+              times: availability.body.availableTimes,
+              name: currentEvent.volunteers[id].first + ' ' + currentEvent.volunteers[id].last,
+              desiredHours: availability.body.desiredHours,
+              jobs: jobs.body
+            }
+            if (count >= Object.keys(currentEvent.volunteers).length - 1) {
+              resolve()
+            }
+          }).catch((error) => {
+            reject(error)
+          })
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    })
+  }
+
   _handleVolunteerAvailability(event) {
     event.preventDefault()
     var id = this._changeAlert('Please give us a moment to get your availability.', 2000)

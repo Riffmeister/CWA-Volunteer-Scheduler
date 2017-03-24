@@ -69,6 +69,19 @@ class Api {
 		})
 	}
 
+	unassignVolunteer(volunteerID, eventID, jobID) {
+		return new Promise((resolve, reject) => {
+			superagent.post('https://cwajazz.com/vms/test/unassign_job.py')
+			.type('form')
+			.send({volunteerId: volunteerID})
+			.send({eventId: eventID})
+			.send({jobId: jobID})
+			.end((error, response) => {
+				error ? reject(error) : resolve(response)
+			})
+		})
+	}
+
 	confirmJob(eventID, jobID) {
 		return new Promise((resolve, reject) => {
 			superagent.post('https://cwajazz.com/vms2/confirm_job.py')

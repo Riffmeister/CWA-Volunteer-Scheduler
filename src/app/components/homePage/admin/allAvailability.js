@@ -18,6 +18,7 @@ class AllAvailability extends React.Component {
         <button onClick={this._handleBackClick.bind(this)}>Back</button>
       </div>
         <div className='volunteer-body'>
+          {this._generateAvailabilityElements()}
         </div>
       </section>
     )
@@ -72,7 +73,6 @@ class AllAvailability extends React.Component {
     })
     return jobElements
   }
-
   _handleBackClick(event) {
     event.preventDefault()
     browserHistory.goBack()
