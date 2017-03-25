@@ -24,7 +24,6 @@
       align-items: center;
       flex-grow: .5;
       font-size: 2.5em;
-      margin-bottom: 20px;
       &:active {
         color: rgba(207, 184, 124, 0.8);
       }
@@ -50,7 +49,7 @@
     flex-grow: 1;
     justify-content: center;
     width: 100%;
-    height: 70%;
+  //  height: 70%;
   }
 
   .jobs {
@@ -78,6 +77,7 @@
       flex-grow: 1;
       justify-content: flex-start;
       overflow: auto;
+      max-height: 300px;
       width: 100%;
 
       .single-job {
@@ -95,18 +95,26 @@
           flex-wrap: wrap;
           justify-content: space-between;
 
+          div{
+            padding-right: 40px;
+          }
+
+          div:last-child{
+            padding-right: 0px;
+          }
+
           h4 {
-            font-size: 2.5em;
+            //font-size: 2.5em;
           }
 
           h5 {
-            font-size: 1.5em;
+          //  font-size: 1.5em;
           }
 
         }
 
         h3 {
-          font-size: 2.5em;
+        //  font-size: 2.5em;
           border-bottom: solid;
         }
 
@@ -176,7 +184,7 @@
   }
 
   button {
-		font-size: 2.5em;
+		font-size: 2em;
 		cursor: pointer;
 		&:active {
 			color: rgba(207, 184, 124, 0.8);
