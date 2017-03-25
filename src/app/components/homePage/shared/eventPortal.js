@@ -96,11 +96,13 @@ class EventPortal extends React.Component {
 
   _handleVolunteerAvailability(event) {
     event.preventDefault()
-    var id = setTimeout(function() { alert('Please give us a moment to get all of your volunteers.'); }, 1000);
+    var id = setTimeout(function() { alert('Please give us a moment to get all of your volunteers.'); }, 2000);
     this._volunteerObjectBuilder().then(() => {
       clearTimeout(id)
       browserHistory.push('/vms/home/event/volunteer-availability')
     }).catch((error) => {
+      alert('There seems to have been a network error, please try again!')
+      clearTimeout(id)
       console.log(error)
     })
   }

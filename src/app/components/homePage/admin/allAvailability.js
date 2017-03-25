@@ -28,7 +28,6 @@ class AllAvailability extends React.Component {
     var count = 0
     var availabilityElements = []
     for (var key in currentEvent.volunteerObjects) {
-
       availabilityElements.push(
         <div className='volunteer' key={key}>
         <h3>{currentEvent.volunteerObjects[key].name}</h3>

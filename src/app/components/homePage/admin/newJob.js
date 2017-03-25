@@ -8,7 +8,6 @@ import currentEvent from '../../../event/currentEvent';
 import DatePicker from '../shared/datePicker';
 
 require('./newJob.less')
-// require('./../../../commonStyles/input.less')
 
 @observer
 class CreateNewJob extends React.Component {

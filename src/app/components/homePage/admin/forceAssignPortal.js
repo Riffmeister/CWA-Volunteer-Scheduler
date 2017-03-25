@@ -14,6 +14,9 @@ class AssignPortal extends React.Component {
     return (
       <section id='assign-portal'>
         <h2>Force Assign</h2>
+        <div>
+        {this._generateJobElements()}
+        </div>
         <div className='confirmation'>
         <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
           <button onClick={this._handleBackClick.bind(this)}>Back to Job</button>
@@ -22,9 +25,10 @@ class AssignPortal extends React.Component {
     )
   }
 
-  // {this._generateJobElements()}
   _generateJobElements() {
-console.log('hello')
+    currentEvent.jobs.map((job) => {
+      console.log(job)
+    })
   }
 
   _handleUnassignClick(event) {

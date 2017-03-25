@@ -76,3 +76,43 @@
     }
   }
 }
+
+/*TABLET VIEW */
+@media only screen and (max-width: 830px){
+    #assign-portal .people-picker .people {
+      flex-direction: column;
+  }
+  #assign-portal .people-picker .people .person {
+      margin-right: 0px;
+  }
+
+  #assign-portal .people-picker .people .person button {
+      flex-grow: 1;
+      margin-bottom: 10px;
+  }
+
+  #assign-portal .confirmation {
+    border-top: solid;
+    border-top-width: 5px;
+}
+
+
+
+}
+
+/*PHONE VIEW*/
+@media only screen and (max-width: 528px){
+
+  #assign-portal .people-picker {
+    font-size: 8px;
+}
+
+#assign-portal .confirmation button {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+#assign-portal h2 {
+    font-size: 1.3em;
+  }
+
+}
