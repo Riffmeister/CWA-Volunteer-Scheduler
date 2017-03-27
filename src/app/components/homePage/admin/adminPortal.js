@@ -36,7 +36,7 @@ class AdminPortal extends React.Component {
 
   _handleCreateEvent(event) {
   	event.preventDefault()
-  	browserHistory.push('/vms/home/create-new-event')
+  	browserHistory.push('/vms2/home/create-new-event')
   }
 
   _handlePromoteClick(event) {
@@ -56,7 +56,7 @@ class AdminPortal extends React.Component {
           birthDate: response.body[key].date_of_birth
         })
       }
-      browserHistory.push('/vms/home/promotion')
+      browserHistory.push('/vms2/home/promotion')
     })
   }
 }

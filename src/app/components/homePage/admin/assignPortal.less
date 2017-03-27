@@ -75,6 +75,75 @@
       margin-bottom: 0px;
     }
   }
+
+  .jobs{
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 1;
+    width: 100%;
+    overflow: auto;
+
+    .job {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+      margin-right: 10px;
+
+      .selected {
+        background-color: #cfb87c;
+      }
+
+      h3 {
+        font-size: 2em;
+        font-weight: 800;
+      }
+
+      h4 {
+        font-size: 1.5em;
+        font-weight: 800;
+      }
+    }
+  }
+}
+
+/*TABLET VIEW */
+@media only screen and (max-width: 830px){
+    #assign-portal .people-picker .people {
+      flex-direction: column;
+  }
+  #assign-portal .people-picker .people .person {
+      margin-right: 0px;
+  }
+
+  #assign-portal .people-picker .people .person button {
+      flex-grow: 1;
+      margin-bottom: 10px;
+  }
+
+  #assign-portal .confirmation {
+    border-top: solid;
+    border-top-width: 5px;
+}
+
+
+
+}
+
+/*PHONE VIEW*/
+@media only screen and (max-width: 528px){
+
+  #assign-portal .people-picker {
+    font-size: 8px;
+}
+
+#assign-portal .confirmation button {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+#assign-portal h2 {
+    font-size: 1.3em;
+  }
+
 }
 
 /*TABLET VIEW */

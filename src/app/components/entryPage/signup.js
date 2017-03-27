@@ -108,7 +108,7 @@ class SignUp extends React.Component {
 	_handleBack(event) {
 		event.preventDefault()
 			if (confirm('Are you sure you would like to return to login screen? All data entered will be lost.')){
-				browserHistory.push('/vms')
+				browserHistory.push('/vms2')
 			}
 	}
 
@@ -129,7 +129,7 @@ class SignUp extends React.Component {
         this.refs.phone.value,
         this.refs.phoneProvider[choice].value,
         this.refs.password.value).then((response) => {
-        browserHistory.push('/vms')
+        browserHistory.push('/vms2')
         })
       }
     }

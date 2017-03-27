@@ -75,7 +75,7 @@ class GlobalEvents extends React.Component {
           })
         }
         clearTimeout(id)
-        browserHistory.push("/vms/home/event")
+        browserHistory.push("/vms2/home/event")
       })
     } else {
       if (userStore.events.includes(eventData.eventID)) {
@@ -93,10 +93,10 @@ class GlobalEvents extends React.Component {
             })
           }
           clearTimeout(id)
-          browserHistory.push("/vms/home/event")
+          browserHistory.push("/vms2/home/event")
         })
       } else {
-        browserHistory.push("/vms/home/event/set-availability")
+        browserHistory.push("/vms2/home/event/set-availability")
       }
     }
   }

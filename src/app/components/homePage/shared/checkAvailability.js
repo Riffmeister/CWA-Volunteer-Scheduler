@@ -126,7 +126,7 @@ class CheckAvailability extends React.Component {
       }
       var request = new Api()
       request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
-        browserHistory.push('/vms/home/event')
+        browserHistory.push('/vms2/home/event')
       }).catch((error) => {
         alert('Could Not Confirm Availability')
         console.log(error)
@@ -135,7 +135,7 @@ class CheckAvailability extends React.Component {
 
     _handleMoreAvailabilityClick(event) {
       event.preventDefault()
-      browserHistory.push('/vms/home/event/set-availability')
+      browserHistory.push('/vms2/home/event/set-availability')
     }
 }
 export default CheckAvailability;

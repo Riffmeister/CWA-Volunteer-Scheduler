@@ -17,7 +17,7 @@ class Home extends React.Component {
 
     componentWillMount() {
       if (userStore.loggedOn === false) {
-        browserHistory.push('/vms')
+        browserHistory.push('/vms2')
       }
     }
 

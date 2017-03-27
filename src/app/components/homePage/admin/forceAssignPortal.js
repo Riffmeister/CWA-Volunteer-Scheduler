@@ -6,19 +6,21 @@ import React from 'react';
 import PeoplePicker from '../shared/peoplePicker';
 import currentJob from '../../../event/currentJob';
 import currentEvent from '../../../event/currentEvent';
+import userStore from '../../../user/userStore';
 
 require('./assignPortal.less')
 
-class AssignPortal extends React.Component {
+@observer
+class ForceAssignPortal extends React.Component {
   render() {
     return (
       <section id='assign-portal'>
         <h2>Force Assign</h2>
-        <div>
-        {this._generateJobElements()}
+        <div className='jobs'>
+          {this._generateJobElements()}
         </div>
         <div className='confirmation'>
-        <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
+          <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
           <button onClick={this._handleBackClick.bind(this)}>Back to Job</button>
         </div>
       </section>
@@ -26,34 +28,61 @@ class AssignPortal extends React.Component {
   }
 
   _generateJobElements() {
-    currentEvent.jobs.map((job) => {
-      console.log(job)
+    var jobElements = currentEvent.jobs.map((job) => {
+      return (
+        <div key={job['jobID']} className='job'>
+          <button ref={job['jobID']}
+          onClick={this._handleJobClick.bind(this, job)}>
+          <h3>{job['jobName']}</h3>
+          <h4>Date: {job['jobDate']}</h4>
+          <h4>Time: {job['jobTime']}</h4>
+          <h4>Current Volunteer: {job['volunteerID'] ? job['volunteerFirstName'] + ' ' + job['volunteerLastName'] : 'Nobody Assigned'}</h4>
+          </button>
+        </div>
+      )
     })
+    return jobElements
   }
 
-  _handleUnassignClick(event) {
-    if (confirm(`Are you sure you want to remove ${currentJob.volunteerName} from ${currentJob.jobName}?`)) {
-      var request = new Api()
-      request.unassignVolunteer(currentJob.volunteerID, currentEvent.eventID, currentJob.jobID).then((unassignResponse) => {
-        alert(`Successfullly unassigned ${currentJob.volunteerName} from ${currentJob.jobName}`)
-        var availableVolunteersRequest = new Api()
-        availableVolunteersRequest.getVolunteersAvailabile(currentJob.jobID).then((availableVolunteersResponse) => {
-          currentJob.volunteersAvailable = availableVolunteersResponse.body
-          currentJob.volunteerID = ''
-          currentJob.volunteerName = ''
-          this.setState(() => {true})
-        })
-      })
+  _handleJobClick(job, event) {
+    event.preventDefault()
+    if (currentEvent.selectedJob && (currentEvent.selectedJob['jobID'] === job['jobID'])) {
+      this.refs[job['jobID']].classList = ''
+      currentEvent.selectedJob = null
+    } else if (currentEvent.selectedJob) {
+      this.refs[currentEvent.selectedJob['jobID']].classList = ''
+      currentEvent.selectedJob = job
+      this.refs[job['jobID']].classList = 'selected'
+    } else {
+      this.refs[job['jobID']].classList = 'selected'
+      currentEvent.selectedJob = job
     }
   }
 
   _handleAssignClick(event) {
     var request = new Api()
-    request.assignVolunteer(this.props.personID, currentEvent.eventID, currentJob.jobID).then((response) => {
-      currentJob.volunteerName = currentJob.selectedPerson.name
-      currentJob.volunteerID = currentJob.selectedPerson.ID
-      this.setState(() => {true})
-      alert(`Successfullly assigned ${currentJob.selectedPerson.name} to ${currentJob.jobName}`)
+    request.forceAssignVolunteer(currentEvent.forceAssignVolunteer['personID'], currentEvent.eventID, currentEvent.selectedJob['jobID']).then((response) => {
+      var eventRequest = new Api()
+      eventRequest.getEvent(currentEvent.eventID).then((response) => {
+        currentEvent.jobs = []
+        currentEvent.volunteers = response.body.volunteers
+        for (var key in response.body.jobs) {
+          currentEvent.jobs.push({
+            jobID: key,
+            jobName: response.body.jobs[key].job_name,
+            jobDescription: response.body.jobs[key].job_description,
+            jobLocation: response.body.jobs[key].location,
+            jobDate: response.body.jobs[key].job_date,
+            jobStatus: response.body.jobs[key].job_status,
+            jobTime: response.body.jobs[key].job_time_start + '-' + response.body.jobs[key].job_time_end,
+            volunteerID: response.body.jobs[key].volunteer_id,
+            volunteerFirstName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].first : null,
+            volunteerLastName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].last : null
+          })
+        }
+        this.setState(() => {true})
+        alert(`Successfullly assigned ${userStore.firstName + ' ' + userStore.lastName} to ${currentEvent.selectedJob['jobName']}`)
+      })
     })
   }
 
@@ -82,4 +111,4 @@ class AssignPortal extends React.Component {
   }
 }
 
-export default AssignPortal;
+export default ForceAssignPortal;

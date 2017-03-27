@@ -62,7 +62,26 @@ class EventPortal extends React.Component {
       currentEvent.availability = response.body.availableTimes
       currentEvent.desiredHours = response.body.desiredHours
       clearTimeout(id)
-      browserHistory.push('/vms/home/event/check-availability')
+      browserHistory.push('/vms2/home/event/check-availability')
+    })
+  }
+
+  _volunteerObjectBuilder() {
+    return new Promise((resolve, reject) => {
+      var request = new Api()
+      request.getAllAvailability(currentEvent.eventID).then((response) => {
+        Object.keys(response.body).map((volunteerID) => {
+          currentEvent.volunteerObjects[volunteerID]= {
+            times: response.body[volunteerID].availableTimes,
+            name: currentEvent.volunteers[volunteerID].first + ' ' + currentEvent.volunteers[volunteerID].last,
+            desiredHours: response.body[volunteerID].desiredHours,
+            jobs: response.body[volunteerID].jobs
+          }
+        })
+        resolve()
+      }).catch((error) => {
+        console.log(error)
+      })
     })
   }
 
@@ -96,10 +115,10 @@ class EventPortal extends React.Component {
 
   _handleVolunteerAvailability(event) {
     event.preventDefault()
-    var id = setTimeout(function() { alert('Please give us a moment to get all of your volunteers.'); }, 2000);
+    var id = setTimeout(function() { alert('Please give us a moment to get all of your volunteers.'); }, 1000);
     this._volunteerObjectBuilder().then(() => {
       clearTimeout(id)
-      browserHistory.push('/vms/home/event/volunteer-availability')
+      browserHistory.push('/vms2/home/event/volunteer-availability')
     }).catch((error) => {
       alert('There seems to have been a network error, please try again!')
       clearTimeout(id)
@@ -109,7 +128,7 @@ class EventPortal extends React.Component {
 
   _handleCreateJob(event) {
   	event.preventDefault()
-  	browserHistory.push('/vms/home/event/create-new-job')
+  	browserHistory.push('/vms2/home/event/create-new-job')
   }
 
   _handleEventsClick(event) {
@@ -123,7 +142,7 @@ class EventPortal extends React.Component {
           eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
         }
         clearTimeout(id)
-        browserHistory.push('/vms/home')
+        browserHistory.push('/vms2/home')
       }).catch((error) => {
         console.log(error)
       })
@@ -135,7 +154,7 @@ class EventPortal extends React.Component {
           }
         })
         clearTimeout(id)
-        browserHistory.push('/vms/home')
+        browserHistory.push('/vms2/home')
       })
     }
   }

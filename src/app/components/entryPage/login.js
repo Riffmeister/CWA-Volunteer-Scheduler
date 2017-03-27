@@ -83,7 +83,7 @@ class Login extends React.Component {
                     eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
                   }
                   clearTimeout(id)
-                  browserHistory.push('/vms/home')
+                  browserHistory.push('/vms2/home')
                 }).catch((error) => {
                   console.log(error)
                 })
@@ -97,7 +97,7 @@ class Login extends React.Component {
 
 	_handleSignUp(event) {
 		event.preventDefault()
-		browserHistory.push('/vms/signup')
+		browserHistory.push('/vms2/signup')
 	}
 }
 

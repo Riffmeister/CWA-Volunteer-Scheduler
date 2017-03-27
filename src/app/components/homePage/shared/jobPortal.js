@@ -141,7 +141,7 @@ _handleAssignClick(event) {
   var request = new Api()
   request.getVolunteersAvailabile(currentJob.jobID).then((response) => {
     currentJob.volunteersAvailable = response.body
-    browserHistory.push("/vms/home/event/job/assign")
+    browserHistory.push("/vms2/home/event/job/assign")
   })
 }
 
@@ -176,7 +176,7 @@ _handleBackClick(event) {
           volunteerLastName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].last : null
         })
       }
-      browserHistory.push("/vms/home/event")
+      browserHistory.push("/vms2/home/event")
     })
   } else {
     request.getPersonJobs(userStore.personID, currentEvent.eventID).then((response) => {
@@ -192,7 +192,7 @@ _handleBackClick(event) {
           jobTime: response.body[key].job_time_start + '-' + response.body[key].job_time_end
         })
       }
-      browserHistory.push("/vms/home/event")
+      browserHistory.push("/vms2/home/event")
     })
   }
 }
