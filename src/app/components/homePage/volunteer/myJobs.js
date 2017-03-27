@@ -24,7 +24,7 @@ class MyJobs extends React.Component {
   render() {
       return (
          <div className='jobs'>
-            <div className='jobs-body'>
+            <div className='jobs-body-volunteer'>
               {currentEvent.jobs.length > 0 ? this._createJobElements() : <h3>No Jobs Assigned</h3>}
             </div>
          </div>
@@ -56,7 +56,7 @@ class MyJobs extends React.Component {
       resolve()
     })
     buildCurrentJob.then(() => {
-      browserHistory.push('/vms/home/event/job')
+      browserHistory.push('/vms2/home/event/job')
     })
   }
 

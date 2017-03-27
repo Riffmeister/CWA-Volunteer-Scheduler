@@ -1,0 +1,87 @@
+#new-job {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+
+  .date-picker {
+    flex-grow: .1;
+    margin-bottom: 15px;
+    width: 100%;
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.75em;
+    }
+
+    .dates {
+      display: flex;
+      overflow: auto;
+      margin-right: 10px;
+
+      .date {
+        margin-right: 10px;
+
+        p {
+          font-size: 2em;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+      }
+
+      .selected {
+        background-color: #cfb87c;
+      }
+    }
+  }
+  .data-input {
+  	display: flex;
+  	flex-shrink: 0;
+  	flex-direction: column;
+  	justify-content: center;
+
+  	h2 {
+  		color: black;
+  		font-size: 3em;
+  		margin-bottom: 25px;
+  		text-align: center;
+  	}
+
+  	form {
+  		display: flex;
+      flex-shrink: 0;
+  		flex-direction: column;
+  		font-size: 1.4em;
+  	}
+
+  	div {
+  		display: flex;
+  		margin-bottom: 10px;
+  	}
+
+  	button {
+  		margin-bottom: 10px;
+      font-size: 1.5em;
+  	}
+
+  	label {
+  		flex-grow: 1;
+  	}
+
+  	select {
+  		background-color: white;
+  		display: flex;
+  		flex-grow: 7;
+  	}
+
+  	.password {
+  		display: flex;
+  		flex-direction: column;
+  	}
+
+  	.column-form{
+  		display: flex;
+  		flex-direction: column;
+  	}
+  }
+}

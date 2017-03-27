@@ -21,10 +21,7 @@ class AdminPortal extends React.Component {
   			<section className='admin-portal'>
         <div className='admin-body'>
   				{ eventStore.events.length > 0 ? <GlobalEvents /> : null}
-          <div className='create-new-event'>
-
-          </div>
-          </div>
+        </div>
           <div className='confirmation'>
             <button onClick={this._handleCreateEvent.bind(this)}>
               Create New Event
@@ -39,7 +36,7 @@ class AdminPortal extends React.Component {
 
   _handleCreateEvent(event) {
   	event.preventDefault()
-  	browserHistory.push('/vms/home/create-new-event')
+  	browserHistory.push('/vms2/home/create-new-event')
   }
 
   _handlePromoteClick(event) {
@@ -59,7 +56,7 @@ class AdminPortal extends React.Component {
           birthDate: response.body[key].date_of_birth
         })
       }
-      browserHistory.push('/vms/home/promotion')
+      browserHistory.push('/vms2/home/promotion')
     })
   }
 }

@@ -206,11 +206,18 @@ class TimeSelector extends React.Component {
   _handleTimeSubmit() {
     if (this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0 && currentEvent.selectedDates.length === 0) {
       currentEvent.desiredHours = this.refs.desiredHours.value
-      alert(`Desired Hours set to ${currentEvent.desiredHours}.`)
+      var request = new Api()
+      request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
+        alert(`Desired Hours set to ${currentEvent.desiredHours}.`)
+      }).catch((error) => {
+        console.log(error)
+      })
     } else if (currentEvent.selectedDates.length > 0 && this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0) {
         currentEvent.desiredHours = this.refs.desiredHours.value
         var startHour = parseInt(this.refs.startTimeHour.value)
+        var startMinute = this.refs.startTimeMinute.value
         var endHour = parseInt(this.refs.endingTimeHour.value)
+        var endMinute = this.refs.endingTimeMinute.value
 
         if (this.refs.startTimeDaytime.value === 'PM') {
           if (!(startHour === 12)) {
@@ -249,15 +256,14 @@ class TimeSelector extends React.Component {
           alert('Ending Time Must Be Later Than Starting Time')
           return
         }
-        if (parseInt(startHour) === parseInt(endHour)) {
+        if (parseInt(startHour) === parseInt(endHour && parseInt(startMinute) === parseInt(endMinute))) {
           alert('Start Time Cannot be the Same as End Time')
           return
         }
 
-        var startTime = `${startHour}:${this.refs.startTimeMinute.value}`
-        var endTime = `${endHour}:${this.refs.endingTimeMinute.value}`
+        var startTime = `${startHour}:${startMinute}`
+        var endTime = `${endHour}:${endMinute}`
         var range = `${startTime}-${endTime}`
-
         var counter = 0
         currentEvent.selectedDates.map((date) => {
           counter += 1
@@ -265,7 +271,12 @@ class TimeSelector extends React.Component {
             currentEvent.availability[date].push(range)
           }
         })
-        alert(`Successfully added ${counter} time slot(s)!\n Desired Hours set to ${currentEvent.desiredHours}.`)
+        var request = new Api()
+        request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
+          alert(`Successfully added ${counter} time slot(s)!\n Desired Hours set to ${currentEvent.desiredHours}.`)
+        }).catch((error) => {
+          console.log(error)
+        })
       } else if (this.refs.desiredHours.value !== 0 || currentEvent.selectedDates.length === 0) {
         alert('Make sure desired hours are greater than zero!')
       }

@@ -7,9 +7,13 @@ class CurrentEvent {
   @observable eventID = ''
   @observable dates = []
   @observable jobs = []
+  @observable volunteers = {}
+  @observable volunteerObjects = {}
   @observable availability = {}
   @observable desiredHours = null
   @observable selectedDates = []
+  @observable selectedJob = {}
+  @observable forceAssignVolunteer = {}
 }
 
 export default new CurrentEvent()

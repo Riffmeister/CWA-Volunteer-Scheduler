@@ -41,7 +41,7 @@ class SetAvailability extends React.Component {
 
     _handleCheckAvailability(event) {
       event.preventDefault()
-      browserHistory.push('/vms/home/event/check-availability')
+      browserHistory.push('/vms2/home/event/check-availability')
     }
 }
 export default SetAvailability;

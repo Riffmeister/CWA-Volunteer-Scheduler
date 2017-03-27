@@ -54,17 +54,17 @@ _handleClick(redirect, event){
   switch (redirect) {
     case 'account':
     if (userStore.loggedOn) {
-      browserHistory.push('/vms/account')
+      browserHistory.push('/vms2/account')
     } else {
       alert('You must be logged on to see your account information.')
     }
       break;
     case 'support':
-      browserHistory.push('/vms/support')
+      browserHistory.push('/vms2/support')
       break;
     case 'logout':
       if (confirm('Are you sure you would like to logout?')) {
-        browserHistory.push('/vms')
+        browserHistory.push('/vms2')
       }
       break;
   }

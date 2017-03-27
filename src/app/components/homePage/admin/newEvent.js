@@ -64,7 +64,7 @@ class CreateNewEvent extends React.Component {
 						for (var key in response.body) {
 							eventStore.events.push({eventID: key, eventName: response.body[key].event_name, startDate: response.body[key].start_date, endDate: response.body[key].end_date})
 						}
-						browserHistory.push('/vms/home')
+						browserHistory.push('/vms2/home')
 					})
         })
     	}
@@ -73,7 +73,7 @@ class CreateNewEvent extends React.Component {
 	_handleBack(event) {
 		event.preventDefault()
 			if (confirm('Are you sure you would like to return to event screen? All data entered will be lost.')){
-				browserHistory.push('/vms/home')
+				browserHistory.push('/vms2/home')
 			}
 	}
 }
