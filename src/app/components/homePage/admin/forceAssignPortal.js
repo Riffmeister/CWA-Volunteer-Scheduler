@@ -13,15 +13,22 @@ class AssignPortal extends React.Component {
   render() {
     return (
       <section id='assign-portal'>
-        <h2>Assign Person to {currentJob.jobName}</h2>
-        <PeoplePicker/>
+        <h2>Force Assign</h2>
+        <div>
+        {this._generateJobElements()}
+        </div>
         <div className='confirmation'>
-        {currentJob.volunteerID ? <button onClick={this._handleUnassignClick.bind(this)}>Unassign {currentJob.volunteerName}</button> : null}
         <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
-          <button onClick={this._handleBackClick.bind(this)}>Back to Jobs</button>
+          <button onClick={this._handleBackClick.bind(this)}>Back to Job</button>
         </div>
       </section>
     )
+  }
+
+  _generateJobElements() {
+    currentEvent.jobs.map((job) => {
+      console.log(job)
+    })
   }
 
   _handleUnassignClick(event) {
@@ -42,7 +49,7 @@ class AssignPortal extends React.Component {
 
   _handleAssignClick(event) {
     var request = new Api()
-    request.assignVolunteer(currentJob.selectedPerson.ID, currentEvent.eventID, currentJob.jobID).then((response) => {
+    request.assignVolunteer(this.props.personID, currentEvent.eventID, currentJob.jobID).then((response) => {
       currentJob.volunteerName = currentJob.selectedPerson.name
       currentJob.volunteerID = currentJob.selectedPerson.ID
       this.setState(() => {true})

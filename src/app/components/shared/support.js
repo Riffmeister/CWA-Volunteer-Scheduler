@@ -10,7 +10,7 @@ class Support extends React.Component {
         <h2>Support</h2>
         <article>
           <h3>Conference on World Affairs Administration</h3>
-          <p>For questions about the conference, please contact The Conference on World Affairs at <a href="mailto:cwa@colorado.edu">cwa@colorado.edy</a> or by phone at <a href="tel:303-492-2525">(303) 492-2525</a>.</p>
+          <p>For questions about the conference, please contact The Conference on World Affairs at <a href="mailto:cwa@colorado.edu">cwa@colorado.edu</a> or by phone at <a href="tel:303-492-2525">(303) 492-2525</a>.</p>
         </article>
         <article>
           <h3>Website Technical Issues</h3>

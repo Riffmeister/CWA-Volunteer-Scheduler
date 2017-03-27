@@ -8,6 +8,7 @@ import eventStore from '../../../event/eventStore';
 import currentEvent from '../../../event/currentEvent';
 import userStore from '../../../user/userStore';
 
+require('./datePicker.less')
 
 class DatePicker extends React.Component {
   componentWillMount() {

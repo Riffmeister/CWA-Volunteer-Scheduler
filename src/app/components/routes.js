@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './app';
+import AllAvailability from './homePage/admin/allAvailability';
 import AccountInfo from './shared/accountInfo';
 import AssignPortal from './homePage/admin/assignPortal';
 import CheckAvailability from './homePage/shared/checkAvailability';
@@ -28,6 +29,7 @@ module.exports = (
 		<Route path="/vms/home/promotion" component={PromotionPortal}/>
 		<Route path="/vms/home/create-new-event" component={CreateNewEvent}/>
 		<Route path="/vms/home/event" component={EventPortal}/>
+		<Route path="/vms/home/event/volunteer-availability" component={AllAvailability}/>
 		<Route path="/vms/home/event/job" component={JobPortal}/>
 		<Route path="/vms/home/event/job/assign" component={AssignPortal}/>
 		<Route path="/vms/home/event/set-availability" component={SetAvailability}/>

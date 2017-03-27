@@ -20,6 +20,7 @@ class GlobalEvents extends React.Component {
     currentEvent.selectedDates = []
     currentEvent.jobs = []
     currentEvent.desiredHours = null
+    currentEvent.volunteers = {}
   }
 
   render() {
@@ -54,24 +55,26 @@ class GlobalEvents extends React.Component {
       currentEvent.availability[date] = []
     })
     var request = new Api()
+    var id = setTimeout(function() { alert('Please give us a moment to load up your event.'); }, 1000);
     if (userStore.isAdmin) {
       request.getEvent(eventData.eventID).then((response) => {
-        console.log(response)
         currentEvent.jobs = []
-        for (var key in response.body) {
+        currentEvent.volunteers = response.body.volunteers
+        for (var key in response.body.jobs) {
           currentEvent.jobs.push({
             jobID: key,
-            jobName: response.body[key].job_name,
-            jobDescription: response.body[key].job_description,
-            jobLocation: response.body[key].location,
-            jobDate: response.body[key].job_date,
-            jobStatus: response.body[key].job_status,
-            jobTime: response.body[key].job_time_start + '-' + response.body[key].job_time_end,
-            volunteerID: response.body[key].volunteer_id,
-            volunteerFirstName: response.body[key].first_name,
-            volunteerLastName: response.body[key].last_name
+            jobName: response.body.jobs[key].job_name,
+            jobDescription: response.body.jobs[key].job_description,
+            jobLocation: response.body.jobs[key].location,
+            jobDate: response.body.jobs[key].job_date,
+            jobStatus: response.body.jobs[key].job_status,
+            jobTime: response.body.jobs[key].job_time_start + '-' + response.body.jobs[key].job_time_end,
+            volunteerID: response.body.jobs[key].volunteer_id,
+            volunteerFirstName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].first : null,
+            volunteerLastName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].last : null
           })
         }
+        clearTimeout(id)
         browserHistory.push("/vms/home/event")
       })
     } else {
@@ -89,6 +92,7 @@ class GlobalEvents extends React.Component {
               jobTime: response.body[key].job_time_start + '-' + response.body[key].job_time_end
             })
           }
+          clearTimeout(id)
           browserHistory.push("/vms/home/event")
         })
       } else {

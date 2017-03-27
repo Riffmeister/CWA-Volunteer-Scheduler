@@ -140,7 +140,6 @@ _handleAssignClick(event) {
   event.preventDefault()
   var request = new Api()
   request.getVolunteersAvailabile(currentJob.jobID).then((response) => {
-    console.log(response)
     currentJob.volunteersAvailable = response.body
     browserHistory.push("/vms/home/event/job/assign")
   })
@@ -162,18 +161,19 @@ _handleBackClick(event) {
   if (userStore.isAdmin) {
     request.getEvent(currentEvent.eventID).then((response) => {
       currentEvent.jobs = []
-      for (var key in response.body) {
+      currentEvent.volunteerIDs = response.body.volunteers
+      for (var key in response.body.jobs) {
         currentEvent.jobs.push({
           jobID: key,
-          jobName: response.body[key].job_name,
-          jobDescription: response.body[key].job_description,
-          jobLocation: response.body[key].location,
-          jobDate: response.body[key].job_date,
-          jobTime: response.body[key].job_time_start + '-' + response.body[key].job_time_end,
-          jobStatus: response.body[key].job_status,
-          volunteerID: response.body[key].volunteer_id,
-          volunteerFirstName: response.body[key].first_name,
-          volunteerLastName: response.body[key].last_name
+          jobName: response.body.jobs[key].job_name,
+          jobDescription: response.body.jobs[key].job_description,
+          jobLocation: response.body.jobs[key].location,
+          jobDate: response.body.jobs[key].job_date,
+          jobStatus: response.body.jobs[key].job_status,
+          jobTime: response.body.jobs[key].job_time_start + '-' + response.body.jobs[key].job_time_end,
+          volunteerID: response.body.jobs[key].volunteer_id,
+          volunteerFirstName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].first : null,
+          volunteerLastName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].last : null
         })
       }
       browserHistory.push("/vms/home/event")

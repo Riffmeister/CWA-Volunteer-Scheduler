@@ -96,7 +96,6 @@ class Person extends React.Component {
     }
   }
   _fixDate(date) {
-    console.log(date)
     var year = date.substring(0, 4)
     var month = date.substring(5, 7)
     var day = date.substring(8, 10)
