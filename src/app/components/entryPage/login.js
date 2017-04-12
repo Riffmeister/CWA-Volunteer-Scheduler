@@ -53,21 +53,33 @@ class Login extends React.Component {
       alert(`Do not use any of the browser's refresh or back buttons while within this application.`)
     }
 
+    _changeAlert(value){
+      this.snackalert = value;
+      this.setState(() => {return true;})
+    }
+
+    _showSnackBar(){
+      var t = this.refs.snackbar
+        t.classList = "snackbar show";
+
+        setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+    }
+
     _handleLogin(event) {
 		    event.preventDefault()
         const email = this.refs.email.value
         const password = this.refs.password.value
         if (email === "") {
-          this.snackalert = "Please Enter a Value for Username";
-          this.setState(() => {return true;})
-          console.log(this.snackalert)
-          var t = this.refs.snackbar
-            t.classList = "snackbar show";
+          //this.snackalert = "Please Enter a Username";
+          //this.setState(() => {return true;})
 
-            setTimeout(function(){ t.classList = "snackbar"; }, 3000);
+          this._changeAlert("Please Enter Username")
+          this._showSnackBar()
+
             return false
         } else if (password === "") {
-            alert("Please Enter a Value for Password")
+            this._changeAlert("Please Enter Password")
+            this._showSnackBar()
             return false
         } else {
 			        event.preventDefault()
