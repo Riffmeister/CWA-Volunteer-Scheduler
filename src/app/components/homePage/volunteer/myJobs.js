@@ -56,7 +56,7 @@ class MyJobs extends React.Component {
       resolve()
     })
     buildCurrentJob.then(() => {
-      browserHistory.push('/vms/home/event/job')
+      browserHistory.push('/vms2/home/event/job')
     })
   }
 

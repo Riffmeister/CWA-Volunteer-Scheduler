@@ -40,12 +40,23 @@ class AllAvailability extends React.Component {
             {this._generateJobElements(currentEvent.volunteerObjects[key].jobs)}
           </div> : null}
           <div className='options'>
-            <button>Force Assign Job</button>
+            <button onClick={this._handleForceAssignClick.bind(this, key, currentEvent.volunteerObjects[key].name)}>Force Assign Job</button>
           </div>
         </div>
       )
     }
     return availabilityElements
+  }
+
+  _handleForceAssignClick(ID, name, event) {
+    event.preventDefault()
+    if (confirm(`Are you sure you want to force assign ${name}?`)) {
+      currentEvent.forceAssignVolunteer = {
+        personID: ID,
+        name: name
+      }
+      browserHistory.push('/vms2/home/event/force-assign-portal')
+    }
   }
 
   _generateJobElements(jobs) {

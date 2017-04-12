@@ -95,7 +95,7 @@ class EventJobs extends React.Component {
       request.getVolunteersAvailabile(job.jobID).then((response) => {
         currentJob.volunteersAvailable = response.body
         clearTimeout(id)
-        browserHistory.push("/vms/home/event/job/assign")
+        browserHistory.push("/vms2/home/event/job/assign")
       })
     }
 
@@ -128,7 +128,7 @@ class EventJobs extends React.Component {
         resolve()
       })
       buildCurrentJob.then(() => {
-        browserHistory.push('/vms/home/event/job')
+        browserHistory.push('/vms2/home/event/job')
       })
     }
 

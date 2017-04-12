@@ -26,6 +26,7 @@ componentWillMount() {
           <h3>{currentJob.volunteersAvailable[personID].name}</h3>
           <h4>Assigned Hours: {currentJob.volunteersAvailable[personID].assigned_hours}</h4>
           <h4>Desired Hours: {currentJob.volunteersAvailable[personID].desired_hours}</h4>
+          <h4>Driver Status: {currentJob.volunteersAvailable[personID].driver_status ? 'Driver' : 'Not Driver'}</h4>
           </button>
         </div>
       )
