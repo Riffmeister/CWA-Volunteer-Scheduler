@@ -7,11 +7,13 @@ import userStore from '../../user/userStore'
 import eventStore from '../../event/eventStore'
 
 require('./../../commonStyles/input.less')
+require('../app.less')
 
 @observer
 class Login extends React.Component {
 
     componentWillMount() {
+      this.snackalert = 'helloworld'
       userStore.personID = ''
       userStore.loggedOn = false
       userStore.isAdmin = false
@@ -39,7 +41,10 @@ class Login extends React.Component {
                     <br></br>
                     <button type="submit" onClick={this._handleLogin.bind(this)}>Login</button>
                     <button type="submit" onClick={this._handleSignUp.bind(this)}>Sign Up</button>
+
                 </form>
+                <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
+
             </section>
         )
     }
@@ -53,7 +58,13 @@ class Login extends React.Component {
         const email = this.refs.email.value
         const password = this.refs.password.value
         if (email === "") {
-            alert("Please Enter a Value for Email")
+          this.snackalert = "Please Enter a Value for Username";
+          this.setState(() => {return true;})
+          console.log(this.snackalert)
+          var t = this.refs.snackbar
+            t.classList = "snackbar show";
+
+            setTimeout(function(){ t.classList = "snackbar"; }, 3000);
             return false
         } else if (password === "") {
             alert("Please Enter a Value for Password")
