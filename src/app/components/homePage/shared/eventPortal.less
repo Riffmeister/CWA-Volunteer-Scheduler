@@ -376,7 +376,7 @@
 
     .event-portal .event-body {
       flex-direction: column-reverse;
-      height: 100%;
+      // height: 100%;
   }
 
   .event-portal .jobs {
@@ -389,9 +389,13 @@
      font-size: larger;
    }
 
+   .set-availability h2 {
+    font-size: 30px;
+}
+
    .set-availability .date-picker h2 {
       font-size: 1.9em;
-       font-weight: 900;
+      font-weight: 900;
    }
    .clock{
      flex-direction: column;
@@ -421,6 +425,9 @@
 
   .set-availability{
     font-size: small;
+  }
+  .set-availability h2 {
+    font-size: 1.2em;
   }
   .set-availability .date-picker h2 {
      font-size: 1.2em;
@@ -467,6 +474,9 @@
 
 
   @media only screen and (max-width: 375px){
+    .set-availability h2 {
+    font-size: 1em;
+    }
     .set-availability .date-picker h2 {
         font-size: 1em;
     }
@@ -476,5 +486,17 @@
     }
     .event-portal .jobs h3 {
     font-size: 2em;
+    }
+
+    .set-availability .date-picker .dates .date p {
+      font-size: 1.3em;
+    }
+
+    .set-availability .desired-hours {
+      font-size: 1.2em;
+    }
+
+    .check-availability .dates .single-date .date-content {
+      font-size: 1em;
     }
 }
