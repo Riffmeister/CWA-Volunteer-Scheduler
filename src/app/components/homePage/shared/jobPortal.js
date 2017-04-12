@@ -16,11 +16,13 @@ import currentJob from '../../../event/currentJob';
 import SetAvailability from './setAvailability';
 
 require('./jobPortal.less')
+require('../../app.less')
 
 @observer
 class JobPortal extends React.Component {
   componentWillMount() {
     currentJob.formattedDate = this._formattedJobDate()
+    this.snackalert = ''
   }
 
   render() {
@@ -75,12 +77,13 @@ class JobPortal extends React.Component {
         Assign Volunteer
         </button>) :
         <button onClick={this._handleConfirmJobClick.bind(this)}>
-        Confirm Job
+        {currentJob.jobStatus ? 'Unconfirm Job' : 'Confirm Job'}
         </button>}
           <button onClick={this._handleBackClick.bind(this)}>
             Back
           </button>
         </div>
+        <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
     </section>)
 }
 
@@ -145,13 +148,25 @@ _handleAssignClick(event) {
   })
 }
 
+_changeAlert(value, time){
+  this.snackalert = value;
+  this.setState(() => {return true;})
+  this._showSnackBar(time)
+}
+
+_showSnackBar(displayTime){
+  var t = this.refs.snackbar
+    t.classList = "snackbar show";
+
+    return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+}
+
 _handleConfirmJobClick(event) {
   event.preventDefault()
   var request = new Api()
   request.confirmJob(currentEvent.eventID, currentJob.jobID).then((response) => {
     currentJob.jobStatus = response.body.job_status
-    alert(`Job Status Changed to ${currentJob.jobStatus === null ? 'Unconfirmed' : 'Confirmed'}`)
-    this.setState(() => {return true})
+    this._changeAlert(`Job Status Changed to ${currentJob.jobStatus === null ? 'Unconfirmed' : 'Confirmed'}`, 2000)
   })
 }
 

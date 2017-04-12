@@ -5,8 +5,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 require('./../../commonStyles/input.less')
+require('../app.less')
 
 class SignUp extends React.Component {
+
+  componentWillMount(){
+    this.snackalert = ''
+  }
 
     constructor() {
         super();
@@ -65,8 +70,22 @@ class SignUp extends React.Component {
           <button type="submit" onClick={this._handleSubmit.bind(this)}>Sign Up</button>
           <button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
                 </form>
+                <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
             </section>
         )
+    }
+
+    _changeAlert(value, time){
+      this.snackalert = value;
+      this.setState(() => {return true;})
+      this._showSnackBar(time)
+    }
+
+    _showSnackBar(displayTime){
+      var t = this.refs.snackbar
+        t.classList = "snackbar show";
+
+        return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
     }
 
 	_fieldsFilled() {
@@ -115,11 +134,13 @@ class SignUp extends React.Component {
     _handleSubmit(event) {
 		event.preventDefault()
 		if (this._fieldsFilled(event)) {
-			alert('Please enter a value for every field.')
+			this._changeAlert('Please fill all fields.', 2000)
 			return false
 		} else if (this.refs.password.value !== this.refs.passwordCheck.value) {
-			alert('Passwords do not match.')
+			this._changeAlert('Passwords do not match.', 2000)
+
 		} else {
+      var id =  this._changeAlert("Signup Successful!", 2000)
       const choice = this.refs.phoneProvider.selectedIndex
       var request = new Api()
       request.signup(this.refs.firstName.value,
@@ -129,6 +150,7 @@ class SignUp extends React.Component {
         this.refs.phone.value,
         this.refs.phoneProvider[choice].value,
         this.refs.password.value).then((response) => {
+          clearTimeout(id)
         browserHistory.push('/vms2')
         })
       }
