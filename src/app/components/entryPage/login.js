@@ -79,7 +79,6 @@ class Login extends React.Component {
         } else {
 			        event.preventDefault()
   	          var request = new Api()
-              //var id = setTimeout(function() { alert('Please give us a moment to get you logged in.'); }, 1000);
               var id =  this._changeAlert("Logging in, please wait", 2000)
               request.login(email,password).then((response) => {
                 userStore.personID = response.body.personID
