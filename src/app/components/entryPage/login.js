@@ -62,12 +62,7 @@ class Login extends React.Component {
     _showSnackBar(displayTime){
       var t = this.refs.snackbar
         t.classList = "snackbar show";
-
-<<<<<<< HEAD
         return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
-=======
-        return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
->>>>>>> 09cd3e2... added snackbar to page, not globalEvents and eventPortal
     }
 
     _handleLogin(event) {
