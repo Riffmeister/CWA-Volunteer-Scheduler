@@ -107,7 +107,6 @@ class CreateNewJob extends React.Component {
 						this._changeAlert('Job Successfully Created!', 2000)
 			})
 		})
-		clearTimeout(id)
 			}
 		} else {
 			this._changeAlert('Select one or more dates', 2000)
