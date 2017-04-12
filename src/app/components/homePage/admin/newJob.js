@@ -8,12 +8,15 @@ import currentEvent from '../../../event/currentEvent';
 import DatePicker from '../shared/datePicker';
 
 require('./newJob.less')
+require('../../app.less')
+
 
 @observer
 class CreateNewJob extends React.Component {
 
 	componentWillMount() {
 		currentEvent.selectedDates = []
+		this.snackalert = 'helloworld'
 	}
 
 	render() {
@@ -47,6 +50,7 @@ class CreateNewJob extends React.Component {
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
 					</form>
 					</div>
+					<div className="snackbar" ref='snackbar'>{this.snackalert}</div>
 		</section>
 	)}
 
@@ -69,14 +73,29 @@ class CreateNewJob extends React.Component {
 		return false
 	}
 
+	_changeAlert(value){
+		this.snackalert = value;
+		this.setState(() => {return true;})
+	}
+
+	_showSnackBar(){
+		var t = this.refs.snackbar
+			t.classList = "snackbar show";
+
+			setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+	}
+
 	_handleSubmit(event) {
 		event.preventDefault()
 		if (currentEvent.selectedDates.length) {
 		if (this._fieldsFilled(event)) {
-			alert('Please enter a value for every field.')
+			this._changeAlert('Please input all values')
+			this._showSnackBar()
 			return false
 		} else {
-			var id = setTimeout(function() { alert('Please give us a moment to create your jobs.'); }, 2000);
+			//var id = setTimeout(function() { alert('Please give us a moment to create your jobs.'); }, 2000);
+			this._changeAlert('Please give us a moment to create your jobs.')
+			this._showSnackBar()
 			currentEvent.selectedDates.map((date) => {
 				var request = new Api()
 	      request.createJob(
@@ -87,13 +106,17 @@ class CreateNewJob extends React.Component {
 	        date,
 	        this.refs.startTime.value,
 	        this.refs.endTime.value).then((response) => {
-						alert('Job Successfully Created!')
+						//alert('Job Successfully Created!')
+						this._changeAlert('Job Successfully Created!')
+						this._showSnackBar()
 			})
 		})
-		clearTimeout(id)
+	//	clearTimeout(id)
 			}
 		} else {
-			alert('Please select one or more dates.')
+			//alert('Please select one or more dates.')
+			this._changeAlert('Select one or more dates')
+			this._showSnackBar()
 		}
 	}
 
