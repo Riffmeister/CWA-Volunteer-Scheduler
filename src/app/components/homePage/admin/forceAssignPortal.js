@@ -21,7 +21,7 @@ class ForceAssignPortal extends React.Component {
         </div>
         <div className='confirmation'>
           <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
-          <button onClick={this._handleBackClick.bind(this)}>Back to Job</button>
+          <button onClick={this._handleBackClick.bind(this)}>Back to Volunteers</button>
         </div>
       </section>
     )
