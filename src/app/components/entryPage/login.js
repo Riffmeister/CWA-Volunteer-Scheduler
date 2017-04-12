@@ -103,7 +103,7 @@ class Login extends React.Component {
                   for (var key in response.body) {
                     eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
                   }
-                  clearTimeout(id)
+                //  clearTimeout(id)
                   browserHistory.push('/vms2/home')
                 }).catch((error) => {
                   console.log(error)
