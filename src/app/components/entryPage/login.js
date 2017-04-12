@@ -79,7 +79,7 @@ class Login extends React.Component {
         } else {
 			        event.preventDefault()
   	          var request = new Api()
-              var id =  this._changeAlert("Logging in, please wait", 2000)
+              var id =  this._changeAlert("Logging in, please wait", 2000
               request.login(email,password).then((response) => {
                 userStore.personID = response.body.personID
                 userStore.loggedOn = true
@@ -100,7 +100,6 @@ class Login extends React.Component {
                   for (var key in response.body) {
                     eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
                   }
-                  clearTimeout(id)
                   browserHistory.push('/vms2/home')
                 }).catch((error) => {
                   console.log(error)
