@@ -70,14 +70,12 @@ class Person extends React.Component {
       case 'admin':
         request.upgradePerson(allUserStore.users[this.props.allUserStoreIndex].personID, !allUserStore.users[this.props.allUserStoreIndex].admin, allUserStore.users[this.props.allUserStoreIndex].driver).then((response) => {
           allUserStore.users[this.props.allUserStoreIndex].admin = !allUserStore.users[this.props.allUserStoreIndex].admin
-          this.setState(() => {return true})
           this._changeAlert(`${allUserStore.users[this.props.allUserStoreIndex].personName}'s Admin status is now ${allUserStore.users[this.props.allUserStoreIndex].admin}`, 3000)
         })
         break;
       case 'driver':
         request.upgradePerson(allUserStore.users[this.props.allUserStoreIndex].personID, allUserStore.users[this.props.allUserStoreIndex].admin, !allUserStore.users[this.props.allUserStoreIndex].driver).then((response) => {
           allUserStore.users[this.props.allUserStoreIndex].driver = !allUserStore.users[this.props.allUserStoreIndex].driver
-          this.setState(() => {return true})
           this._changeAlert(`${allUserStore.users[this.props.allUserStoreIndex].personName}'s Driver status is now ${allUserStore.users[this.props.allUserStoreIndex].driver}`, 3000)
         })
         break;

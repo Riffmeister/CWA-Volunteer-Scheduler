@@ -21,7 +21,11 @@ class EventJobs extends React.Component {
     currentJob.jobDescription = ''
     currentJob.volunteerName = ''
     currentJob.volunteerID = null
+<<<<<<< HEAD
     this.snackalert = ''
+=======
+    this.snackalert = 'helloworld'
+>>>>>>> 09cd3e2... added snackbar to page, not globalEvents and eventPortal
   }
 
     render() {
@@ -84,6 +88,7 @@ class EventJobs extends React.Component {
       return jobElements
     }
 
+<<<<<<< HEAD
     _changeAlert(value, time){
       this.snackalert = value;
       this.setState(() => {return true;})
@@ -95,6 +100,18 @@ class EventJobs extends React.Component {
         t.classList = "snackbar show";
 
         return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+=======
+    _changeAlert(value){
+      this.snackalert = value;
+      this.setState(() => {return true;})
+    }
+
+    _showSnackBar(){
+      var t = this.refs.snackbar
+        t.classList = "snackbar show";
+
+        return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+>>>>>>> 09cd3e2... added snackbar to page, not globalEvents and eventPortal
     }
 
     _handleAssignClick(job, event) {
@@ -108,7 +125,12 @@ class EventJobs extends React.Component {
       currentJob.jobTime = job.jobTime
       currentJob.volunteerID = job.volunteerID
       currentJob.volunteerName = job.volunteerFirstName + ' ' + job.volunteerLastName
+<<<<<<< HEAD
       var id = this._changeAlert('Please give us a moment to find who is available.', 2000)
+=======
+      var id = this._changeAlert('Please give us a moment to find who is available.')
+      this._showSnackBar()
+>>>>>>> 09cd3e2... added snackbar to page, not globalEvents and eventPortal
       var request = new Api()
       request.getVolunteersAvailabile(job.jobID).then((response) => {
         currentJob.volunteersAvailable = response.body
@@ -124,10 +146,20 @@ class EventJobs extends React.Component {
         var request = new Api()
         request.deleteJob(job.jobID).then((response) => {
           currentEvent.jobs.splice(index, 1)
+<<<<<<< HEAD
           this._changeAlert(`Successfully deleted ${job.jobName}.`, 2000)
         })
       } else {
         this._changeAlert(`${job.jobName} cannot be deleted due to ${job.volunteerFirstName + ' ' + job.volunteerLastName} being assigned.`, 3000)
+=======
+          //this.setState(() => {true})
+          this._changeAlert(`Successfully deleted ${job.jobName}.`)
+          this._showSnackBar()
+        })
+      } else {
+        this._changeAlert(`${job.jobName} cannot be deleted due to ${job.volunteerFirstName + ' ' + job.volunteerLastName} being assigned.`)
+        this._showSnackBar()
+>>>>>>> 09cd3e2... added snackbar to page, not globalEvents and eventPortal
       }
     }
 
