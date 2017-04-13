@@ -8,8 +8,14 @@ import eventStore from '../../../event/eventStore';
 import currentEvent from '../../../event/currentEvent';
 import userStore from '../../../user/userStore';
 
+require('../../app.less')
+
 
 class CheckAvailability extends React.Component {
+
+  componentWillMount(){
+    this.snackalert = 'helloworld'
+  }
 
     render() {
       return (
@@ -25,6 +31,7 @@ class CheckAvailability extends React.Component {
            <button onClick={this._handleMoreAvailabilityClick.bind(this)}>Submit More Availability</button>
            <button onClick={this._handleConfirmAvailability.bind(this)}>Confirm Availability</button>
          </div>
+         <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
        </div>
         )
     }
@@ -105,30 +112,49 @@ class CheckAvailability extends React.Component {
       return dateElements
     }
 
+    _changeAlert(value){
+      this.snackalert = value;
+      this.setState(() => {return true;})
+    }
+
+    _showSnackBar(){
+      var t = this.refs.snackbar
+        t.classList = "snackbar show";
+
+        return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+    }
+
     _handleDeleteTimeClick(time, date, index, formatDate, formatTime, event) {
       event.preventDefault()
       if (confirm(`Are you sure you want to delete times ${formatTime} on ${formatDate}?`))
       var request = new Api()
       request.deleteAvailability(userStore.personID, currentEvent.eventID, date, time).then((response) => {
         currentEvent.availability[date].splice(index, 1)
-        alert(`Successfully deleted times ${formatTime} on ${formatDate}`)
-        this.setState(() => {return true})
+        this._changeAlert(`Successfully deleted times ${formatTime} on ${formatDate}`)
+        this._showSnackBar()
+        //this.setState(() => {return true})
       }).catch((error) => {
-        alert('Could not delete the selected times, please try again, and if error persists contact the technical team.')
+        this._changeAlert('Could not delete the selected times, please try again, and if error persists contact the technical team.')
+        this._showSnackBar()
         console.log(error)
       })
     }
     _handleConfirmAvailability(event) {
       event.preventDefault()
       if (!currentEvent.desiredHours) {
-        alert('No Desired Hours Inputted.')
+        this._changeAlert('No Desired Hours Inputted.')
+        this._showSnackBar()
         return
       }
       var request = new Api()
+      var id = this._changeAlert('Availability Confirmed, loading event page')
+      this._showSnackBar()
       request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
+        clearTimeout(id)
         browserHistory.push('/vms2/home/event')
       }).catch((error) => {
-        alert('Could Not Confirm Availability')
+        this._changeAlert('Could Not Confirm Availability')
+        this._showSnackBar()
         console.log(error)
       })
     }
