@@ -45,7 +45,7 @@ class Api {
 
 	unassignVolunteer(volunteerID, eventID, jobID) {
 		return new Promise((resolve, reject) => {
-			superagent.post('https://cwajazz.com/vms/test/unassign_job.py')
+			superagent.post('https://cwajazz.com/vms2/test/unassign_job.py')
 			.type('form')
 			.send({volunteerId: volunteerID})
 			.send({eventId: eventID})

@@ -82,7 +82,7 @@ class CreateNewJob extends React.Component {
 		var t = this.refs.snackbar
 			t.classList = "snackbar show";
 
-			setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+			return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
 	}
 
 	_handleSubmit(event) {
@@ -93,8 +93,7 @@ class CreateNewJob extends React.Component {
 			this._showSnackBar()
 			return false
 		} else {
-			//var id = setTimeout(function() { alert('Please give us a moment to create your jobs.'); }, 2000);
-			this._changeAlert('Please give us a moment to create your jobs.')
+			var id = this._changeAlert('Please give us a moment to create your jobs.')//setTimeout(function() { alert('Please give us a moment to create your jobs.'); }, 2000);
 			this._showSnackBar()
 			currentEvent.selectedDates.map((date) => {
 				var request = new Api()
@@ -111,7 +110,7 @@ class CreateNewJob extends React.Component {
 						this._showSnackBar()
 			})
 		})
-	//	clearTimeout(id)
+		clearTimeout(id)
 			}
 		} else {
 			//alert('Please select one or more dates.')

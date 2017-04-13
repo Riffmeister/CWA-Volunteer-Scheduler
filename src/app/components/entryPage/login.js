@@ -62,7 +62,7 @@ class Login extends React.Component {
       var t = this.refs.snackbar
         t.classList = "snackbar show";
 
-        setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+        return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
     }
 
     _handleLogin(event) {
@@ -85,7 +85,7 @@ class Login extends React.Component {
 			        event.preventDefault()
   	          var request = new Api()
               //var id = setTimeout(function() { alert('Please give us a moment to get you logged in.'); }, 1000);
-              this._changeAlert("Logging in, please wait")
+              var id =  this._changeAlert("Logging in, please wait")
               this._showSnackBar()
               request.login(email,password).then((response) => {
                 userStore.personID = response.body.personID
@@ -107,7 +107,7 @@ class Login extends React.Component {
                   for (var key in response.body) {
                     eventStore.events.push({eventID: key, eventName: response.body[key].event_name, eventDates: response.body[key].eventDays})
                   }
-                //  clearTimeout(id)
+                  clearTimeout(id)
                   browserHistory.push('/vms2/home')
                 }).catch((error) => {
                   console.log(error)

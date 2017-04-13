@@ -8,9 +8,15 @@ import eventStore from '../../../event/eventStore';
 import currentEvent from '../../../event/currentEvent';
 import userStore from '../../../user/userStore';
 
+require('../../app.less')
+
 class TimeSelector extends React.Component {
   overlapStart = ''
   overlapEnd = ''
+
+  componentWillMount(){
+    this.snackalert = 'helloworld'
+  }
 
   render() {
     var timeElements = currentEvent.dates.map((date) => {
@@ -95,6 +101,7 @@ class TimeSelector extends React.Component {
          <label>Desired Number of Hours:</label>
          <input ref='desiredHours' type='number' defaultValue={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
        </div>
+       <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
      </div>
       )
   }
@@ -203,12 +210,24 @@ class TimeSelector extends React.Component {
     return check
   }
 
+  _changeAlert(value){
+    this.snackalert = value;
+    this.setState(() => {return true;})
+  }
+
+  _showSnackBar(){
+    var t = this.refs.snackbar
+      t.classList = "snackbar show";
+
+      return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+  }
   _handleTimeSubmit() {
     if (this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0 && currentEvent.selectedDates.length === 0) {
       currentEvent.desiredHours = this.refs.desiredHours.value
       var request = new Api()
       request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
-        alert(`Desired Hours set to ${currentEvent.desiredHours}.`)
+        this._changeAlert(`Desired Hours set to ${currentEvent.desiredHours}.`)
+        this._showSnackBar()
       }).catch((error) => {
         console.log(error)
       })
@@ -248,16 +267,19 @@ class TimeSelector extends React.Component {
 
         // Checking Inputs!
         if (this._overlapCheck(startHour, this.refs.startTimeMinute.value, endHour, this.refs.endingTimeMinute.value)) {
-          alert(`Overlapping Time Entered with ${this.overlapEnd}`)
+          this._changeAlert(`Overlapping Time Entered with ${this.overlapEnd}`)
+          this._showSnackBar()
           return
         }
 
         if (parseInt(startHour) > parseInt(endHour)) {
-          alert('Ending Time Must Be Later Than Starting Time')
+          this._changeAlert('Ending Time Must Be Later Than Starting Time')
+          this._showSnackBar()
           return
         }
         if (parseInt(startHour) === parseInt(endHour && parseInt(startMinute) === parseInt(endMinute))) {
-          alert('Start Time Cannot be the Same as End Time')
+          this._changeAlert('Start Time Cannot be equal to End Time')
+          this._showSnackBar()
           return
         }
 
@@ -273,12 +295,14 @@ class TimeSelector extends React.Component {
         })
         var request = new Api()
         request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
-          alert(`Successfully added ${counter} time slot(s)!\n Desired Hours set to ${currentEvent.desiredHours}.`)
+          this._changeAlert(`Successfully added ${counter} time slot(s)! Desired Hours set to ${currentEvent.desiredHours}.`)
+          this._showSnackBar()
         }).catch((error) => {
           console.log(error)
         })
       } else if (this.refs.desiredHours.value !== 0 || currentEvent.selectedDates.length === 0) {
-        alert('Make sure desired hours are greater than zero!')
+        this._changeAlert('You must haved Desired Hours')
+        this._showSnackBar()
       }
       }
     }

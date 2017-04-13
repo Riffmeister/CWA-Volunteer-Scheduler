@@ -16,11 +16,13 @@ import currentJob from '../../../event/currentJob';
 import SetAvailability from './setAvailability';
 
 require('./jobPortal.less')
+require('../../app.less')
 
 @observer
 class JobPortal extends React.Component {
   componentWillMount() {
     currentJob.formattedDate = this._formattedJobDate()
+    this.snackalert = 'helloworld'
   }
 
   render() {
@@ -81,6 +83,7 @@ class JobPortal extends React.Component {
             Back
           </button>
         </div>
+        <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
     </section>)
 }
 
@@ -145,13 +148,26 @@ _handleAssignClick(event) {
   })
 }
 
+_changeAlert(value){
+  this.snackalert = value;
+  this.setState(() => {return true;})
+}
+
+_showSnackBar(){
+  var t = this.refs.snackbar
+    t.classList = "snackbar show";
+
+    return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+}
+
 _handleConfirmJobClick(event) {
   event.preventDefault()
   var request = new Api()
   request.confirmJob(currentEvent.eventID, currentJob.jobID).then((response) => {
     currentJob.jobStatus = response.body.job_status
-    alert(`Job Status Changed to ${currentJob.jobStatus === null ? 'Unconfirmed' : 'Confirmed'}`)
-    this.setState(() => {return true})
+    this._changeAlert(`Job Status Changed to ${currentJob.jobStatus === null ? 'Unconfirmed' : 'Confirmed'}`)
+    this._showSnackBar()
+    //this.setState(() => {return true})
   })
 }
 
