@@ -21,9 +21,10 @@ class AssignPortal extends React.Component {
         <h2>Assign Person to {currentJob.jobName}</h2>
         <PeoplePicker/>
         <div className='confirmation'>
-        {currentJob.volunteerID ? <button onClick={this._handleUnassignClick.bind(this)}>Unassign {currentJob.volunteerName}</button> : null}
-        <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
-          <button onClick={this._handleBackClick.bind(this)}>Back to Jobs</button>
+          <div id="assignedVolunteer">{currentJob.volunteerID ? <button onClick={this._handleUnassignClick.bind(this)}>Unassign {currentJob.volunteerName}</button> : null}</div>
+          <div id="selection"><button onClick={this._handleAssignClick.bind(this)}>Assign</button>
+              <button onClick={this._handleBackClick.bind(this)}>Back to Jobs</button>
+          </div>
         </div>
         <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
       </section>
