@@ -206,6 +206,8 @@
     display: flex;
     flex-grow: 1;
     overflow: auto;
+    border: inset;
+    border-right: none;
 
     .single-date {
       display: flex;
@@ -315,6 +317,9 @@
       display: flex;
       overflow: auto;
       margin-right: 10px;
+      border: inset;
+      border-right: none;
+      padding: 5px;
 
       .date {
         margin-right: 10px;
@@ -379,15 +384,15 @@
       height: 100%;
   }
 
-  .event-portal .jobs {
-    //width: 90%;
-}
   .event-portal button{
     font-size: 1.7em;
   }
    .set-availability{
      font-size: larger;
    }
+   .set-availability h2 {
+    font-size: 1.9em;
+}
 
    .set-availability .date-picker h2 {
       font-size: 1.9em;
@@ -398,6 +403,8 @@
    }
    .dates{
      font-size:1.4em;
+     border: solid;
+     border-right: none;
    }
 
    .event-portal .confirmation button {
@@ -422,6 +429,12 @@
   .set-availability{
     font-size: small;
   }
+
+  .set-availability h2 {
+    font-size: 1.3em;
+    margin-bottom: 0px;
+}
+
   .set-availability .date-picker h2 {
      font-size: 1.2em;
       font-weight: 900;
@@ -440,7 +453,10 @@
   .set-availability .confirmation button {
     margin-bottom: 10px;
   }
-
+  .check-availability .dates{
+    font-size: 1em;
+  }
+  
    .check-availability .dates .single-date h2 {
     font-size: 1.4em;
    }
@@ -463,6 +479,8 @@
     font-size: 0.5em;
 }
 
+
+
 }
 
 
@@ -477,4 +495,21 @@
     .event-portal .jobs h3 {
     font-size: 2em;
     }
+
+    .set-availability h2 {
+    font-size: 1.7em;
+  }
+
+    .set-availability .desired-hours {
+    font-size: 1em;
+}
+
+    .set-availability .desired-hours input{
+      width: 60px;
+    }
+
+    .time-picker h3 {
+      margin: 0px;
+    }
+
 }
