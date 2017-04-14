@@ -102,6 +102,9 @@ class TimeSelector extends React.Component {
        <div id="timeSubmit">
            <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
        </div>
+       <div id="timeSubmit">
+           <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
+       </div>
        <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
      </div>
       )
@@ -223,6 +226,7 @@ class TimeSelector extends React.Component {
 
       return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
   }
+
   _handleTimeSubmit() {
     if (this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0 && currentEvent.selectedDates.length === 0) {
       currentEvent.desiredHours = this.refs.desiredHours.value

@@ -73,7 +73,6 @@ _handleClick(redirect, event){
       }
 
       break;
-
   }
 }
 
