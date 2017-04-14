@@ -22,11 +22,15 @@ class Header extends React.Component {
       </header>
       <div id ='options'>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f14cbed... massive css fixes based on usability review, not all done
   			<nav className='nav-options'>
   				<ul>
             <li onClick={this._handleClick.bind(this, 'account')}><a>Account</a></li>
   				</ul>
   			</nav>
+<<<<<<< HEAD
   			<div className='auth-option'>
   				<ul>
 
@@ -38,6 +42,12 @@ class Header extends React.Component {
   					<li onClick={this._handleClick.bind(this, 'logout')}><a>Login/Logout</a></li>
             <li onClick={this._handleClick.bind(this, 'availability')}><a></a></li>
 >>>>>>> cde314a... css fixes and put back footer
+=======
+  			<div className='auth-option'>
+  				<ul>
+
+  					<li onClick={this._handleClick.bind(this, 'logout')}><a>Logout</a></li>
+>>>>>>> f14cbed... massive css fixes based on usability review, not all done
   				</ul>
   			</div>
       </div>
@@ -55,6 +65,7 @@ _handleClick(redirect, event){
       alert('You must be logged on to see your account information.')
     }
       break;
+
     case 'logout':
       if (confirm('Are you sure you would like to logout?')) {
         browserHistory.push('/vms2')
