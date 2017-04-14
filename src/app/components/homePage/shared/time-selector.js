@@ -210,24 +210,25 @@ class TimeSelector extends React.Component {
     return check
   }
 
-  _changeAlert(value){
+  _changeAlert(value, time){
     this.snackalert = value;
     this.setState(() => {return true;})
+    this._showSnackBar(time)
   }
 
-  _showSnackBar(){
+  _showSnackBar(displayTime){
     var t = this.refs.snackbar
       t.classList = "snackbar show";
 
-      return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+      return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
   }
+
   _handleTimeSubmit() {
     if (this.refs.desiredHours.value !== 0 && this.refs.desiredHours.value > 0 && currentEvent.selectedDates.length === 0) {
       currentEvent.desiredHours = this.refs.desiredHours.value
       var request = new Api()
       request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
-        this._changeAlert(`Desired Hours set to ${currentEvent.desiredHours}.`)
-        this._showSnackBar()
+        this._changeAlert(`Desired Hours set to ${currentEvent.desiredHours}.`, 2000)
       }).catch((error) => {
         console.log(error)
       })
@@ -267,19 +268,16 @@ class TimeSelector extends React.Component {
 
         // Checking Inputs!
         if (this._overlapCheck(startHour, this.refs.startTimeMinute.value, endHour, this.refs.endingTimeMinute.value)) {
-          this._changeAlert(`Overlapping Time Entered with ${this.overlapEnd}`)
-          this._showSnackBar()
+          this._changeAlert(`Overlapping Time Entered with ${this.overlapEnd}`, 2000)
           return
         }
 
         if (parseInt(startHour) > parseInt(endHour)) {
-          this._changeAlert('Ending Time Must Be Later Than Starting Time')
-          this._showSnackBar()
+          this._changeAlert('Ending Time Must Be Later Than Starting Time', 2500)
           return
         }
         if (parseInt(startHour) === parseInt(endHour && parseInt(startMinute) === parseInt(endMinute))) {
-          this._changeAlert('Start Time Cannot be equal to End Time')
-          this._showSnackBar()
+          this._changeAlert('Start Time Cannot be equal to End Time', 2500)
           return
         }
 
@@ -295,14 +293,12 @@ class TimeSelector extends React.Component {
         })
         var request = new Api()
         request.setAvailability(currentEvent.eventID, userStore.personID, currentEvent.availability, currentEvent.desiredHours).then((response) => {
-          this._changeAlert(`Successfully added ${counter} time slot(s)! Desired Hours set to ${currentEvent.desiredHours}.`)
-          this._showSnackBar()
+          this._changeAlert(`Successfully added ${counter} time slot(s)! Desired Hours set to ${currentEvent.desiredHours}.`, 2500)
         }).catch((error) => {
           console.log(error)
         })
       } else if (this.refs.desiredHours.value !== 0 || currentEvent.selectedDates.length === 0) {
-        this._changeAlert('You must haved Desired Hours')
-        this._showSnackBar()
+        this._changeAlert('You must haved Desired Hours', 2500)
       }
       }
     }

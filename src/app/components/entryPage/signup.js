@@ -75,16 +75,17 @@ class SignUp extends React.Component {
         )
     }
 
-    _changeAlert(value){
+    _changeAlert(value, time){
       this.snackalert = value;
       this.setState(() => {return true;})
+      this._showSnackBar(time)
     }
 
-    _showSnackBar(){
+    _showSnackBar(displayTime){
       var t = this.refs.snackbar
         t.classList = "snackbar show";
 
-        return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+        return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
     }
 
 	_fieldsFilled() {
@@ -133,16 +134,13 @@ class SignUp extends React.Component {
     _handleSubmit(event) {
 		event.preventDefault()
 		if (this._fieldsFilled(event)) {
-			this._changeAlert('Please fill all fields.')
-      this._showSnackBar()
+			this._changeAlert('Please fill all fields.', 2000)
 			return false
 		} else if (this.refs.password.value !== this.refs.passwordCheck.value) {
-			this._changeAlert('Passwords do not match.')
-      this._showSnackBar()
+			this._changeAlert('Passwords do not match.', 2000)
 
 		} else {
-      var id =  this._changeAlert("Signup Successful!")
-      this._showSnackBar()
+      var id =  this._changeAlert("Signup Successful!", 2000)
       const choice = this.refs.phoneProvider.selectedIndex
       var request = new Api()
       request.signup(this.refs.firstName.value,

@@ -30,24 +30,24 @@ class AssignPortal extends React.Component {
     )
   }
 
-  _changeAlert(value){
+  _changeAlert(value, time){
     this.snackalert = value;
     this.setState(() => {return true;})
+    this._showSnackBar(time)
   }
 
-  _showSnackBar(){
+  _showSnackBar(displayTime){
     var t = this.refs.snackbar
       t.classList = "snackbar show";
 
-      return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+      return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
   }
 
   _handleUnassignClick(event) {
     if (confirm(`Are you sure you want to remove ${currentJob.volunteerName} from ${currentJob.jobName}?`)) {
       var request = new Api()
       request.unassignVolunteer(currentJob.volunteerID, currentEvent.eventID, currentJob.jobID).then((unassignResponse) => {
-        this._changeAlert(`Successfullly unassigned ${currentJob.volunteerName} from ${currentJob.jobName}`)
-        this._showSnackBar()
+        this._changeAlert(`Successfullly unassigned ${currentJob.volunteerName} from ${currentJob.jobName}`, 2500)
         var availableVolunteersRequest = new Api()
         availableVolunteersRequest.getVolunteersAvailabile(currentJob.jobID).then((availableVolunteersResponse) => {
           currentJob.volunteersAvailable = availableVolunteersResponse.body
@@ -64,9 +64,7 @@ class AssignPortal extends React.Component {
     request.assignVolunteer(currentJob.selectedPerson.ID, currentEvent.eventID, currentJob.jobID).then((response) => {
       currentJob.volunteerName = currentJob.selectedPerson.name
       currentJob.volunteerID = currentJob.selectedPerson.ID
-      this._changeAlert(`Successfullly assigned ${currentJob.selectedPerson.name} to ${currentJob.jobName}`)
-      this._showSnackBar()
-      //this.setState(() => {true})
+      this._changeAlert(`Successfullly assigned ${currentJob.selectedPerson.name} to ${currentJob.jobName}`, 2500)
 
     })
   }

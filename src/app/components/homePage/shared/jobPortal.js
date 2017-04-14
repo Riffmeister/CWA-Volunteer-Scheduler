@@ -148,16 +148,17 @@ _handleAssignClick(event) {
   })
 }
 
-_changeAlert(value){
+_changeAlert(value, time){
   this.snackalert = value;
   this.setState(() => {return true;})
+  this._showSnackBar(time)
 }
 
-_showSnackBar(){
+_showSnackBar(displayTime){
   var t = this.refs.snackbar
     t.classList = "snackbar show";
 
-    return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+    return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
 }
 
 _handleConfirmJobClick(event) {
@@ -165,9 +166,7 @@ _handleConfirmJobClick(event) {
   var request = new Api()
   request.confirmJob(currentEvent.eventID, currentJob.jobID).then((response) => {
     currentJob.jobStatus = response.body.job_status
-    this._changeAlert(`Job Status Changed to ${currentJob.jobStatus === null ? 'Unconfirmed' : 'Confirmed'}`)
-    this._showSnackBar()
-    //this.setState(() => {return true})
+    this._changeAlert(`Job Status Changed to ${currentJob.jobStatus === null ? 'Unconfirmed' : 'Confirmed'}`, 2000)
   })
 }
 
