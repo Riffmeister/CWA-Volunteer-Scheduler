@@ -62,6 +62,10 @@ class Login extends React.Component {
     _showSnackBar(displayTime){
       var t = this.refs.snackbar
         t.classList = "snackbar show";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92bf24b... removed helloworld and started to modify _changeAlert
         return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
     }
 
