@@ -73,28 +73,27 @@ class CreateNewJob extends React.Component {
 		return false
 	}
 
-	_changeAlert(value){
+	_changeAlert(value, time){
 		this.snackalert = value;
 		this.setState(() => {return true;})
+		this._showSnackBar(time)
 	}
 
-	_showSnackBar(){
+	_showSnackBar(displayTime){
 		var t = this.refs.snackbar
 			t.classList = "snackbar show";
 
-			return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+			return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
 	}
 
 	_handleSubmit(event) {
 		event.preventDefault()
 		if (currentEvent.selectedDates.length) {
 		if (this._fieldsFilled(event)) {
-			this._changeAlert('Please input all values')
-			this._showSnackBar()
+			this._changeAlert('Please input all values', 2000)
 			return false
 		} else {
-			var id = this._changeAlert('Please give us a moment to create your jobs.')//setTimeout(function() { alert('Please give us a moment to create your jobs.'); }, 2000);
-			this._showSnackBar()
+			var id = this._changeAlert('Please give us a moment to create your jobs.', 2000)
 			currentEvent.selectedDates.map((date) => {
 				var request = new Api()
 	      request.createJob(
@@ -106,16 +105,13 @@ class CreateNewJob extends React.Component {
 	        this.refs.startTime.value,
 	        this.refs.endTime.value).then((response) => {
 						//alert('Job Successfully Created!')
-						this._changeAlert('Job Successfully Created!')
-						this._showSnackBar()
+						this._changeAlert('Job Successfully Created!', 2000)
 			})
 		})
 		clearTimeout(id)
 			}
 		} else {
-			//alert('Please select one or more dates.')
-			this._changeAlert('Select one or more dates')
-			this._showSnackBar()
+			this._changeAlert('Select one or more dates', 2000)
 		}
 	}
 

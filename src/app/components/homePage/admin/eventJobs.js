@@ -84,16 +84,17 @@ class EventJobs extends React.Component {
       return jobElements
     }
 
-    _changeAlert(value){
+    _changeAlert(value, time){
       this.snackalert = value;
       this.setState(() => {return true;})
+      this._showSnackBar(time)
     }
 
-    _showSnackBar(){
+    _showSnackBar(displayTime){
       var t = this.refs.snackbar
         t.classList = "snackbar show";
 
-        return setTimeout(function(){ t.classList = "snackbar"; }, 2000);
+        return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
     }
 
     _handleAssignClick(job, event) {
@@ -107,8 +108,7 @@ class EventJobs extends React.Component {
       currentJob.jobTime = job.jobTime
       currentJob.volunteerID = job.volunteerID
       currentJob.volunteerName = job.volunteerFirstName + ' ' + job.volunteerLastName
-      var id = this._changeAlert('Please give us a moment to find who is available.')
-      this._showSnackBar()
+      var id = this._changeAlert('Please give us a moment to find who is available.', 2000)
       var request = new Api()
       request.getVolunteersAvailabile(job.jobID).then((response) => {
         currentJob.volunteersAvailable = response.body
@@ -125,12 +125,10 @@ class EventJobs extends React.Component {
         request.deleteJob(job.jobID).then((response) => {
           currentEvent.jobs.splice(index, 1)
           //this.setState(() => {true})
-          this._changeAlert(`Successfully deleted ${job.jobName}.`)
-          this._showSnackBar()
+          this._changeAlert(`Successfully deleted ${job.jobName}.`, 2000)
         })
       } else {
-        this._changeAlert(`${job.jobName} cannot be deleted due to ${job.volunteerFirstName + ' ' + job.volunteerLastName} being assigned.`)
-        this._showSnackBar()
+        this._changeAlert(`${job.jobName} cannot be deleted due to ${job.volunteerFirstName + ' ' + job.volunteerLastName} being assigned.`, 3000)
       }
     }
 
