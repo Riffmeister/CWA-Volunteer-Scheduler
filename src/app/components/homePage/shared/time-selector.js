@@ -9,6 +9,7 @@ import currentEvent from '../../../event/currentEvent';
 import userStore from '../../../user/userStore';
 
 require('../../app.less')
+require('./time-selector.less')
 
 class TimeSelector extends React.Component {
   overlapStart = ''
@@ -97,10 +98,11 @@ class TimeSelector extends React.Component {
            </select>
            </div>
          </div>
-         <div id="timeSubmit">
-             <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
-         </div>
        </div>
+       <div id="timeSubmit">
+           <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
+       </div>
+       <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
      </div>
       )
   }
