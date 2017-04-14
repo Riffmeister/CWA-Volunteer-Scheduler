@@ -46,7 +46,7 @@ class EventJobs extends React.Component {
         }
         return (
             <div key={job.jobID} className={`single-job ${background}`}>
-              <h3>{job.jobStatus ? job.jobName + ' | ' + 'Confirmed': job.jobName}</h3>
+              <h3>Job: {job.jobStatus ? job.jobName + ' | ' + 'Confirmed': job.jobName}</h3>
               <div className='job-body'>
                 <div>
                   <h4>Date:</h4>

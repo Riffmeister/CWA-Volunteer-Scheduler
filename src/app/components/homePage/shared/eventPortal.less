@@ -13,16 +13,14 @@
 
   .confirmation {
     display: flex;
-    flex-direction: column;
     flex-shrink: 0;
     width: 100%;
-    margin-top: 10px;
 
     button {
       justify-content: center;
       flex-direction: column;
       align-items: center;
-      flex-grow: .5;
+      width: 100%;
       font-size: 2.5em;
       &:active {
         color: rgba(207, 184, 124, 0.8);
@@ -64,7 +62,7 @@
     }
 
     .unassigned {
-      background-color: red;
+       background-color: #cfb87c;
     }
 
     h2 {
@@ -77,6 +75,8 @@
       flex-grow: 1;
       justify-content: flex-start;
       border: solid;
+      border-bottom: none;
+      padding: 5px;
       overflow: auto;
       width: 100%;
 
@@ -86,7 +86,6 @@
         justify-content: center;
         flex-shrink: 0;
         flex-direction: column;
-        margin-bottom: 20px;
         flex-grow: 1;
         align-items: center;
 
@@ -251,13 +250,12 @@
 
   .confirmation {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-shrink: 0;
 
     button {
       flex-grow: .5;
       font-size: 2.5em;
-      margin-bottom: 20px;
       &:active {
         color: rgba(207, 184, 124, 0.8);
       }
@@ -295,7 +293,6 @@
     button {
       flex-grow: .5;
       font-size: 2.5em;
-      margin-bottom: 20px;
       &:active {
         color: rgba(207, 184, 124, 0.8);
       }
@@ -423,7 +420,6 @@
   .event-portal .confirmation button {
     padding: 0px;
     font-size: 20px;
-    margin-bottom: 3px;
 }
 
   .set-availability{
