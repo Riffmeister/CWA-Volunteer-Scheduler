@@ -21,7 +21,7 @@ class EventJobs extends React.Component {
     currentJob.jobDescription = ''
     currentJob.volunteerName = ''
     currentJob.volunteerID = null
-    this.snackalert = 'helloworld'
+    this.snackalert = ''
   }
 
     render() {

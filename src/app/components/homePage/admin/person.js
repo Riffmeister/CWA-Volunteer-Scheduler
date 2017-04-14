@@ -10,7 +10,7 @@ require('../../app.less')
 class Person extends React.Component {
 
   componentWillMount(){
-    this.snackalert = 'helloworld'
+    this.snackalert = ''
   }
 
   render() {

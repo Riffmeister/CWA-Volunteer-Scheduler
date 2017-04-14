@@ -13,7 +13,7 @@ require('../../app.less')
 class AssignPortal extends React.Component {
 
   componentWillMount(){
-    this.snackalert = 'helloworld'
+    this.snackalert = ''
   }
   render() {
     return (

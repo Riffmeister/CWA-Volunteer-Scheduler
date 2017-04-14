@@ -16,7 +16,7 @@ class CreateNewJob extends React.Component {
 
 	componentWillMount() {
 		currentEvent.selectedDates = []
-		this.snackalert = 'helloworld'
+		this.snackalert = ''
 	}
 
 	render() {
