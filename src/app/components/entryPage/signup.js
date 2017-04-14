@@ -10,7 +10,7 @@ require('../app.less')
 class SignUp extends React.Component {
 
   componentWillMount(){
-    this.snackalert = 'helloworld'
+    this.snackalert = ''
   }
 
     constructor() {

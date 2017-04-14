@@ -22,7 +22,7 @@ require('../../app.less')
 class JobPortal extends React.Component {
   componentWillMount() {
     currentJob.formattedDate = this._formattedJobDate()
-    this.snackalert = 'helloworld'
+    this.snackalert = ''
   }
 
   render() {

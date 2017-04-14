@@ -15,7 +15,7 @@ class TimeSelector extends React.Component {
   overlapEnd = ''
 
   componentWillMount(){
-    this.snackalert = 'helloworld'
+    this.snackalert = ''
   }
 
   render() {

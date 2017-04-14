@@ -14,7 +14,7 @@ require('../../app.less')
 class CheckAvailability extends React.Component {
 
   componentWillMount(){
-    this.snackalert = 'helloworld'
+    this.snackalert = ''
   }
 
     render() {
