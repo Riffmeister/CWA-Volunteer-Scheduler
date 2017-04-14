@@ -77,7 +77,7 @@ class JobPortal extends React.Component {
         Assign Volunteer
         </button>) :
         <button onClick={this._handleConfirmJobClick.bind(this)}>
-        Confirm Job
+        {currentJob.jobStatus ? 'Unconfirm Job' : 'Confirm Job'}
         </button>}
           <button onClick={this._handleBackClick.bind(this)}>
             Back
