@@ -267,7 +267,6 @@ class TimeSelector extends React.Component {
           endHour = '0' + endHour
         }
 
-        // Checking Inputs!
         if (this._overlapCheck(startHour, this.refs.startTimeMinute.value, endHour, this.refs.endingTimeMinute.value)) {
           this._changeAlert(`Overlapping Time Entered with ${this.overlapEnd}`, 2000)
           return

@@ -124,7 +124,6 @@ class EventJobs extends React.Component {
         var request = new Api()
         request.deleteJob(job.jobID).then((response) => {
           currentEvent.jobs.splice(index, 1)
-          //this.setState(() => {true})
           this._changeAlert(`Successfully deleted ${job.jobName}.`, 2000)
         })
       } else {
