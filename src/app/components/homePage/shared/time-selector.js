@@ -21,6 +21,10 @@ class TimeSelector extends React.Component {
     return (
      <div className='time-picker'>
        <h3>Submit All Availability Times:</h3>
+       <div className='desired-hours'>
+         <label>Desired Number of Hours:</label>
+         <input ref='desiredHours' type='number' defaultValue={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
+       </div>
        <div className='clock'>
          <div id="startTime">
            <label>Starting:</label>
@@ -58,20 +62,20 @@ class TimeSelector extends React.Component {
            <div id="endingTime">
            <label>Ending:</label>
            <div>
-           <select ref='endingTimeHour'>
-             <option>08</option>
-             <option>09</option>
-             <option>10</option>
-             <option>11</option>
-             <option>12</option>
-             <option>01</option>
-             <option>02</option>
-             <option>03</option>
-             <option>04</option>
-             <option>05</option>
-             <option>06</option>
-             <option>07</option>
-           </select>
+             <select ref='endingTimeHour'>
+               <option>08</option>
+               <option>09</option>
+               <option>10</option>
+               <option>11</option>
+               <option>12</option>
+               <option>01</option>
+               <option>02</option>
+               <option>03</option>
+               <option>04</option>
+               <option>05</option>
+               <option>06</option>
+               <option>07</option>
+             </select>
            </div>
            <p className='colon'>:</p>
            <div className='digits'>
@@ -90,10 +94,6 @@ class TimeSelector extends React.Component {
          <div id="timeSubmit">
              <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
          </div>
-       </div>
-       <div className='desired-hours'>
-         <label>Desired Number of Hours:</label>
-         <input ref='desiredHours' type='number' defaultValue={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
        </div>
      </div>
       )
