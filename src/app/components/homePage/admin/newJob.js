@@ -103,10 +103,6 @@ class CreateNewJob extends React.Component {
 	        date,
 	        this.refs.startTime.value,
 	        this.refs.endTime.value).then((response) => {
-<<<<<<< HEAD
-=======
-						//alert('Job Successfully Created!')
->>>>>>> 3439b25... made funtion changes
 						this._changeAlert('Job Successfully Created!', 2000)
 			})
 		})
