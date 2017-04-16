@@ -21,33 +21,15 @@ class Header extends React.Component {
         <h1>Volunteer Management System</h1>
       </header>
       <div id ='options'>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f14cbed... massive css fixes based on usability review, not all done
   			<nav className='nav-options'>
   				<ul>
             <li onClick={this._handleClick.bind(this, 'account')}><a>Account</a></li>
   				</ul>
   			</nav>
-<<<<<<< HEAD
   			<div className='auth-option'>
   				<ul>
 
   					<li onClick={this._handleClick.bind(this, 'logout')}><a>Logout</a></li>
-=======
-  			<div className='auth-option'>
-  				<ul>
-            <li onClick={this._handleClick.bind(this, 'account')}><a>My Account</a></li>
-  					<li onClick={this._handleClick.bind(this, 'logout')}><a>Login/Logout</a></li>
-            <li onClick={this._handleClick.bind(this, 'availability')}><a></a></li>
->>>>>>> cde314a... css fixes and put back footer
-=======
-  			<div className='auth-option'>
-  				<ul>
-
-  					<li onClick={this._handleClick.bind(this, 'logout')}><a>Logout</a></li>
->>>>>>> f14cbed... massive css fixes based on usability review, not all done
   				</ul>
   			</div>
       </div>

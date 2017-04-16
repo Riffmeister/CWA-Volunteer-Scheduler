@@ -21,6 +21,7 @@ class EventPortal extends React.Component {
 
   componentWillMount() {
     currentEvent.volunteerObjects = []
+    this.snackalert = ''
   }
 
   render() {
@@ -36,6 +37,7 @@ class EventPortal extends React.Component {
           <button onClick={this._handleVolunteerAvailability.bind(this)}>Volunteer Availability</button>
           <button onClick={this._handleEventsClick.bind(this)}>Back to All Events</button>
         </div>
+        <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
     </section>)
   } else {
     return (
@@ -48,15 +50,30 @@ class EventPortal extends React.Component {
           <button onClick={this._handleAvailabilityClick.bind(this)}>Availability</button>
           <button onClick={this._handleEventsClick.bind(this)}>Back to All Events</button>
         </div>
+        <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
       </section>
     )
   }
 }
 
+_changeAlert(value, time){
+  this.snackalert = value;
+  this.setState(() => {return true;})
+  this._showSnackBar(time)
+}
+
+_showSnackBar(displayTime){
+  var t = this.refs.snackbar
+    t.classList = "snackbar show";
+
+    return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+}
+
+
   _handleAvailabilityClick(event) {
     event.preventDefault()
     var request = new Api()
-    var id = setTimeout(function() { alert('Please give us a moment to get your availability.'); }, 1000);
+    var id = this._changeAlert('Please give us a moment to get your availability.', 2000)
 
     request.getAvailability(currentEvent.eventID, userStore.personID).then((response) => {
       currentEvent.availability = response.body.availableTimes
@@ -87,12 +104,12 @@ class EventPortal extends React.Component {
 
   _handleVolunteerAvailability(event) {
     event.preventDefault()
-    var id = setTimeout(function() { alert('Please give us a moment to get all of your volunteers.'); }, 1000);
+    var id = this._changeAlert('Please give us a moment to get your availability.', 2000)
     this._volunteerObjectBuilder().then(() => {
       clearTimeout(id)
       browserHistory.push('/vms2/home/event/volunteer-availability')
     }).catch((error) => {
-      alert('There seems to have been a network error, please try again!')
+      this._changeAlert('There seems to have been a network error, please try again!', 2000)
       clearTimeout(id)
       console.log(error)
     })
@@ -106,7 +123,7 @@ class EventPortal extends React.Component {
   _handleEventsClick(event) {
     event.preventDefault()
     var request = new Api()
-    var id = setTimeout(function() { alert('Please give us a moment to grab all of the events.'); }, 1000);
+    var id = this._changeAlert('Please give us a moment to grab all of the events.', 2000)
     if (userStore.isAdmin){
       request.getEvents().then((response) => {
         eventStore.events = []
