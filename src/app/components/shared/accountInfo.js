@@ -26,7 +26,7 @@ class AccountInfo extends React.Component {
           </div>
 					<div>
 	          <label>Email:</label>
-	          <input ref='email' type="text" id='email' defaultValue={userStore.email} required ></input>
+	          <input ref='email' type="text" id='email' disabled defaultValue={userStore.email} required ></input>
           </div>
 					<div>
 						<label>Phone Number:</label>
@@ -43,9 +43,8 @@ class AccountInfo extends React.Component {
               <option value="T-Mobile">T-Mobile</option>
             </select>
           </div>
-          <button type="submit" onClick={this._handleSaveClick.bind(this)}>Save</button>
           </form>
-        <button onClick={this._handleBackClick.bind(this)}>Back</button>
+        <button onClick={this._handleBackClick.bind(this)}>Back to Previous Page</button>
       </section>
     )
   }

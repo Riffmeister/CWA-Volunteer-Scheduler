@@ -13,16 +13,14 @@
 
   .confirmation {
     display: flex;
-    flex-direction: column;
     flex-shrink: 0;
     width: 100%;
-    margin-top: 10px;
 
     button {
       justify-content: center;
       flex-direction: column;
       align-items: center;
-      flex-grow: .5;
+      width: 100%;
       font-size: 2.5em;
       &:active {
         color: rgba(207, 184, 124, 0.8);
@@ -64,7 +62,7 @@
     }
 
     .unassigned {
-      background-color: red;
+       background-color: #cfb87c;
     }
 
     h2 {
@@ -77,6 +75,8 @@
       flex-grow: 1;
       justify-content: flex-start;
       border: solid;
+      border-bottom: none;
+      padding: 5px;
       overflow: auto;
       width: 100%;
 
@@ -86,7 +86,6 @@
         justify-content: center;
         flex-shrink: 0;
         flex-direction: column;
-        margin-bottom: 20px;
         flex-grow: 1;
         align-items: center;
 
@@ -206,6 +205,8 @@
     display: flex;
     flex-grow: 1;
     overflow: auto;
+    border: inset;
+    border-right: none;
 
     .single-date {
       display: flex;
@@ -249,13 +250,12 @@
 
   .confirmation {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-shrink: 0;
 
     button {
       flex-grow: .5;
       font-size: 2.5em;
-      margin-bottom: 20px;
       &:active {
         color: rgba(207, 184, 124, 0.8);
       }
@@ -293,7 +293,6 @@
     button {
       flex-grow: .5;
       font-size: 2.5em;
-      margin-bottom: 20px;
       &:active {
         color: rgba(207, 184, 124, 0.8);
       }
@@ -315,6 +314,9 @@
       display: flex;
       overflow: auto;
       margin-right: 10px;
+      border: inset;
+      border-right: none;
+      padding: 5px;
 
       .date {
         margin-right: 10px;
@@ -379,15 +381,15 @@
       height: 100%;
   }
 
-  .event-portal .jobs {
-    //width: 90%;
-}
   .event-portal button{
     font-size: 1.7em;
   }
    .set-availability{
      font-size: larger;
    }
+   .set-availability h2 {
+    font-size: 1.9em;
+}
 
    .set-availability .date-picker h2 {
       font-size: 1.9em;
@@ -398,6 +400,8 @@
    }
    .dates{
      font-size:1.4em;
+     border: solid;
+     border-right: none;
    }
 
    .event-portal .confirmation button {
@@ -416,12 +420,17 @@
   .event-portal .confirmation button {
     padding: 0px;
     font-size: 20px;
-    margin-bottom: 3px;
 }
 
   .set-availability{
     font-size: small;
   }
+
+  .set-availability h2 {
+    font-size: 1.3em;
+    margin-bottom: 0px;
+}
+
   .set-availability .date-picker h2 {
      font-size: 1.2em;
       font-weight: 900;
@@ -438,7 +447,13 @@
     font-size: 1.6em;
   }
   .set-availability .confirmation button {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+  }
+  .check-availability .dates{
+    font-size: 1em;
+  }
+  .check-availability .dates{
+    font-size: 1em;
   }
 
    .check-availability .dates .single-date h2 {
@@ -463,6 +478,8 @@
     font-size: 0.5em;
 }
 
+
+
 }
 
 
@@ -477,4 +494,25 @@
     .event-portal .jobs h3 {
     font-size: 2em;
     }
+
+    .set-availability h2, .set-availability h3, {
+    margin-top: 10px;
+  }
+
+  .set-availability h2 {
+    font-size: 1.7em;
+  }
+
+    .set-availability .desired-hours {
+    font-size: 1em;
+}
+
+    .set-availability .desired-hours input{
+      width: 60px;
+    }
+
+    .time-picker h3 {
+      margin: 0px;
+    }
+
 }
