@@ -5,6 +5,7 @@ import Api from '../api/baseApi';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import userStore from '../user/userStore'
+import currentEvent from '../event/currentEvent'
 
 require('./header.less')
 
@@ -22,32 +23,19 @@ class Header extends React.Component {
       <div id ='options'>
   			<nav className='nav-options'>
   				<ul>
-            <li><a href="http://www.colorado.edu/cwa/" target="out" title="Conference on World Affairs Home"><i className="fa fa-university"></i> CWA</a></li>
+            <li onClick={this._handleClick.bind(this, 'account')}><a>Account</a></li>
   				</ul>
   			</nav>
   			<div className='auth-option'>
   				<ul>
-            <li onClick={this._handleClick.bind(this, 'account')}><a>My Account</a></li>
-            <li onClick={this._handleClick.bind(this, 'support')}><a>Support</a></li>
-  					<li onClick={this._handleClick.bind(this, 'logout')}><a>Login/Logout</a></li>
+
+  					<li onClick={this._handleClick.bind(this, 'logout')}><a>Logout</a></li>
   				</ul>
   			</div>
       </div>
 		</div>
     </section>
 )}
-
-_handleClickHere(event) {
-	event.preventDefault()
-	var apiReq = superagent.get('http://ec2-54-70-79-115.us-west-2.compute.amazonaws.com/')
-	.end((err, res) => {
-		if (err !== null) {
-			console.log('error')
-		} else {
-			console.log(res)
-		}
-	})
-}
 
 _handleClick(redirect, event){
 	event.preventDefault()
@@ -59,17 +47,35 @@ _handleClick(redirect, event){
       alert('You must be logged on to see your account information.')
     }
       break;
-    case 'support':
-      browserHistory.push('/vms2/support')
-      break;
+
     case 'logout':
       if (confirm('Are you sure you would like to logout?')) {
         browserHistory.push('/vms2')
       }
       break;
-  }
+
+    case 'availability':
+      if(!userStore.loggedOn){
+        alert('You must be logged to see availability.')
+      } else if(currentEvent.eventName == ''){
+        alert('You must have select an event to see availability')
+      } else {
+        event.preventDefault()
+        var request = new Api()
+        var id = setTimeout(function() { alert('Please give us a moment to get your availability.'); }, 1000);
+
+        request.getAvailability(currentEvent.eventID, userStore.personID).then((response) => {
+          currentEvent.availability = response.body.availableTimes
+          currentEvent.desiredHours = response.body.desiredHours
+          clearTimeout(id)
+          browserHistory.push('/vms2/home/event/check-availability')
+        })
+      }
+
+      break;
 
   }
+}
 
 }
 

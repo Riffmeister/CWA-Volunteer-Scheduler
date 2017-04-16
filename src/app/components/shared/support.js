@@ -17,7 +17,7 @@ class Support extends React.Component {
           <p>For any issues with the Volunteer Management System Application, please contact the vms2 at <a href="mailto:cwajazzvms2@gmail.com">cwajazzvms2@gmail.com</a>.</p>
           <p>Please include a destription of your issue and any screenshots/images that display your problem.</p>
         </article>
-        <button onClick={this._handleBackClick.bind(this)}>Back</button>
+        <button onClick={this._handleBackClick.bind(this)}>Back to Previous Page</button>
       </section>
     )
   }

@@ -4,8 +4,14 @@ import React from 'react';
 import Api from '../../../api/baseApi';
 import allUserStore from '../../../user/allUserStore';
 
+require('../../app.less')
+
 @observer
 class Person extends React.Component {
+
+  componentWillMount(){
+    this.snackalert = ''
+  }
 
   render() {
     return (
@@ -39,8 +45,22 @@ class Person extends React.Component {
           </div>
         </div>
       </div>
+      <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
     </div>
     )
+  }
+
+  _changeAlert(value, time){
+    this.snackalert = value;
+    this.setState(() => {return true;})
+    this._showSnackBar(time)
+  }
+
+  _showSnackBar(displayTime){
+    var t = this.refs.snackbar
+      t.classList = "snackbar show";
+
+      return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
   }
 
   _handleStatusClick(status, currentState, event) {
@@ -51,14 +71,14 @@ class Person extends React.Component {
         request.upgradePerson(allUserStore.users[this.props.allUserStoreIndex].personID, !allUserStore.users[this.props.allUserStoreIndex].admin, allUserStore.users[this.props.allUserStoreIndex].driver).then((response) => {
           allUserStore.users[this.props.allUserStoreIndex].admin = !allUserStore.users[this.props.allUserStoreIndex].admin
           this.setState(() => {return true})
-          alert(`Successfully changed ${allUserStore.users[this.props.allUserStoreIndex].personName}'s Admin status to ${allUserStore.users[this.props.allUserStoreIndex].admin}`)
+          this._changeAlert(`${allUserStore.users[this.props.allUserStoreIndex].personName}'s Admin status is now ${allUserStore.users[this.props.allUserStoreIndex].admin}`, 3000)
         })
         break;
       case 'driver':
         request.upgradePerson(allUserStore.users[this.props.allUserStoreIndex].personID, allUserStore.users[this.props.allUserStoreIndex].admin, !allUserStore.users[this.props.allUserStoreIndex].driver).then((response) => {
           allUserStore.users[this.props.allUserStoreIndex].driver = !allUserStore.users[this.props.allUserStoreIndex].driver
           this.setState(() => {return true})
-          alert(`Successfully changed ${allUserStore.users[this.props.allUserStoreIndex].personName}'s Driver status to ${allUserStore.users[this.props.allUserStoreIndex].driver}`)
+          this._changeAlert(`${allUserStore.users[this.props.allUserStoreIndex].personName}'s Driver status is now ${allUserStore.users[this.props.allUserStoreIndex].driver}`, 3000)
         })
         break;
     }
