@@ -71,7 +71,6 @@ class Login extends React.Component {
         const email = this.refs.email.value
         const password = this.refs.password.value
         if (email === "") {
-
           this._changeAlert("Please Enter Username", 2000)
           return false
         } else if (password === "") {
