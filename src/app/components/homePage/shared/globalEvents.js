@@ -21,6 +21,7 @@ class GlobalEvents extends React.Component {
     currentEvent.jobs = []
     currentEvent.desiredHours = null
     currentEvent.volunteers = {}
+    this.snackalert = ''
   }
 
   render() {
@@ -43,8 +44,23 @@ class GlobalEvents extends React.Component {
             <div className='events-body'>
               {eventElements}
             </div>
+            <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
          </section>
       )
+  }
+
+
+  _changeAlert(value, time){
+    this.snackalert = value;
+    this.setState(() => {return true;})
+    this._showSnackBar(time)
+  }
+
+  _showSnackBar(displayTime){
+    var t = this.refs.snackbar
+      t.classList = "snackbar show";
+
+      return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
   }
 
   _handleEventClick(eventData, event) {
@@ -55,7 +71,7 @@ class GlobalEvents extends React.Component {
       currentEvent.availability[date] = []
     })
     var request = new Api()
-    var id = setTimeout(function() { alert('Please give us a moment to load up your event.'); }, 1000);
+    var id = this._changeAlert('Please give us a moment to load up your event.', 2000)
     if (userStore.isAdmin) {
       request.getEvent(eventData.eventID).then((response) => {
         currentEvent.jobs = []

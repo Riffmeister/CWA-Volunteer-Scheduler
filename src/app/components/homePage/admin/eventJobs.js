@@ -8,6 +8,8 @@ import eventStore from '../../../event/eventStore';
 import currentEvent from '../../../event/currentEvent';
 import currentJob from '../../../event/currentJob';
 
+require('../../app.less')
+
 @observer
 class EventJobs extends React.Component {
 
@@ -19,6 +21,7 @@ class EventJobs extends React.Component {
     currentJob.jobDescription = ''
     currentJob.volunteerName = ''
     currentJob.volunteerID = null
+    this.snackalert = ''
   }
 
     render() {
@@ -28,6 +31,7 @@ class EventJobs extends React.Component {
             <div className='jobs-body'>
               {this._createJobElements()}
             </div>
+            <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
            </div>
         )
     }
@@ -42,7 +46,7 @@ class EventJobs extends React.Component {
         }
         return (
             <div key={job.jobID} className={`single-job ${background}`}>
-              <h3>{job.jobStatus ? job.jobName + ' | ' + 'Confirmed': job.jobName}</h3>
+              <h3>Job: {job.jobStatus ? job.jobName + ' | ' + 'Confirmed': job.jobName}</h3>
               <div className='job-body'>
                 <div>
                   <h4>Date:</h4>
@@ -73,10 +77,24 @@ class EventJobs extends React.Component {
                 <button onClick={this._handleAssignClick.bind(this, job)}>Assign</button>
                 <button onClick={this._handleDeleteJob.bind(this, job, index)}>Delete</button>
               </div>
+              <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
             </div>
         )
       })
       return jobElements
+    }
+
+    _changeAlert(value, time){
+      this.snackalert = value;
+      this.setState(() => {return true;})
+      this._showSnackBar(time)
+    }
+
+    _showSnackBar(displayTime){
+      var t = this.refs.snackbar
+        t.classList = "snackbar show";
+
+        return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
     }
 
     _handleAssignClick(job, event) {
@@ -90,7 +108,7 @@ class EventJobs extends React.Component {
       currentJob.jobTime = job.jobTime
       currentJob.volunteerID = job.volunteerID
       currentJob.volunteerName = job.volunteerFirstName + ' ' + job.volunteerLastName
-      var id = setTimeout(function() { alert('Please give us a moment to find who is available.'); }, 1000);
+      var id = this._changeAlert('Please give us a moment to find who is available.', 2000)
       var request = new Api()
       request.getVolunteersAvailabile(job.jobID).then((response) => {
         currentJob.volunteersAvailable = response.body
@@ -106,11 +124,10 @@ class EventJobs extends React.Component {
         var request = new Api()
         request.deleteJob(job.jobID).then((response) => {
           currentEvent.jobs.splice(index, 1)
-          this.setState(() => {true})
-          alert(`Successfully deleted ${job.jobName}.`)
+          this._changeAlert(`Successfully deleted ${job.jobName}.`, 2000)
         })
       } else {
-        alert(`${job.jobName} cannot be deleted due to ${job.volunteerFirstName + ' ' + job.volunteerLastName} being assigned.`)
+        this._changeAlert(`${job.jobName} cannot be deleted due to ${job.volunteerFirstName + ' ' + job.volunteerLastName} being assigned.`, 3000)
       }
     }
 

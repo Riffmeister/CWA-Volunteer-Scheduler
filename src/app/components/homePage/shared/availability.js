@@ -13,12 +13,11 @@ class Availability extends React.Component {
   render() {
     return (
      <div className='check-availability'>
-      <h4>Current Availability</h4>
+      <h4>Desired Hours: {this.props.desiredHours ? `${this.props.desiredHours}` : `None Given`} </h4>
        <div className='dates'>
         {this._generateDateElements()}
        </div>
        <div>
-        <h5>Desired Hours: {this.props.desiredHours ? `${this.props.desiredHours}` : `None Given`}</h5>
        </div>
      </div>
       )

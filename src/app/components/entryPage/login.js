@@ -7,11 +7,13 @@ import userStore from '../../user/userStore'
 import eventStore from '../../event/eventStore'
 
 require('./../../commonStyles/input.less')
+require('../app.less')
 
 @observer
 class Login extends React.Component {
 
     componentWillMount() {
+      this.snackalert = ''
       userStore.personID = ''
       userStore.loggedOn = false
       userStore.isAdmin = false
@@ -39,7 +41,10 @@ class Login extends React.Component {
                     <br></br>
                     <button type="submit" onClick={this._handleLogin.bind(this)}>Login</button>
                     <button type="submit" onClick={this._handleSignUp.bind(this)}>Sign Up</button>
+
                 </form>
+                <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
+
             </section>
         )
     }
@@ -48,20 +53,32 @@ class Login extends React.Component {
       alert(`Do not use any of the browser's refresh or back buttons while within this application.`)
     }
 
+    _changeAlert(value, time){
+      this.snackalert = value;
+      this.setState(() => {return true;})
+      this._showSnackBar(time)
+    }
+
+    _showSnackBar(displayTime){
+      var t = this.refs.snackbar
+        t.classList = "snackbar show";
+        return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+    }
+
     _handleLogin(event) {
 		    event.preventDefault()
         const email = this.refs.email.value
         const password = this.refs.password.value
         if (email === "") {
-            alert("Please Enter a Value for Email")
-            return false
+          this._changeAlert("Please Enter Username", 2000)
+          return false
         } else if (password === "") {
-            alert("Please Enter a Value for Password")
+            this._changeAlert("Please Enter Password", 2000)
             return false
         } else {
 			        event.preventDefault()
   	          var request = new Api()
-              var id = setTimeout(function() { alert('Please give us a moment to get you logged in.'); }, 1000);
+              var id =  this._changeAlert("Logging in, please wait", 2000)
               request.login(email,password).then((response) => {
                 userStore.personID = response.body.personID
                 userStore.loggedOn = true
@@ -89,7 +106,7 @@ class Login extends React.Component {
                 })
 
               }).catch((error) => {
-                alert('Unsuccessful Login')
+                this._changeAlert("Unsuccessful Login", 2000)
                 console.log(error)
               })
             }

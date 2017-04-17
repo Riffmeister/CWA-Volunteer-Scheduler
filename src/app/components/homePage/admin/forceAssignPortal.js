@@ -12,6 +12,11 @@ require('./assignPortal.less')
 
 @observer
 class ForceAssignPortal extends React.Component {
+
+  componentWillMount(){
+    this.snackalert = ''
+  }
+  
   render() {
     return (
       <section id='assign-portal'>
@@ -23,6 +28,7 @@ class ForceAssignPortal extends React.Component {
           <button onClick={this._handleAssignClick.bind(this)}>Assign</button>
           <button onClick={this._handleBackClick.bind(this)}>Back to Volunteers</button>
         </div>
+        <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
       </section>
     )
   }
@@ -59,6 +65,19 @@ class ForceAssignPortal extends React.Component {
     }
   }
 
+  _changeAlert(value, time){
+    this.snackalert = value;
+    this.setState(() => {return true;})
+    this._showSnackBar(time)
+  }
+
+  _showSnackBar(displayTime){
+    var t = this.refs.snackbar
+      t.classList = "snackbar show";
+
+      return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+  }
+
   _handleAssignClick(event) {
     var request = new Api()
     request.forceAssignVolunteer(currentEvent.forceAssignVolunteer['personID'], currentEvent.eventID, currentEvent.selectedJob['jobID']).then((response) => {
@@ -81,7 +100,7 @@ class ForceAssignPortal extends React.Component {
           })
         }
         this.setState(() => {true})
-        alert(`Successfullly assigned ${userStore.firstName + ' ' + userStore.lastName} to ${currentEvent.selectedJob['jobName']}`)
+        this._changeAlert(`Successfullly assigned ${userStore.firstName + ' ' + userStore.lastName} to ${currentEvent.selectedJob['jobName']}`, 3000)
       })
     })
   }
