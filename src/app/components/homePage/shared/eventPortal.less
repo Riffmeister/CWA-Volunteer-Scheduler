@@ -18,6 +18,7 @@
     width: 100%;
 
     button {
+      display: flex;
       justify-content: center;
       flex-direction: column;
       align-items: center;
@@ -66,9 +67,10 @@
        background-color: #cfb87c;
     }
 
-    h2 {
+    h3 {
       width: 100%;
       text-align: center;
+      font-weight: 600;
     }
 
     .jobs-body {
@@ -95,18 +97,18 @@
           flex-wrap: wrap;
           justify-content: space-between;
 
-          h4 {
-            font-size: 2.5em;
+          div{
+             padding-right: 40px;
           }
 
-          h5 {
-            font-size: 1.5em;
+           div:last-child{
+             padding-right: 0px;
           }
+
 
         }
 
         h3 {
-          font-size: 2.5em;
           border-bottom: solid;
         }
 
