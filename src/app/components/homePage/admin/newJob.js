@@ -61,6 +61,10 @@ class CreateNewJob extends React.Component {
     var start = parseTime(this.refs.startTime.value);
 		var end = parseTime(this.refs.endTime.value);
 
+		if(start == null || end == null){
+			return true;
+		}
+
 		var startMinute = start.minute;
 		var startHour = start.hour;
 		if(startMinute == 0){
@@ -86,9 +90,7 @@ class CreateNewJob extends React.Component {
 		console.log(endHour + ":" + endMinute)
 		this.endSubmit = endHour + ":" + endMinute;
 
-
-
-
+		return false;
 
 	}
 	_fieldsFilled() {
@@ -128,9 +130,10 @@ class CreateNewJob extends React.Component {
 		if (this._fieldsFilled(event)) {
 			this._changeAlert('Please input all values', 2000)
 			return false
+		} if(this._timeParser()){
+				this._changeAlert('Please input valid time format(Example: HH:MM PM)', 2000)
 		} else {
 			var id = this._changeAlert('Please give us a moment to create your jobs.', 2000)
-			this._timeParser()
 			currentEvent.selectedDates.map((date) => {
 				var request = new Api()
 	      request.createJob(
