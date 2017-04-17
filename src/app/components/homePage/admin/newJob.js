@@ -17,6 +17,8 @@ class CreateNewJob extends React.Component {
 	componentWillMount() {
 		currentEvent.selectedDates = []
 		this.snackalert = ''
+		this.startSubmit = ''
+		this.endSubmit = ''
 	}
 
 	render() {
@@ -54,6 +56,41 @@ class CreateNewJob extends React.Component {
 		</section>
 	)}
 
+  _timeParser(){
+		var parseTime = require('parse-loose-time');
+    var start = parseTime(this.refs.startTime.value);
+		var end = parseTime(this.refs.endTime.value);
+
+		var startMinute = start.minute;
+		var startHour = start.hour;
+		if(startMinute == 0){
+			startMinute = '00'
+		}
+
+		if(startHour.toString().length == 1){
+			startHour = '0' + startHour;
+		}
+
+		var endMinute = end.minute;
+		var endHour = end.hour;
+		if(endMinute == 0){
+			endMinute = '00'
+		}
+
+		if(endHour.toString().length == 1){
+			endHour = '0' + endHour;
+		}
+
+		console.log(startHour + ":" + startMinute)
+		this.startSubmit = startHour + ":" + startMinute;
+		console.log(endHour + ":" + endMinute)
+		this.endSubmit = endHour + ":" + endMinute;
+
+
+
+
+
+	}
 	_fieldsFilled() {
 		if (this.refs.jobName.value == '') {
 			return true
@@ -93,6 +130,7 @@ class CreateNewJob extends React.Component {
 			return false
 		} else {
 			var id = this._changeAlert('Please give us a moment to create your jobs.', 2000)
+			this._timeParser()
 			currentEvent.selectedDates.map((date) => {
 				var request = new Api()
 	      request.createJob(
@@ -101,8 +139,8 @@ class CreateNewJob extends React.Component {
 	        this.refs.description.value,
 	        this.refs.location.value,
 	        date,
-	        this.refs.startTime.value,
-	        this.refs.endTime.value).then((response) => {
+	        this.startSubmit,
+	        this.endSubmit).then((response) => {
 						this._changeAlert('Job Successfully Created!', 2000)
 			})
 		})

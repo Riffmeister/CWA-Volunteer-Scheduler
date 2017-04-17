@@ -32,6 +32,7 @@
     "sass": "^0.5.0",
     "style-loader": "^0.13.1",
     "superagent": "^3.3.2",
+    "tape": "^4.6.3",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
