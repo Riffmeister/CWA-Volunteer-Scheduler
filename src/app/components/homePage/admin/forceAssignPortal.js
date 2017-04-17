@@ -16,7 +16,7 @@ class ForceAssignPortal extends React.Component {
   componentWillMount(){
     this.snackalert = ''
   }
-  
+
   render() {
     return (
       <section id='assign-portal'>
