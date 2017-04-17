@@ -36,11 +36,11 @@ class CreateNewJob extends React.Component {
     </div>
     <div>
 			<label>Start Time:</label>
-			<input ref='startTime' type="time" id='startingTime' placeholder="07:00 AM"></input>
+			<input ref='startTime' type="time" id='startingTime' placeholder="07:00 AM" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1} (am|AM|PM|pm){1}" title="Incorect Input, example = 07:00 AM"></input>
 		</div>
     <div>
       <label>End Time:</label>
-      <input ref='endTime' type="time" id='endingTime' placeholder="10:00 AM"></input>
+      <input ref='endTime' type="time" id='endingTime' placeholder="10:00 AM" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1} (am|AM|PM|pm){1}" title="Incorect Input, example = 10:00 AM"></input>
     </div>
 		<div className="column-form">
       <label>Description:</label>
@@ -53,6 +53,56 @@ class CreateNewJob extends React.Component {
 					<div className="snackbar" ref='snackbar'>{this.snackalert}</div>
 		</section>
 	)}
+
+
+
+
+	_correctTimeFormat(){
+		console.log("HERE")
+		var start = this.refs.startTime.value;
+		var end = this.refs.endTime.value;
+
+		var startSplit = start.split(" "); //('11:00', 'PM')
+		var endSplit = end.split(" ");
+
+		if(startSplit.length > 1 && endSplit.length > 1){
+			var startEnd = startSplit[1];
+			if(startEnd == "PM" || startEnd == "pm"){
+
+    		var time = startSplit[0].split(":");
+				var startHour = parseInt(time[0]);
+
+				if(startHour < 12){
+					startHour = startHour + 12
+				}
+    	  time[0]= startHour.toString();
+			this.refs.startTime.value = time[0]+":"+time[1];
+			console.log("start")
+			console.log(this.refs.startTime.value)
+			}
+
+		  var endEnd = end[1];
+			if(endEnd == "PM" || endEnd == "pm"){
+
+    		var time = endSplit[0].split(":");
+				var endHour = parseInt(time[0]);
+
+				if(endHour < 12){
+					endHour = endHour + 12
+				}
+    	  time[0]= startHour.toString();
+				this.refs.endTime.value = time[0]+":"+time[1];
+				console.log("end")
+				console.log(this.refs.endTime.value)
+			}
+		} else if(start.length > 5 || end.length > 5){
+			this._changeAlert('Please input correct time format', 2000)
+			return true
+		} else {
+			this._changeAlert('24 Hour time', 2000)
+			return false
+		}
+	}
 
 	_fieldsFilled() {
 		if (this.refs.jobName.value == '') {

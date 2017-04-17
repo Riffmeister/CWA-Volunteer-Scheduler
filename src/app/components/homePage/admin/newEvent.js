@@ -22,15 +22,15 @@ class CreateNewEvent extends React.Component {
 		<form ref='new-event'>
 		<div>
 			<label>Event Name:</label>
-			<input ref='eventName' type="text" autoFocus id='eventName'></input>
+			<input ref='eventName' type="text" required autoFocus id='eventName'></input>
 		</div>
 		<div>
 			<label>Starting Date:</label>
-			<input ref='startingDate' type="date" id='startingDate' placeholder="YYYY-MM-DD" title="Expected pattern is YYYY-MM-DD"></input>
+			<input ref='startingDate' type="date" id='startingDate' placeholder="YYYY-MM-DD" required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" title="Expected pattern is YYYY-MM-DD"></input>
 		</div>
 		<div>
 			<label>Ending Date:</label>
-			<input ref='endingDate' type="date" id='endingDate' placeholder="YYYY-MM-DD" title="Expected pattern is YYYY-MM-DD"></input>
+			<input ref='endingDate' type="date" id='endingDate' placeholder="YYYY-MM-DD" required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" title="Expected pattern is YYYY-MM-DD"></input>
 		</div>
 		<button type="submit" onClick={this._handleSubmit.bind(this)}>Submit New Event</button>
 		<button type="submit" onClick={this._handleBack.bind(this)}>Back</button>
