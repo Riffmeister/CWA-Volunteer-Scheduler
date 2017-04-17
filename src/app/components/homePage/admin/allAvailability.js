@@ -73,7 +73,6 @@ class AllAvailability extends React.Component {
     })
     return jobElements
   }
-
   _handleBackClick(event) {
     event.preventDefault()
     browserHistory.goBack()

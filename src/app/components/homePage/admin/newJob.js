@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import eventStore from '../../../event/eventStore';
 import currentEvent from '../../../event/currentEvent';
 import DatePicker from '../shared/datePicker';
-
 require('./newJob.less')
 require('../../app.less')
 
@@ -129,6 +128,7 @@ class CreateNewJob extends React.Component {
 					volunteerID: response.body.jobs[key].volunteer_id,
 					volunteerFirstName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].first : null,
           volunteerLastName: response.body.jobs[key].volunteer_id ? response.body.volunteers[response.body.jobs[key].volunteer_id].last : null
+
 				})
 			}
 			browserHistory.goBack()
