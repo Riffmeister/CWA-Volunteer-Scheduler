@@ -32,6 +32,72 @@ header h1{
 	}
 }
 
+#name-and-slogan {
+    margin-left: 10px;
+    padding-top: 15px;
+}
+
+
+h1 #site-name, div #site-name {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    line-height: 110%;
+    font-weight: 200 !important;
+    font-family: "Neue Helvetica W01","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+#site-slogan {
+    margin: 0;
+    padding-top: 4px;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+#site-slogan strong {
+    font-weight: 600;
+}
+
+@media (min-width: 960px){
+	#name-and-slogan {
+	    padding-top: 13px;
+	}
+	h1 #site-name, div #site-name {
+	    font-size: 28px;
+	    margin: 0;
+	    padding: 0;
+	    line-height: 110%;
+	}
+	#site-slogan {
+	    margin: 3px 0 0 0;
+	    font-size: 12px;
+	    text-transform: uppercase;
+	}
+}
+
+@media (max-width: 959px) and (min-width: 480px){
+#name-and-slogan {
+    margin-left: 10px;
+    padding-top: 15px;
+}
+h1#site-name, div#site-name {
+    font-size: 21px;
+    margin: 0;
+    padding: 0;
+    line-height: 110%;
+}
+
+#site-slogan {
+    margin: 0px 0 0 0;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+}
+
+
 	@media only screen and (max-width: 635px){
 
 		header h1{
@@ -45,6 +111,10 @@ header h1{
 
 		header h1{
 			font-size: 1.5em;
+		}
+
+		#site-slogan{
+			font-size: 9px;
 		}
 	}
 

@@ -18,7 +18,12 @@ class Header extends React.Component {
 		<div id ='header-section' className=' content-container'>
       <header>
         <img src='http://www.colorado.edu/cwa/profiles/express/themes/culayers/logo.png' />
-        <h1>Volunteer Management System</h1>
+          <div className="header__name-and-slogan" id="name-and-slogan">
+            <h1 className="header__site-name" id="site-name">
+            <span>Conference on World Affairs </span>
+          </h1>
+                <div className="header__site-slogan" id="site-slogan"><strong> CU Boulder</strong> Volunteer Management System </div>
+            </div>
       </header>
       <div id ='options'>
   			<nav className='nav-options'>
