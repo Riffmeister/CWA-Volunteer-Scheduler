@@ -85,9 +85,7 @@ class CreateNewJob extends React.Component {
 			endHour = '0' + endHour;
 		}
 
-		console.log(startHour + ":" + startMinute)
 		this.startSubmit = startHour + ":" + startMinute;
-		console.log(endHour + ":" + endMinute)
 		this.endSubmit = endHour + ":" + endMinute;
 
 		return false;

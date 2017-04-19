@@ -19,9 +19,13 @@ componentWillMount() {
   _createPeopleElements() {
     var peopleElements = Object.keys(currentJob.volunteersAvailable).map((personID) => {
       currentJob.volunteersAvailable[personID]['ID'] = personID
+      if (`${currentJob.volunteerID}` === personID) {
+        currentJob.selectedPerson = currentJob.volunteersAvailable[personID]
+      }
       return (
         <div key={personID} className='person'>
           <button ref={personID}
+          className={`${currentJob.volunteerID}` === personID ? 'selected' : null}
           onClick={this._handlePersonClick.bind(this, personID)}>
           <h3>{currentJob.volunteersAvailable[personID].name}</h3>
           <h4>Assigned Hours: {currentJob.volunteersAvailable[personID].assigned_hours}</h4>
@@ -48,20 +52,6 @@ componentWillMount() {
       currentJob.selectedPerson = currentJob.volunteersAvailable[personID]
     }
   }
-  // _handleJobClick(job, event) {
-  //   event.preventDefault()
-  //   if (currentEvent.selectedJob && (currentEvent.selectedJob['jobID'] === job['jobID'])) {
-  //     this.refs[job['jobID']].classList = ''
-  //     currentEvent.selectedJob = null
-  //   } else if (currentEvent.selectedJob) {
-  //     this.refs[currentEvent.selectedJob['jobID']].classList = ''
-  //     currentEvent.selectedJob = job
-  //     this.refs[job['jobID']].classList = 'selected'
-  //   } else {
-  //     this.refs[job['jobID']].classList = 'selected'
-  //     currentEvent.selectedJob = job
-  //   }
-  // }
 }
 
 export default PeoplePicker;

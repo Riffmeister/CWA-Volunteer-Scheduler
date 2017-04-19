@@ -80,7 +80,6 @@ class ForceAssignPortal extends React.Component {
 
   _handleAssignClick(event) {
     var request = new Api()
-    console.log('personID', typeof currentEvent.forceAssignVolunteer['personID'], 'eventID', currentEvent.eventID, 'jobID', currentEvent.selectedJob['jobID'])
     request.forceAssignVolunteer(currentEvent.forceAssignVolunteer['personID'], currentEvent.eventID, currentEvent.selectedJob['jobID']).then((response) => {
       var eventRequest = new Api()
       eventRequest.getEvent(currentEvent.eventID).then((response) => {
