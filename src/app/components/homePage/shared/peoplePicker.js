@@ -36,11 +36,11 @@ componentWillMount() {
 
   _handlePersonClick(personID, event) {
     event.preventDefault()
-    if (currentJob.selectedPerson && (currentJob.selectedPerson.ID === `${personID}`)) {
-      this.refs[currentJob.selectedPerson.ID].classList = null
-      currentJob.selectedPerson = null
+    if (currentJob.selectedPerson && (currentJob.selectedPerson === currentJob.volunteersAvailable[personID])) {
+      this.refs[currentJob.selectedPerson.ID].classList = ''
+      currentJob.selectedPerson = {}
     } else if (currentJob.selectedPerson){
-      this.refs[`${currentJob.selectedPerson.ID}`].classList = null
+      this.refs[currentJob.selectedPerson.ID].classList = ''
       currentJob.selectedPerson = currentJob.volunteersAvailable[personID]
       this.refs[personID].classList = 'selected'
     } else {
@@ -48,20 +48,6 @@ componentWillMount() {
       currentJob.selectedPerson = currentJob.volunteersAvailable[personID]
     }
   }
-  // _handleJobClick(job, event) {
-  //   event.preventDefault()
-  //   if (currentEvent.selectedJob && (currentEvent.selectedJob['jobID'] === job['jobID'])) {
-  //     this.refs[job['jobID']].classList = ''
-  //     currentEvent.selectedJob = null
-  //   } else if (currentEvent.selectedJob) {
-  //     this.refs[currentEvent.selectedJob['jobID']].classList = ''
-  //     currentEvent.selectedJob = job
-  //     this.refs[job['jobID']].classList = 'selected'
-  //   } else {
-  //     this.refs[job['jobID']].classList = 'selected'
-  //     currentEvent.selectedJob = job
-  //   }
-  // }
 }
 
 export default PeoplePicker;
