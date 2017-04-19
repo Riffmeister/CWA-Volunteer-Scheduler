@@ -62,6 +62,7 @@ class AssignPortal extends React.Component {
 
   _handleAssignClick(event) {
     var request = new Api()
+    console.log(currentJob.selectedPerson, currentEvent.eventID, currentJob.jobID)
     request.assignVolunteer(currentJob.selectedPerson.ID, currentEvent.eventID, currentJob.jobID).then((response) => {
       currentJob.volunteerName = currentJob.selectedPerson.name
       currentJob.volunteerID = currentJob.selectedPerson.ID
