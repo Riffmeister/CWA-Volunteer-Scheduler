@@ -143,7 +143,10 @@ class CreateNewJob extends React.Component {
 	        this.startSubmit,
 	        this.endSubmit).then((response) => {
 						this._changeAlert('Job Successfully Created!', 2000)
-			})
+						this.refs.startTime.value = ''
+		        this.refs.endTime.value = ''
+						this.refs.location.value = ''
+			}).catch((response) => {this._changeAlert('Job Creation Failed', 2000)})
 		})
 			}
 		} else {
