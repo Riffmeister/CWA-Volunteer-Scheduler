@@ -102,9 +102,6 @@ class TimeSelector extends React.Component {
        <div id="timeSubmit">
            <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
        </div>
-       <div id="timeSubmit">
-           <button onClick={this._handleTimeSubmit.bind(this)}>Submit</button>
-       </div>
        <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
      </div>
       )
