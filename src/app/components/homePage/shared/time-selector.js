@@ -29,7 +29,7 @@ class TimeSelector extends React.Component {
      <div className='time-picker'>
        <h3>Submit All Availability Times:</h3>
        <div className='desired-hours'>
-         <label>Desired Number of Hours:</label>
+         <label>Desired Hours for Entire Event:</label>
          <input ref='desiredHours' type='number' defaultValue={currentEvent.desiredHours ? currentEvent.desiredHours : 0}/>
        </div>
        <div className='clock'>

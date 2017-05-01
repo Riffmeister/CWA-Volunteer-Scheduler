@@ -71,6 +71,7 @@
       width: 100%;
       text-align: center;
       font-weight: 600;
+      margin-top: 10px;
     }
 
     .jobs-body {
@@ -91,32 +92,46 @@
         flex-direction: column;
         flex-grow: 1;
         align-items: center;
-
-        .job-body {
+        .job-content{
           display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-
-          div{
-             padding-right: 40px;
-          }
-
-           div:last-child{
-             padding-right: 0px;
-          }
-
-
-        }
-
-        h3 {
-          border-bottom: solid;
-        }
-
-        .options {
-          width: 100%;
+          flex-direction: row;
           margin-bottom: 10px;
-          display: flex;
-          justify-content: space-around;
+
+          .job-body {
+            display: flex;
+            justify-content: space-between;
+
+            div{
+               padding-right: 40px;
+            }
+
+             div:last-child{
+               padding-right: 0px;
+            }
+
+            .description{
+              max-width: 20%;
+
+              p{
+                max-height: 50%;
+                overflow: auto;
+              }
+            }
+
+
+          }
+
+          h3 {
+            border-bottom: solid;
+          }
+
+          .options {
+            /* width: 100%; */
+            padding-left: 20px;
+            display: flex;
+            /* justify-content: space-around; */
+            flex-direction: column;
+          }
         }
       }
     }
@@ -416,6 +431,25 @@
 /*PHONE VIEW*/
 @media only screen and (max-width: 528px){
 
+.event-portal .jobs .jobs-body .single-job .job-content {
+    flex-direction: column;
+}
+
+.event-portal .jobs .jobs-body .single-job .job-content .job-body {
+    flex-wrap: wrap;
+}
+
+.event-portal .jobs .jobs-body .single-job .job-content .job-body .description {
+     max-width: 100%;
+}
+
+.event-portal .jobs .jobs-body .single-job .job-content .job-body .description p {
+    font-size: 2.2em;
+}
+
+.event-portal .jobs .jobs-body .single-job .job-content .options {
+  padding-left: 0px;
+}
   .event-portal h2 {
     font-size: 30px;
   }

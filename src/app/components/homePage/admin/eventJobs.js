@@ -46,7 +46,8 @@ class EventJobs extends React.Component {
         }
         return (
             <div key={job.jobID} className={`single-job ${background}`}>
-              <h3>Job: {job.jobStatus ? job.jobName + ' | ' + 'Confirmed': job.jobName}</h3>
+              <h3>{job.jobStatus ? job.jobName + ' | ' + 'Confirmed': job.jobName}</h3>
+              <div className="job-content">
               <div className='job-body'>
                 <div>
                   <h4>Date:</h4>
@@ -61,22 +62,23 @@ class EventJobs extends React.Component {
                   <h5>{job.jobLocation}</h5>
                 </div>
                 <div>
-                  <h4>Description:</h4>
-                  <h5>{job.jobDescription}</h5>
-                </div>
-                <div>
                   <h4>Job Status:</h4>
                   <h5>{job.jobStatus ? job.jobStatus : 'No Job Status'}</h5>
                 </div>
                 <div>
-                  <h4>Assigned Volunteer:</h4>
+                  <h4>AVolunteer:</h4>
                   <h5>{job.volunteerID === null ? 'Nobody Assigned' : job.volunteerFirstName + ' ' + job.volunteerLastName}</h5>
+                </div>
+                <div className = "description">
+                  <h4>Description:</h4>
+                  <p>{job.jobDescription}</p>
                 </div>
               </div>
               <div className='options'>
                 <button onClick={this._handleAssignClick.bind(this, job)}>Assign</button>
                 <button onClick={this._handleDeleteJob.bind(this, job, index)}>Delete</button>
               </div>
+            </div>
               <div className="snackbar" ref='snackbar'>{this.snackalert}</div>
             </div>
         )
