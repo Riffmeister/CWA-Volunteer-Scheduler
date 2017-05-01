@@ -60,9 +60,9 @@ class CreateNewEvent extends React.Component {
 
 	_showSnackBar(displayTime){
 	  var t = this.refs.snackbar
-	    t.classList = "snackbar show";
+	    t.classList.add("show")
 
-	    return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+	    return setTimeout(function(){ t.classList.add("snackbar")}, displayTime);
 	}
 
 	_handleSubmit(event) {

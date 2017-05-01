@@ -56,10 +56,10 @@ class DatePicker extends React.Component {
         if (index > -1) {
           currentEvent.selectedDates.splice(index, 1)
         }
-        this.refs[date].classList = ''
+        this.refs[date].classList.remove('selected')
       } else {
         currentEvent.selectedDates.push(date)
-        this.refs[date].classList = 'selected'
+        this.refs[date].classList.add('selected')
       }
     }
 }

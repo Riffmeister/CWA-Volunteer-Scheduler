@@ -46,9 +46,9 @@ componentWillMount() {
     } else if (currentJob.selectedPerson){
       this.refs[`${currentJob.selectedPerson.ID}`].classList = null
       currentJob.selectedPerson = currentJob.volunteersAvailable[personID]
-      this.refs[personID].classList = 'selected'
+      this.refs[personID].classList.add('selected')
     } else {
-      this.refs[personID].classList = 'selected'
+      this.refs[personID].classList.add('selected')
       currentJob.selectedPerson = currentJob.volunteersAvailable[personID]
     }
   }

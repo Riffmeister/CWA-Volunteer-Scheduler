@@ -53,14 +53,14 @@ class ForceAssignPortal extends React.Component {
   _handleJobClick(job, event) {
     event.preventDefault()
     if (currentEvent.selectedJob && (currentEvent.selectedJob['jobID'] === job['jobID'])) {
-      this.refs[job['jobID']].classList = ''
+      this.refs[job['jobID']].classList.remove('selected')
       currentEvent.selectedJob = null
     } else if (currentEvent.selectedJob) {
-      this.refs[currentEvent.selectedJob['jobID']].classList = ''
+      this.refs[currentEvent.selectedJob['jobID']].classList.remove('selected')
       currentEvent.selectedJob = job
-      this.refs[job['jobID']].classList = 'selected'
+      this.refs[job['jobID']].classList.add('selected')
     } else {
-      this.refs[job['jobID']].classList = 'selected'
+      this.refs[job['jobID']].classList.add('selected')
       currentEvent.selectedJob = job
     }
   }
@@ -73,9 +73,9 @@ class ForceAssignPortal extends React.Component {
 
   _showSnackBar(displayTime){
     var t = this.refs.snackbar
-      t.classList = "snackbar show";
+      t.classList.add("show")
 
-      return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+      return setTimeout(function(){ t.classList.add("snackbar") }, displayTime);
   }
 
   _handleAssignClick(event) {

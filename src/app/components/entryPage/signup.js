@@ -83,9 +83,9 @@ class SignUp extends React.Component {
 
     _showSnackBar(displayTime){
       var t = this.refs.snackbar
-        t.classList = "snackbar show";
+        t.classList.add("show")
 
-        return setTimeout(function(){ t.classList = "snackbar"; }, displayTime);
+        return setTimeout(function(){ t.classList.add("snackbar") }, displayTime);
     }
 
 	_fieldsFilled() {
@@ -140,7 +140,7 @@ class SignUp extends React.Component {
 			this._changeAlert('Passwords do not match.', 2000)
 
 		} else {
-      var id =  this._changeAlert("Signup Successful!", 2000)
+      var id =  this._changeAlert("Signing You Up, please wait!", 2000)
       const choice = this.refs.phoneProvider.selectedIndex
       var request = new Api()
       request.signup(this.refs.firstName.value,
@@ -150,9 +150,11 @@ class SignUp extends React.Component {
         this.refs.phone.value,
         this.refs.phoneProvider[choice].value,
         this.refs.password.value).then((response) => {
-          clearTimeout(id)
         browserHistory.push('/vms2')
-        })
+      }).catch((error) => {
+        clearTimeout(id)
+        this._changeAlert('Signup Unsuccessful, perhaps you have already entered this email?')
+      })
       }
     }
 }
