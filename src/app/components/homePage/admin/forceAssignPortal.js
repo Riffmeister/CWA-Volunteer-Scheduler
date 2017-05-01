@@ -53,14 +53,14 @@ class ForceAssignPortal extends React.Component {
   _handleJobClick(job, event) {
     event.preventDefault()
     if (currentEvent.selectedJob && (currentEvent.selectedJob['jobID'] === job['jobID'])) {
-      this.refs[job['jobID']].classList = ''
+      this.refs[job['jobID']].classList.remove('selected')
       currentEvent.selectedJob = null
     } else if (currentEvent.selectedJob) {
-      this.refs[currentEvent.selectedJob['jobID']].classList = ''
+      this.refs[currentEvent.selectedJob['jobID']].classList.remove('selected')
       currentEvent.selectedJob = job
-      this.refs[job['jobID']].classList = 'selected'
+      this.refs[job['jobID']].classList.add('selected')
     } else {
-      this.refs[job['jobID']].classList = 'selected'
+      this.refs[job['jobID']].classList.add('selected')
       currentEvent.selectedJob = job
     }
   }

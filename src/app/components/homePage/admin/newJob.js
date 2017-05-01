@@ -119,7 +119,7 @@ class CreateNewJob extends React.Component {
 	_showSnackBar(displayTime){
 		var t = this.refs.snackbar
 			t.classList.add("show")
-			return setTimeout(function(){ t.classList.add("snackbar") }, displayTime);
+			return setTimeout(function(){ t.classList.remove("show") }, displayTime);
 	}
 
 	_handleSubmit(event) {
