@@ -36,7 +36,7 @@ class MyJobs extends React.Component {
       return (
           <div key={job.jobID}>
             <button onClick={this._handleJobClick.bind(this, job)}>
-              {job.jobName}
+              <strong>{job.jobName}</strong> | {job.jobDate} | <strong>{job.jobTime}</strong> | {job.jobLocation}
             </button>
           </div>
       )
