@@ -25,7 +25,7 @@
       flex-shrink: 0;
       flex-grow: .1;
       width: 100%;
-      flex-direction: column;
+      flex-wrap: wrap;
 
 
 
@@ -41,7 +41,8 @@
       .person {
         display: flex;
         white-space: nowrap;
-        margin-right: 0px;
+        width: 33%;
+        max-width: 33%;
 
         .selected {
           background-color: #cfb87c;
@@ -90,16 +91,18 @@
 
   .jobs{
     display: flex;
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
     flex-grow: 1;
     width: 100%;
+    /* flex-direction: column; */
     overflow: auto;
+    flex-wrap: wrap;
 
     .job {
       display: flex;
-      flex-grow: 1;
-      flex-shrink: 0;
-      margin-right: 10px;
+      white-space: nowrap;
+      width: 33%;
+      max-width: 33%;
 
       .selected {
         background-color: #cfb87c;
@@ -114,13 +117,20 @@
         font-size: 1.5em;
         font-weight: 800;
       }
+
+      button{
+        width: 100%;
+      }
     }
   }
 }
 
 /*TABLET VIEW */
 @media only screen and (max-width: 830px){
-
+  #assign-portal .jobs .job, #assign-portal .people-picker .people .person {
+      width: 50%;
+      max-width: 50%;
+  }
 
 }
 
@@ -129,7 +139,12 @@
 
   #assign-portal .people-picker {
     font-size: 8px;
-}
+  }
+
+  #assign-portal .jobs .job,  #assign-portal .people-picker .people .person {
+    width: 100%;
+    max-width: 100%;
+  }
 
 #assign-portal .confirmation button {
     font-size: 2em;
