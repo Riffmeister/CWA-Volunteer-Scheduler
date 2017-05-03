@@ -66,7 +66,7 @@ class EventJobs extends React.Component {
                   <h5>{job.jobStatus ? job.jobStatus : 'No Job Status'}</h5>
                 </div>
                 <div>
-                  <h4>AVolunteer:</h4>
+                  <h4>Volunteer:</h4>
                   <h5>{job.volunteerID === null ? 'Nobody Assigned' : job.volunteerFirstName + ' ' + job.volunteerLastName}</h5>
                 </div>
                 <div className = "description">
