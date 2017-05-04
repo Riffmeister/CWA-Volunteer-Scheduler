@@ -64,10 +64,10 @@ class AllAvailability extends React.Component {
     Object.keys(jobs).map((jobID) => {
       jobElements.push(
         <div key={jobID} className='job'>
-        <h5>Job Name: {jobs[jobID].job_name}</h5>
-        <h5>Job Date: {jobs[jobID].job_date}</h5>
-        <h5>Job Time: {jobs[jobID].job_time_start + ' ' + jobs[jobID].job_time_end}</h5>
-        <h5>Job Location: {jobs[jobID].location}</h5>
+        <h5 className="col-sm-3">Job Name: {jobs[jobID].job_name}</h5>
+        <h5 className="col-sm-3">Job Date: {jobs[jobID].job_date}</h5>
+        <h5 className="col-sm-3">Job Time: {jobs[jobID].job_time_start + ' ' + jobs[jobID].job_time_end}</h5>
+        <h5 className="col-sm-3">Job Location: {jobs[jobID].location}</h5>
         </div>
       )
     })
