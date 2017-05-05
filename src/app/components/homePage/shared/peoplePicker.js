@@ -40,11 +40,11 @@ componentWillMount() {
 
   _handlePersonClick(personID, event) {
     event.preventDefault()
-    if (currentJob.selectedPerson && (currentJob.selectedPerson.ID === `${personID}`)) {
-      this.refs[currentJob.selectedPerson.ID].classList = null
-      currentJob.selectedPerson = null
+    if (currentJob.selectedPerson && (currentJob.selectedPerson === currentJob.volunteersAvailable[personID])) {
+      this.refs[currentJob.selectedPerson.ID].classList = ''
+      currentJob.selectedPerson = {}
     } else if (currentJob.selectedPerson){
-      this.refs[`${currentJob.selectedPerson.ID}`].classList = null
+      this.refs[currentJob.selectedPerson.ID].classList = ''
       currentJob.selectedPerson = currentJob.volunteersAvailable[personID]
       this.refs[personID].classList.add('selected')
     } else {
